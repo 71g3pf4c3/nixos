@@ -1,0 +1,9 @@
+---
+defaults:
+  # Defaults are applied to each hosts
+  ControlMaster: auto
+  ControlPersist: yes
+  Port: 22
+  User: t1g3pf4c3
+localhost:
+  User: t1g3pf4c3

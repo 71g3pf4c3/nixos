@@ -1,0 +1,17 @@
+[user]
+	email = 71g3pf4c3@gmail.com
+	name = 71g3pf4c3
+[user]
+	email = mkungurov@runity.ru
+	name = "Кунгуров Макар Евгеньевич"
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[init]
+	defaultBranch = main
+[safe]
+    directory = /etc/nixos
+
