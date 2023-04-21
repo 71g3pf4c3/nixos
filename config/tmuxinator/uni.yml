@@ -1,0 +1,12 @@
+# /home/t1g3pf4c3/.config/tmuxinator/uni.yml
+
+name: uni
+root: ~/projects/uni
+
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - nvim
+        - echo work
+  - notes: nvim $(fzf --header=NOTE -i -q .md)

@@ -1,0 +1,17 @@
+#/home/t1g3pf4c3/.config/rocketsales.yml
+
+name: rocketsales
+root: ~/projects/rocketsales
+
+windows:
+  - telecom:
+      layout: main-vertical
+      panes:
+        - logs-dev:
+          - ssh kungurov@telecom-dev docker service logs --tail 100 -f telecom_node
+        - logs-prod:
+          - ssh kungurov@telecom-production docker service logs --tail 100 -f telecom_node
+        - logs-prerelease:  
+          - ssh kungurov@telecom-prerelease docker service logs --tail 100 -f telecom_node
+  - workspace:
+      - nvim

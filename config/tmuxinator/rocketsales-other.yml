@@ -1,0 +1,35 @@
+# /home/t1g3pf4c3/.config/rocketsales-other.yml
+
+---
+name: rocketsales
+root: ~/projects/rocketsales
+windows:
+  - easy:
+      layout: "even-vertical"
+      panes:
+        - proxy:
+            - ssh root@89.163.212.55 tail -f /var/log/squid/access.log
+        - proxy2:
+            - ssh root@78.31.67.134
+        - easy-test:
+            - sshpass -p ${EASY_TEST} ssh -o StrictHostKeyChecking=no root@159.65.114.6 docker logs --tail 40 -f vodafone-easy-docker_vodafone_1
+        - easy-prod:
+            - sshpass -p ${EASY_PROD} ssh -o StrictHostKeyChecking=no root@206.81.30.8 docker logs --tail 40 -f vodafone-easy-docker_vodafone_1
+  - sms:
+      root: ~/projects/rocketsales/sms-manager
+      panes:
+        - sshpass -p ${SMS} ssh -o StrictHostKeyChecking=no root@64.225.99.11 docker logs --tail 40 -f  sms-manager-node-1
+  - whatsapp:
+      root: ~/projects/rocketsales/whatsApp
+      panes:
+        - ssh root@62.141.46.123  docker logs --tail 40 -f whatsapp-node-1
+  - graylog:
+      root: ~/projects/rocketsales
+      panes:
+        - sshpass -p ${GRAYLOG} ssh -o StrictHostKeyChecking=no root@10.114.0.10
+  - validator:
+      panes:
+        - ssh kungurov@validator
+  - parser:
+      panes:
+        - sshpass -p ${PARSER} ssh -o StrictHostKeyChecking=no root@159.89.97.202
