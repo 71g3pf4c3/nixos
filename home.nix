@@ -135,7 +135,6 @@ in
     #nix tools
     nixos-container
     distrobox
-    emacs
     shotcut
   ];
   home.pointerCursor = {
@@ -173,25 +172,11 @@ in
         { timeout = 60 * 3; command = ''${pkgs.sway}/bin/swaymsg "output * dpms off"''; resumeCommand = ''${pkgs.sway}/bin/swaymsg "output * dpms on"''; }
       ];
     };
-    syncthing = {
-      enable = true;
-    };
-    recoll = {
-      enable = false;
-    };
+    syncthing = { enable = true; };
+    recoll = { enable = false; };
   };
-  home.file.".config/nvim" = {
-    source = ./config/nvim;
-    recursive = true;
-  };
-  home.file.".config/tym" = {
-    source = ./config/tym;
-    recursive = true;
-  };
-  home.file.".config/hypr" = {
-    source = ./config/hypr;
-    recursive = true;
-  };
+  home.file.".config/nvim" = { source = ./config/nvim; recursive = true; };
+  home.file.".config/tym" = { source = ./config/tym; recursive = true; };
   home.file.".config/procs/procs.toml".source = ./config/procs.toml;
   programs.zsh = {
     enable = true;
@@ -205,9 +190,10 @@ in
         	OMZP::sudo \
         	Aloxaf/fzf-tab \
         	zdharma-continuum/fast-syntax-highlighting 
-        export PS1="❯ %B''${PWD##*/}%b " 
+        # export PS1="❯ %B''${PWD##*/}%b " 
+        export PS1="❯ " 
         zinit wait'!' reset-prompt lucid light-mode for \
-        	nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
+					nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
         bindkey '^[[Z' autosuggest-accept
       ''
       (builtins.readFile ./config/zsh.d/zshrc)
@@ -223,6 +209,12 @@ in
       KUBECONFIG = "${config.home.homeDirectory}/.kube/WebBee.yml";
       KUBECONFIG_SAVED = "$KUBECONFIG";
       _JAVA_AWT_WM_NONREPARENTING = "1";
+			ZSH_AUTOSUGGEST_STRATEGY="(history completion)";
+			ZSH_AUTOSUGGEST_USE_ASYNC=true;
+			ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=${colorscheme.light.bg2}";
+			ZSH_AUTOSUGGEST_CLEAR_WIDGETS="(buffer-empty bracketed-paste accept-line push-line-or-edit)";
+			PASSWORD_STORE_ENABLE_EXTENSIONS="true pass fzf";
+			PASSWORD_STORE_DIR="$HOME/.password-store";
     };
     envExtra = "skip_global_compinit=1";
     history = {
@@ -259,14 +251,8 @@ in
       "k9scgqa2" = "https_proxy=http://10.7.1.38:3128/ http_proxy=http://10.7.1.38:3128/ k9s --kubeconfig ~/.kube/CapitalQa2.yaml";
       "k9scgdv" = "k9s --kubeconfig ~/.kube/CapitalDev.yaml";
       "k9scgpr" = "k9s --kubeconfig ~/.kube/CapitalProd.yaml";
+      "k9scgift" = "k9s --kubeconfig ~/.kube/CapitalIft.yaml";
     };
-    cdpath = [
-      "${config.home.homeDirectory}"
-      "${config.home.homeDirectory}/projects"
-      "${config.home.homeDirectory}/projects/work"
-      ".."
-      "../.."
-    ];
     defaultKeymap = "viins";
     autocd = true;
     plugins = [
@@ -425,11 +411,11 @@ in
           };
         };
         extraConfig = ''	
-					set -g @mode_indicator_empty_mode_style 'bold,bg=#665c54,fg=#fbf1c7'
-					set -g @mode_indicator_prefix_mode_style 'bold,bg=#076678,fg=#fbf1c7'
-					set -g @mode_indicator_copy_mode_style 'bold,bg=#af3a30,fg=#fbf1c7'
-					set -g @mode_indicator_sync_mode_style 'bold,bg=#fe8019,fg=#fbf1c7'
-					set-option -g status-right "#[bold,fg=#ebdbb2, bg=${colorscheme.light.green} ] #{host} #{tmux_mode_indicator}" 
+					set -g @mode_indicator_empty_mode_style 'bold,bg=${colorscheme.dark.bg4},fg=${colorscheme.dark.fg}'
+					set -g @mode_indicator_prefix_mode_style 'bold,bg=${colorscheme.dark.blue},fg=${colorscheme.dark.fg}'
+					set -g @mode_indicator_copy_mode_style 'bold,bg=${colorscheme.dark.red},fg=${colorscheme.dark.fg}'
+					set -g @mode_indicator_sync_mode_style 'bold,bg=${colorscheme.dark.orange},fg=${colorscheme.dark.fg}'
+					set-option -g status-right "#[bold,fg=${colorscheme.dark.fg}, bg=${colorscheme.dark.green} ] #{host} #{tmux_mode_indicator}" 
 				'';
       }
       {
@@ -463,9 +449,6 @@ in
 ";
       }
     ];
-  };
-  programs.sioyek = {
-    enable = true;
   };
   programs.zathura = {
     enable = true;
@@ -764,16 +747,16 @@ in
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    package = pkgs.waybar.overrideAttrs (oa: {
-      mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
-      patches = (oa.patches or [ ]) ++ [
-        (pkgs.fetchpatch {
-          name = "fix waybar hyprctl";
-          url = "https://aur.archlinux.org/cgit/aur.git/plain/hyprctl.patch?h=waybar-hyprland-git";
-          sha256 = "sha256-pY3+9Dhi61Jo2cPnBdmn3NUTSA8bAbtgsk2ooj4y7aQ=";
-        })
-      ];
-    });
+    # package = pkgs.waybar.overrideAttrs (oa: {
+    #   mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
+    #   patches = (oa.patches or [ ]) ++ [
+    #     (pkgs.fetchpatch {
+    #       name = "fix waybar hyprctl";
+    #       url = "https://aur.archlinux.org/cgit/aur.git/plain/hyprctl.patch?h=waybar-hyprland-git";
+    #       sha256 = "sha256-pY3+9Dhi61Jo2cPnBdmn3NUTSA8bAbtgsk2ooj4y7aQ=";
+    #     })
+    #   ];
+    # });
     style = lib.concatStrings [
       ''
         * {
@@ -817,7 +800,8 @@ in
         ];
         "sway/window" = { };
         "sway/language" = { };
-        "sway/workspaces" = { "format" = "{icon}";
+        "sway/workspaces" = {
+          "format" = "{icon}";
           "format-icons" = {
             "1" = "";
             "2" = "";
@@ -827,7 +811,7 @@ in
             "focused" = "";
             "default" = "";
           };
-				};
+        };
         # "wlr/workspaces" = {
         #   "format" = "{icon}";
         #   "format-icons" = {
@@ -991,5 +975,5 @@ in
       "--disable-up-arrow"
     ];
   };
-  # programs.emacs.enable = true;
+  # programs.sioyek = { enable = true; };
 }

@@ -1,15 +1,5 @@
 setopt promptsubst
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-export ZSH_AUTOSUGGEST_USE_ASYNC=true
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#d5c4a1"
-export PASSWORD_STORE_ENABLE_EXTENSIONS=true pass fzf
-export PASSWORD_STORE_DIR="$HOME/.password-store"
-
 export ZSH_TMUX_FIXTERM=true
-export TMUX_XPANES_PANE_BORDER_FORMAT='#[bold,fg=#ebdbb2, bg=#b16286 ] #T #[default]'
-# export JIRA_API_TOKEN=3yQgbxr9B9X0KGIFuYrP60EE
-export JIRA_API_TOKEN=OLMvfheEpxkVngB115PREqTSS8s2UOgVoh7Fwf
 
 #Additional settings
 
