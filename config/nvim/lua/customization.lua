@@ -6,6 +6,7 @@ opt.termguicolors = true
 require("gruvbox").setup({
 	undercurl = true,
 	underline = true,
+	transparent_mode = false,
 	background = light,
 	bold = true,
 	italic = {
@@ -20,7 +21,7 @@ require("gruvbox").setup({
 	invert_tabline = false,
 	invert_intend_guides = false,
 	inverse = true, -- invert background for search, diffs, statuslines and errors
-	contrast = "", -- can be "hard", "soft" or empty string
+	contrast = "soft", -- can be "hard", "soft" or empty string
 	overrides = {},
 })
 

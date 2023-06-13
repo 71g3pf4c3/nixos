@@ -14,6 +14,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ "intel_pstate=passive" "i915.enable_fbc=1" "i915.enable_psr=2" "mem_sleep_default=deep" "pcie_aspm=force" ];
+	boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
     {

@@ -5,7 +5,7 @@ tym.set("font", "Comic Code Ligatures 9")
 
 -- set by table
 tym.set_config({
---	shell = "/run/current-system/sw/bin/zsh",
+	--	shell = "/run/current-system/sw/bin/zsh",
 	cursor_shape = "block",
 	autohide = true,
 	padding_horizontal = 0,
@@ -20,22 +20,36 @@ tym.set_config({
 
 local function run_shell(command)
 	local handle = io.popen(command)
-	if (handle~=nil) then
-	local result = handle:read("*a")
-	handle:close()
-	return result
+	if (handle ~= nil) then
+		local result = handle:read("*a")
+		handle:close()
+		return result
 	else
-	return "sus"
+		return "sus"
 	end
 end
--- tym.notify("" .. run_shell("tmux display-message -p '#S'"))
-tym.set("title", "" .. run_shell("tmux display-message -p '#S'"))
-tym.set_hooks({
-	title = function(t)
-		tym.set("title", "" .. run_shell("tmux display-message -p '#S'"))
-		return true -- this is needed to cancenl default title application
-	end,
-})
+-- tym.notify("" .. run_shell("tmux list-sessions | grep attached | awk '{print $1}'"))
+-- tym.set("title", "" .. run_shell("tmux display-message -p '#S'"))
+-- tym.set_hooks({
+-- 	title = function()
+-- 		tym.set("title", "" .. run_shell("tmux display-message -p '#S'"))
+-- 		return true -- this is needed to cancenl default title application
+-- 	end,
+-- })
+-- tym.set_timeout(
+-- 	function()
+-- 		tym.set_hooks({
+-- 			title = function()
+-- 				tym.set("title", "" .. run_shell("tmux display-message -p '#S'"))
+-- 				return true -- this is needed to cancenl default title application
+-- 			end,
+-- 		})
+-- 	end
+-- 	, 3000)
+-- tym.set_timeout(function ()
+-- 	tym.set("title", "" .. run_shell("tmux display-message -p '#S'"))
+-- 	return true
+-- end, 3000)
 
 -- set by table
 tym.set_keymaps({
@@ -93,6 +107,10 @@ tym.set_keymaps({
 		tym.send_key("<Ctrl>b")
 		tym.send_key("N")
 	end,
+	["<Alt>f"] = function()
+		tym.send_key("<Ctrl>b")
+		tym.send_key("Z")
+	end,
 	["<Alt><Shift>t"] = function()
 		tym.send_key("<Ctrl>b")
 		tym.send_key("P")
@@ -114,10 +132,5 @@ tym.set_timeout(
 		tym.send_key("<Ctrl>m")
 		coroutine.yield(false)
 	end),
-	100
+	50
 )
-
--- tym.set_timeout(function ()
--- 	tym.set("title", "" .. run_shell("tmux display-message -p '#S'"))
--- 	return true
--- end, 3000)

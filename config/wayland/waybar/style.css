@@ -190,11 +190,11 @@ label:focus {
 }
 
 #custom-media.custom-spotify {
-    background-color: #66cc99;
+    background-color: @green@;
 }
 
 #custom-media.custom-vlc {
-    background-color: #ffa000;
+    background-color: @yellow@;
 }
 
 #temperature {

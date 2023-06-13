@@ -11,7 +11,6 @@ let
     name = "dbus-sway-environment";
     destination = "/bin/dbus-sway-environment";
     executable = true;
-
     text = ''
       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
       systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
@@ -31,7 +30,7 @@ let
       ''
         export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
         gnome_schema=org.gnome.desktop.interface
-        gsettings set $gnome_schema gtk-theme 'Dracula'
+        gsettings set $gnome_schema gtk-theme 'Gruvbox'
       '';
   };
 in
@@ -44,7 +43,6 @@ in
     slurp
     xdg-utils # for opening default programs when clicking links
     glib # gsettings
-    dracula-theme # gtk theme
     gnome3.adwaita-icon-theme # default gnome cursors
     swaylock
     swayidle
@@ -61,6 +59,7 @@ in
     pulse.enable = true;
   };
   services.dbus.enable = true;
+	services.dbus.implementation = "broker";
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -69,5 +68,15 @@ in
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+		extraSessionCommands = ''
+			export SDL_VIDEODRIVER=wayland
+			export QT_QPA_PLATFORM=wayland
+			export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+			export _JAVA_AWT_WM_NONREPARENTING=1
+			export XDG_SESSION_TYPE=wayland
+			export XDG_CURRENT_DESKTOP=sway
+			export XDG_SESSION_DESKTOP=sway
+			export SDL_VIDEODRIVER=wayland
+		'';
   };
 }

@@ -1,5 +1,5 @@
 echo starting
-TMUXPATH="$HOME/dots/config/tmux.conf"
+TMUXPATH="$HOME/.config/tmux.conf"
 if [[ $1 = "ssh" && -f $TMUXPATH ]]; then
 	SUBSTCOLOR="$(printf '%s' "$2" | md5sum | cut -c1-6)"
 	TMUXCONF="/tmp/tmux.tmp.conf.$SUBSTCOLOR"
@@ -11,7 +11,7 @@ if [[ $1 = "ssh" && -f $TMUXPATH ]]; then
 	cp -L "$TMUXPATH" "$TMUXCONF" && chmod 666 "$TMUXCONF"
 	cat <<EOF >>"$TMUXCONF"
 set-option -g status-right '#[bold,fg=#ebdbb2, bg=#$SUBSTCOLOR] #{host} #{tmux_mode_indicator}'
-set-option -g pane-border-lines heavy
+#set-option -g pane-border-lines heavy
 set-option -g pane-active-border-style 'fg=#$SUBSTCOLOR, bg=#$SUBSTCOLOR'
 set-option -g pane-border-style 'fg=#ebdbb2, bg=#ebdbb2'
 set-option -g window-style 'bg=$SUBSTBG'

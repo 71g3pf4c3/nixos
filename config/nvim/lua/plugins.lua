@@ -21,11 +21,11 @@ require("lazy").setup({
 		},
 	},
 	-- QUALITY OF NVIM
-	{ "windwp/nvim-autopairs", config = true },
+	{ "windwp/nvim-autopairs",              config = true },
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
 	-- WHICH KEY
-	{ "folke/which-key.nvim", config = true },
+	{ "folke/which-key.nvim",    config = true },
 	-- BUfferline
 	{ "akinsho/bufferline.nvim", config = true },
 	{
@@ -37,7 +37,7 @@ require("lazy").setup({
 	},
 	-- Tmux integration
 	-- { "alexghergh/nvim-tmux-navigation" },
-{
+	{
 		"aserowy/tmux.nvim",
 		opts = {
 			copy_sync = {
@@ -52,9 +52,14 @@ require("lazy").setup({
 			load = {
 				["core.defaults"] = {},
 				["core.export"] = {},
+				["core.ui"] = {},
 				["core.export.markdown"] = {},
-				["core.norg.concealer"] = {},
-				["core.norg.completion"] = { config = { engine = "nvim-cmp" } },
+				["core.concealer"] = {},
+				["core.dirman"] = {},
+				-- ["core.presenter"] = {},
+				["core.manoeuvre"] = {},
+				-- ["core.ui.calendar"] = {},
+				["core.completion"] = { config = { engine = "nvim-cmp" } },
 			},
 		},
 		ft = "norg",
@@ -63,6 +68,7 @@ require("lazy").setup({
 			"arthurxavierx/vim-unicoder",
 			"joom/latex-unicoder.vim",
 			"hrsh7th/nvim-cmp",
+			"folke/zen-mode.nvim",
 		},
 	},
 	{
@@ -79,7 +85,8 @@ require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
-		dependencies = { "nvim-lua/plenary.nvim", "ahmedkhalf/project.nvim", "aaronhallaert/advanced-git-search.nvim", "tpope/vim-fugitive" },
+		dependencies = { "nvim-lua/plenary.nvim", "ahmedkhalf/project.nvim", "aaronhallaert/advanced-git-search.nvim",
+			"tpope/vim-fugitive" },
 		opts = {
 			defaults = {
 				theme = "ivy",
@@ -98,12 +105,12 @@ require("lazy").setup({
 		config = function()
 			require("project_nvim").setup({
 				show_hidden = true,
+				manual_mode = true,
 				sync_root_with_cwd = true,
 				respect_buf_cwd = true,
 				silent_chdir = true,
 				detection_methods = { "lsp", "pattern" },
 				patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
-
 				update_focused_file = {
 					enable = true,
 					update_root = true,
@@ -138,6 +145,7 @@ require("lazy").setup({
 			null_ls.setup({
 				sources = {
 					formatting.shfmt,
+					formatting.sqlfmt,
 					formatting.prettier,
 					formatting.yamlfix,
 					formatting.shellharden,
@@ -152,10 +160,10 @@ require("lazy").setup({
 		event = "InsertEnter",
 		dependencies = { "nvim-lua/plenary.nvim", "jay-babu/mason-null-ls.nvim", "williamboman/mason.nvim" },
 	},
-	{ "jay-babu/mason-null-ls.nvim", lazy = true, opts = { automatic_setup = true } },
+	{ "jay-babu/mason-null-ls.nvim", lazy = true,  opts = { automatic_setup = true } },
 
 	-- Comments
-	{ "numToStr/Comment.nvim", config = true },
+	{ "numToStr/Comment.nvim",       config = true },
 	-- CMP
 	{
 		"hrsh7th/nvim-cmp",
@@ -172,15 +180,20 @@ require("lazy").setup({
 			require("setup.cmp")
 		end,
 	},
-	{ "L3MON4D3/LuaSnip", lazy = true, dependencies = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" } },
+	{
+		"L3MON4D3/LuaSnip",
+		lazy = true,
+		dependencies = {
+			"saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" }
+	},
 	-- Git
-	{ "lewis6991/gitsigns.nvim", config = true },
+	{ "lewis6991/gitsigns.nvim",    config = true },
 	{ "tpope/vim-fugitive" },
 
 	{ "dhruvasagar/vim-table-mode", cmd = "TableModeToggle" },
-	{ "jbyuki/venn.nvim", cmd = "VBox" },
-	{ "ray-x/go.nvim", ft = "go", config = true },
-	{ "rodjek/vim-puppet", ft = { "pp", "puppet" } },
+	{ "jbyuki/venn.nvim",           cmd = "VBox" },
+	{ "ray-x/go.nvim",              ft = "go",                                 config = true },
+	{ "rodjek/vim-puppet",          ft = { "pp", "puppet" } },
 	{ "powerman/vim-plugin-ruscmd", ft = { "md", "markdown", "neorg", "norg" } },
 	{
 		"cuducos/yaml.nvim",
@@ -190,21 +203,31 @@ require("lazy").setup({
 			"nvim-telescope/telescope.nvim", -- optional
 		},
 	},
-	-- {
-	-- 	"folke/zen-mode.nvim",
-	-- 	config = {
-	-- 		plugins = {
-	-- 			-- disable some global vim options (vim.o...)
-	-- 			-- comment the lines to not apply the options
-	-- 			options = {
-	-- 				enabled = true,
-	-- 				ruler = false, -- disables the ruler text in the cmd line area
-	-- 				showcmd = false, -- disables the command in the last line of the screen
-	-- 			},
-	-- 			twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
-	-- 			gitsigns = { enabled = true }, -- disables git signs
-	-- 			tmux = { enabled = true },
-	-- 		},
-	-- 	},
-	-- },
+	{
+		'glacambre/firenvim',
+		-- Lazy load firenvim
+		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+		cond = not not vim.g.started_by_firenvim,
+		build = function()
+			require("lazy").load({ plugins = "firenvim", wait = true })
+			vim.fn["firenvim#install"](0)
+		end
+	},
+	{
+		"folke/zen-mode.nvim",
+		config = {
+			plugins = {
+				-- disable some global vim options (vim.o...)
+				-- comment the lines to not apply the options
+				options = {
+					enabled = true,
+					ruler = false,           -- disables the ruler text in the cmd line area
+					showcmd = false,         -- disables the command in the last line of the screen
+				},
+				twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+				gitsigns = { enabled = true }, -- disables git signs
+				tmux = { enabled = true },
+			},
+		},
+	},
 })

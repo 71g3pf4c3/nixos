@@ -1,10 +1,11 @@
 local s = 0
 
 if s == 0 then
-	local bg = "#fbf1c7"
+	local bg = 'rgba(235, 219, 178, 0.98)'
 	local fg = "#3c3836"
 	return {
 		color_window_background = bg,
+		transparent = true,
 		color_background = bg,
 		color_foreground = fg,
 		color_bold = fg,

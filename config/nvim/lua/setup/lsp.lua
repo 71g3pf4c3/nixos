@@ -45,6 +45,8 @@ end
 -- lspconfig.rnix.setup({ on_attach = on_attach })
 -- lspconfig.puppet.setup({ on_attach = on_attach })
 lspconfig.bashls.setup({ on_attach = on_attach })
+lspconfig.sqlls.setup({ on_attach = on_attach })
+lspconfig.helm_ls.setup({ on_attach = on_attach })
 lspconfig.ansiblels.setup({ on_attach = on_attach })
 lspconfig.dockerls.setup({ on_attach = on_attach })
 lspconfig.lua_ls.setup({
@@ -61,16 +63,19 @@ lspconfig.lua_ls.setup({
 lspconfig.nil_ls.setup({ on_attach = on_attach })
 lspconfig.rnix.setup({ on_attach = on_attach })
 lspconfig.tsserver.setup({ on_attach = on_attach })
-lspconfig.helm_ls.setup({ on_attach = on_attach, filetypes={"helm"} })
+lspconfig.helm_ls.setup({ on_attach = on_attach, filetypes = { "helm" } })
 lspconfig.yamlls.setup({
 	on_attach = on_attach,
 	settings = {
 		root_dir = [[util.find_git_ancestor]],
-		-- 	yaml = {
-		-- 		schemas = {
-		-- 			["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-		-- 		},
-		-- 	},
+		yaml = {
+			schemaStore = true,
+			completion = true,
+			-- schemas = {
+			-- 	["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+			-- },
+			keyOrdering = false,
+		},
 	},
 })
 vim.api.nvim_create_autocmd({ "bufenter", "bufwinenter" }, {
