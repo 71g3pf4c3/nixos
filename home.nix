@@ -194,9 +194,20 @@ in
         export PS1="❯ " 
         zinit wait'!' reset-prompt lucid light-mode for \
 					nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
+				# FZF SETTINGS
         bindkey '^[[Z' autosuggest-accept
+				zstyle ':fzf-tab:complete:*' fzf-min-height '90'
+				zstyle ':fzf-tab:complete:*' fzf-preview 'pistol $realpath' # remember to use single quote here!!!
+				zstyle ':fzf-tab:complete:-command-:*' fzf-preview '(out=$(tldr --color always "$word") 2>/dev/null && echo $out) || (out=$(MANWIDTH=$FZF_PREVIEW_COLUMNS man "$word") 2>/dev/null && echo $out) || (out=$(which "$word") && echo $out) || echo "''${(P)word}"'
+				zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+				zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ''${(P)word}"
+				zstyle ':fzf-tab:complete:*:options' fzf-preview 'printf %s $desc | fold -w 27'
+				zstyle ':fzf-tab:*' fzf-bindings 'space:accept'
+				setopt promptsubst
+				setopt autocd beep extendedglob notify correct
+				unsetopt nomatch
       ''
-      (builtins.readFile ./config/zsh.d/zshrc)
+      (builtins.readFile ./config/zsh.d/suscomp)
     ];
     enableAutosuggestions = true;
     enableCompletion = false;

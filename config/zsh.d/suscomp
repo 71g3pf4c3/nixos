@@ -1,22 +1,5 @@
-setopt promptsubst
-export ZSH_TMUX_FIXTERM=true
-
-#Additional settings
-
-setopt autocd beep extendedglob notify correct
-unsetopt nomatch
-
-# FZF SETTINGS
-zstyle ':fzf-tab:complete:*' fzf-min-height '90'
-zstyle ':fzf-tab:complete:*' fzf-preview 'pistol $realpath' # remember to use single quote here!!!
-zstyle ':fzf-tab:complete:-command-:*' fzf-preview '(out=$(tldr --color always "$word") 2>/dev/null && echo $out) || (out=$(MANWIDTH=$FZF_PREVIEW_COLUMNS man "$word") 2>/dev/null && echo $out) || (out=$(which "$word") && echo $out) || echo "${(P)word}"'
-zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
-zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
-zstyle ':fzf-tab:complete:*:options' fzf-preview 'printf %s $desc | fold -w 27'
-zstyle ':fzf-tab:*' fzf-bindings 'space:accept'
 
 # ADDITIONAL FUNCTIONS 
-
 __sus-replace-buffer() {
   local old=$1 new=$2 space=${2:+ }
   # if the cursor is positioned in the $old part of the text, make
@@ -100,7 +83,6 @@ sus-command-line() {
   }
 }
 zle -N sus-command-line
-
 bindkey -M emacs "^[OS" sus-command-line
 bindkey -M vicmd "^[OS" sus-command-line
 bindkey -M viins "^[OS" sus-command-line
