@@ -264,6 +264,7 @@ in {
     source = ./config/tym;
     recursive = true;
   };
+  programs.home-manager.enable = true;
   programs.zsh = {
     enable = true;
     initExtra = lib.concatStrings [''
@@ -1205,7 +1206,6 @@ in {
       { id = "omkfmpieigblcllmkgbflkikinpkodlk"; } # enchanced h264ify
     ];
   };
-  programs.home-manager.enable = true;
   xdg.userDirs = {
     desktop = "${config.home.homeDirectory}/tmp";
     download = "${config.home.homeDirectory}/downloads";
@@ -1310,4 +1310,5 @@ in {
       { url = "https://www.cncf.io/feed/"; }
     ];
   };
+  # programs.nixvim = { plugins.lightline.enable = true; };
 }
