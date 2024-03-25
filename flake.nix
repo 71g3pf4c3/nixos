@@ -20,9 +20,6 @@
         modules = [
           ./configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-          nixvim.nixosModules.nixvim
-
-          # nixvim.homeManagerModules.nixvim
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

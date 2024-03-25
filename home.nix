@@ -1310,5 +1310,4 @@ in {
       { url = "https://www.cncf.io/feed/"; }
     ];
   };
-  # programs.nixvim = { enable = true; };
 }
