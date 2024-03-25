@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, home, ... }:
 let
   # distant = (pkgs.callPackage ./pkgs/distant/default.nix { });
   font = "Comic Code Ligatures";
