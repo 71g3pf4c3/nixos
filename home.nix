@@ -1310,5 +1310,5 @@ in {
       { url = "https://www.cncf.io/feed/"; }
     ];
   };
-  # programs.nixvim = { plugins.lightline.enable = true; };
+  # programs.nixvim = { enable = true; };
 }
