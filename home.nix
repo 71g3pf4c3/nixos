@@ -1,10 +1,5 @@
 { config, pkgs, lib, ... }:
 let
-  sus = pkgs.writeShellApplication {
-    name = "sus";
-    text = builtins.readFile ./bin/sus.sh;
-    runtimeInputs = with pkgs; [ pastel tmux openssh ];
-  };
   # distant = (pkgs.callPackage ./pkgs/distant/default.nix { });
   font = "Comic Code Ligatures";
   terminal = "${lib.getExe pkgs.tym}";
@@ -92,33 +87,15 @@ in {
   home.homeDirectory = "/home/t1g3pf4c3";
   home.stateVersion = "23.11";
   home.packages = with pkgs; [
-
-    #terminal
     tym
     assh
-    # autossh
-    # dig
-    # yq-go
     telegram-desktop
     whatsapp-for-linux
     fd
     neovim
     bkt
-    # buku
     tmux-xpanes
-    # bluetuith
-    # wemux
-    # frp
-    # cli superpowers
-    # entr
-    # gptcommit
     wtf
-    # gotty
-    chafa
-    # sshpass
-    # ttyd
-    # libsixel
-
     openssl
     translate-shell
     tree-sitter
@@ -129,18 +106,14 @@ in {
     popeye
     git-annex
     dig
-    sus
     pastel
     pango
-
     nodePackages.webtorrent-cli
     sxiv
     qbittorrent
-
     glab
     libreoffice
     drawio
-
     kubectl
     kubespy
     kube-capacity
@@ -149,8 +122,6 @@ in {
     kubectl-explore
     kubectl-example
     kubernetes-helm
-    # kubectl-view-allocations
-
     cargo
     nodejs
     go
@@ -164,8 +135,23 @@ in {
     python3
     pavucontrol
     # webtorrent_desktop
+    # kubectl-view-allocations
     # gimp
+    # autossh
+    # dig
+    # yq-go
+    # buku
     # podman-tui
+    # bluetuith
+    # wemux
+    # frp
+    # cli superpowers
+    # entr
+    # gptcommit
+    # gotty
+    # sshpass
+    # ttyd
+    # libsixel
     # tmux-cssh
     # prog
     # trivy
@@ -191,7 +177,6 @@ in {
     # grafterm
     # wireshark
     # mosh
-    # procs
     # pueue
     # pulsemixer
     # freerdp
@@ -212,10 +197,6 @@ in {
       indicator = true;
     };
     network-manager-applet.enable = true;
-    # clipman = {
-    #   enable = true;
-    #   systemdTarget = "sway-session.target";
-    # };
     cliphist = {
       enable = true;
       systemdTarget = "sway-session.target";
@@ -247,25 +228,25 @@ in {
       }];
       timeouts = [
         {
-          timeout = 60 * 4;
+          timeout = 60 * 3;
           command = "${lib.getExe pkgs.swaylock} -fF";
         }
-        {
-          timeout = 30;
-          command = "${
-              lib.getExe pkgs.syncthing
-            } cli config folders sdb6f-lcbur paused set false";
-          resumeCommand = "${
-              lib.getExe pkgs.syncthing
-            } cli config folders sdb6f-lcbur paused set true";
-        }
+        # {
+        #   timeout = 30;
+        #   command = "${
+        #       lib.getExe pkgs.syncthing
+        #     } cli config folders sdb6f-lcbur paused set false";
+        #   resumeCommand = "${
+        #       lib.getExe pkgs.syncthing
+        #     } cli config folders sdb6f-lcbur paused set true";
+        # }
         {
           timeout = 60 * 2;
           command = "${lib.getExe pkgs.light} -U 30";
           resumeCommand = "${lib.getExe pkgs.light} -A 30";
         }
         {
-          timeout = 60 * 3;
+          timeout = 60 * 4;
           command = ''${pkgs.sway}/bin/swaymsg "output * dpms off"'';
           resumeCommand = ''${pkgs.sway}/bin/swaymsg "output * dpms on"'';
         }
@@ -283,34 +264,28 @@ in {
     source = ./config/tym;
     recursive = true;
   };
-  home.file.".config/procs/procs.toml".source = ./config/procs.toml;
-  home.file.".distroboxrc".source = ./config/distrobox.conf;
-  home.file.".distrobox.env".source = ./config/distrobox.env;
   programs.zsh = {
     enable = true;
-    initExtra = lib.concatStrings [
-      ''
-                			zinit wait reset-prompt lucid light-mode for \
-                				OMZL::git.zsh \
-                				OMZP::kubectl \
-                				atload"unalias grv" OMZP::git \
-                				OMZL::clipboard.zsh \
-                				PZT::modules/{'history','rsync'} \
-                				OMZP::sudo \
-                				Aloxaf/fzf-tab \
-                				zdharma-continuum/fast-syntax-highlighting \
-                				olets/zsh-abbr \
-                				zsh-users/zsh-completions
-                			export PS1="❯ " 
-                			zinit wait'!' reset-prompt lucid light-mode for \
-                				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
-                			bindkey '^[[Z' autosuggest-accept
-        							zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-        							zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-                			export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
-      ''
-      (builtins.readFile ./config/zsh.d/suscomp)
-    ];
+    initExtra = lib.concatStrings [''
+              			zinit wait reset-prompt lucid light-mode for \
+              				OMZL::git.zsh \
+              				OMZP::kubectl \
+              				atload"unalias grv" OMZP::git \
+              				OMZL::clipboard.zsh \
+              				PZT::modules/{'history','rsync'} \
+              				OMZP::sudo \
+              				Aloxaf/fzf-tab \
+              				zdharma-continuum/fast-syntax-highlighting \
+              				olets/zsh-abbr \
+              				zsh-users/zsh-completions
+              			export PS1="❯ " 
+              			zinit wait'!' reset-prompt lucid light-mode for \
+              				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
+              			bindkey '^[[Z' autosuggest-accept
+      							zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+      							zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+              			export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+    ''];
     autosuggestion.enable = true;
     enableCompletion = false;
     completionInit = "autoload -Uz compinit && compinit";
@@ -468,7 +443,7 @@ in {
                   }
                   bind-key y if-shell -F '#{==:#{session_name},kubectx}' { kill-session -t kubectx } { display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx" }
                   bind-key m if-shell -F '#{==:#{session_name},k9s}' { detach-client } { display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml" }
-                  bind-key u display-popup -h 50% -w 50% -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s update -n update "sudo nixos-rebuild switch --flake /etc/nixos# --impure && ${
+                  bind-key u display-popup -h 50% -w 50% -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s update -n update "upd && ${
                     lib.getExe pkgs.notify-desktop
                   } nixos updated -t 1000" 
                   # only show status bar if there is more then one window
@@ -513,7 +488,7 @@ in {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''
           set -g @resurrect-capture-pane-contents 'on'
-          set -g @resurrect-processes 'ssh nvim lazygit k9s fzf lf mosh ~sus'
+          set -g @resurrect-processes 'ssh nvim lazygit k9s fzf lf mosh'
           set -g @resurrect-strategy-nvim 'session'
         '';
       }
@@ -875,7 +850,6 @@ in {
     source = ./config/k9s/skins;
     recursive = true;
   };
-  # home.file.".config/k9s/config.yaml".source = ./config/k9s/config.yaml;
   programs.mpv = {
     enable = true;
     config = {
