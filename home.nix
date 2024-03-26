@@ -97,7 +97,6 @@ in {
     bkt
     tmux-xpanes
     wtf
-    openssl
     translate-shell
     tree-sitter
     postgresql
@@ -126,6 +125,7 @@ in {
     unzip
     python3
     pavucontrol
+    # openssl
     # pango
     # pastel
     # glab
