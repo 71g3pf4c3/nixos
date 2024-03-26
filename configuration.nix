@@ -1,5 +1,4 @@
 { config, pkgs, self, lib, inputs, ... }: {
-  imports = [ ./hardware-configuration.nix ./sway.nix ];
   documentation.man = {
     enable = true;
     generateCaches = true;
