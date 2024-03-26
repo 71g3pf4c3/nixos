@@ -42,8 +42,6 @@ end
 
 
 lspconfig.gopls.setup({ on_attach = on_attach })
--- lspconfig.rnix.setup({ on_attach = on_attach })
--- lspconfig.puppet.setup({ on_attach = on_attach })
 lspconfig.bashls.setup({ on_attach = on_attach })
 lspconfig.sqlls.setup({ on_attach = on_attach })
 lspconfig.ansiblels.setup({ on_attach = on_attach })
@@ -62,7 +60,6 @@ lspconfig.lua_ls.setup({
 	},
 })
 lspconfig.nil_ls.setup({ on_attach = on_attach })
-lspconfig.rnix.setup({ on_attach = on_attach })
 lspconfig.tsserver.setup({ on_attach = on_attach })
 -- lspconfig.helm_ls.setup({ on_attach = on_attach})
 lspconfig.yamlls.setup({
