@@ -90,8 +90,8 @@ in {
   home.packages = with pkgs; [
     tym
     assh
+    ncdu
     telegram-desktop
-    whatsapp-for-linux
     fd
     neovim
     bkt
@@ -105,23 +105,15 @@ in {
     webcord-vencord
     zoom-us
     popeye
-    git-annex
     dig
-    pastel
-    pango
     nodePackages.webtorrent-cli
     sxiv
     qbittorrent
-    glab
     libreoffice
     drawio
-    kubectl
-    kubespy
     kube-capacity
     kubectl-tree
     kubectl-node-shell
-    kubectl-explore
-    kubectl-example
     kubernetes-helm
     cargo
     nodejs
@@ -130,11 +122,17 @@ in {
     rocketchat-desktop
     cool-retro-term
     xdragon
-    winbox
     wineWowPackages.waylandFull
     unzip
     python3
     pavucontrol
+    # pango
+    # pastel
+    # glab
+    # winbox
+    # kubectl
+    # kubectl-explore
+    # kubectl-example
     # webtorrent_desktop
     # kubectl-view-allocations
     # gimp
@@ -164,6 +162,7 @@ in {
     # nixos-container
     # slack
     # lnav
+    # kubespy
     # distrobox
     # shotcut
     # google-chrome
@@ -176,6 +175,7 @@ in {
     # clipboard-jh
     # wineWowPackages.fonts
     # grafterm
+    # git-annex
     # wireshark
     # mosh
     # pueue
