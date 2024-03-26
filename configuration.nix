@@ -39,10 +39,6 @@
     [
 
     ];
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
   programs.steam = {
     enable = true;
     remotePlay.openFirewall =
@@ -283,5 +279,9 @@
   #   ];
   # };
   # services.ratbagd.enable = true;
+  programs.nixvim = {
+    enable = true;
+    colorschemes.gruvbox.enable = true;
+  };
 
 }
