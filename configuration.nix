@@ -161,7 +161,7 @@
           enable_thresholds = true;
           start_threshold = 60;
           stop_threshold = 85;
-          governor = "auto";
+          governor = "powersave";
           turbo = "auto";
           energy_performance_preference = "power";
         };
