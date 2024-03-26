@@ -1287,8 +1287,7 @@ in {
           "https://hnrss.org/newest?count=80&q=Kube+OR+Kubernetes+OR+kube+OR+kubernetes+OR+Docker+OR+docker+OR+Podman+OR+podman";
       }
       { url = "https://hnrss.org/newest?count=80&q=Cloud+OR+cloud"; }
-      { url = "https://hnrss.org/newest?count=80"; }
-      { url = "https://hnrss.org/best"; }
+      { url = "https://hnrss.org/best?count=80"; }
       { url = "https://rsshub.app/telegram/channel/bbbreaking"; }
       { url = "https://rsshub.app/telegram/channel/flant_ru"; }
       { url = "https://rsshub.app/telegram/channel/open_source_friend"; }
