@@ -983,6 +983,9 @@ in {
             "exec ${lib.getExe pkgs.pamixer} --default-source -t t";
           "${modifier}+t" =
             "exec ${lib.getExe pkgs.sway-overfocus} group-rw group-dw";
+          "${modifier}+h" = "exec ${
+              lib.getExe pkgs.sway-overfocus
+            } split-lt float-lt output-ls";
           "${modifier}+Shift+t" =
             "exec ${lib.getExe pkgs.sway-overfocus} group-lw group-uw";
           "${modifier}+w" = "kill";
