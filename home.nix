@@ -986,6 +986,9 @@ in {
           "${modifier}+h" = "exec ${
               lib.getExe pkgs.sway-overfocus
             } split-lt float-lt output-ls";
+          "${modifier}+l" = "exec ${
+              lib.getExe pkgs.sway-overfocus
+            } split-rt float-rt output-rs";
           "${modifier}+Shift+t" =
             "exec ${lib.getExe pkgs.sway-overfocus} group-lw group-uw";
           "${modifier}+w" = "kill";
