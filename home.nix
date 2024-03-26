@@ -92,7 +92,7 @@ in {
     ncdu
     telegram-desktop
     fd
-    neovim
+    # neovim
     bkt
     tmux-xpanes
     wtf
@@ -255,10 +255,10 @@ in {
     # syncthing = { enable = true; };
     # recoll = { enable = false; };
   };
-  home.file.".config/nvim" = {
-    source = ./config/nvim;
-    recursive = true;
-  };
+  # home.file.".config/nvim" = {
+  #   source = ./config/nvim;
+  #   recursive = true;
+  # };
   home.file.".ssh/assh.yml".source = ./config/assh.yml;
   home.file.".config/tym" = {
     source = ./config/tym;
