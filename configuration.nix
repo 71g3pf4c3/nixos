@@ -158,15 +158,17 @@
       enable = true;
       settings = {
         battery = {
-          ideapad_laptop_conservation_mode = false;
           enable_thresholds = true;
-          start_threshold = 80;
+          start_threshold = 60;
           stop_threshold = 85;
           governor = "auto";
           turbo = "auto";
+          energy_performance_preference = "power";
         };
         charger = {
+          ideapad_laptop_conservation_mode = false;
           governor = "performance";
+          energy_performance_preference = "performance";
           turbo = "auto";
         };
       };
