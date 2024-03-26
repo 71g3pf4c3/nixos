@@ -83,6 +83,7 @@ let
     };
   };
 in {
+	imports = [inputs.nixvim.homeManagerModules.nixvim ];
   home.username = "t1g3pf4c3";
   home.homeDirectory = "/home/t1g3pf4c3";
   home.stateVersion = "23.11";
@@ -92,7 +93,7 @@ in {
     ncdu
     telegram-desktop
     fd
-    # neovim
+    neovim
     bkt
     tmux-xpanes
     wtf
@@ -255,10 +256,10 @@ in {
     # syncthing = { enable = true; };
     # recoll = { enable = false; };
   };
-  # home.file.".config/nvim" = {
-  #   source = ./config/nvim;
-  #   recursive = true;
-  # };
+  home.file.".config/nvim" = {
+    source = ./config/nvim;
+    recursive = true;
+  };
   home.file.".ssh/assh.yml".source = ./config/assh.yml;
   home.file.".config/tym" = {
     source = ./config/tym;
