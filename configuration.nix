@@ -161,7 +161,7 @@
           enable_thresholds = true;
           start_threshold = 60;
           stop_threshold = 85;
-          scaling_min_freq = 1000000;
+          scaling_min_freq = 800000;
           governor = "powersave";
           turbo = "auto";
           energy_performance_preference = "power";
