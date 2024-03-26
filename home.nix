@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   # distant = (pkgs.callPackage ./pkgs/distant/default.nix { });
   font = "Comic Code Ligatures";
@@ -83,6 +83,7 @@ let
     };
   };
 in {
+
   home.username = "t1g3pf4c3";
   home.homeDirectory = "/home/t1g3pf4c3";
   home.stateVersion = "23.11";
