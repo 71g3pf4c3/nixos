@@ -485,7 +485,23 @@
         };
         mode = "n";
       }
-
+      {
+        key = "<leader>p";
+        action = ''
+          function() require("telescope").extensions.projects.projects({}) end'';
+        options = {
+          desc = "projects";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>f";
+        action = ''function() require("telescope.builtin").find_files() end'';
+        options = {
+          desc = "Find files";
+          silent = true;
+        };
+      }
     ];
   };
 
