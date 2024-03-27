@@ -361,4 +361,5 @@ require("lazy").setup({
 					})
 				end
 	}
+	"github/copilot.vim",
 })
