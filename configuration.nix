@@ -397,6 +397,7 @@
       }
       {
         key = "<leader>e";
+        lua = true;
         action = ''function() require("b64").encode() end'';
         mode = "v";
         options = {
@@ -406,6 +407,7 @@
       }
       {
         key = "<leader>d";
+        lua = true;
         action = ''function() require("b64").decode() end'';
         options = {
           desc = "decode base64";
@@ -487,6 +489,7 @@
       }
       {
         key = "<leader>p";
+        lua = true;
         action = ''
           function() require("telescope").extensions.projects.projects({}) end'';
         options = {
@@ -496,6 +499,7 @@
       }
       {
         key = "<leader>f";
+        lua = true;
         action = ''function() require("telescope.builtin").find_files() end'';
         options = {
           desc = "Find files";
