@@ -282,8 +282,8 @@
     enable = true;
     colorschemes.gruvbox.enable = true;
     clipboard.providers.wl-copy.enable = true;
+    clipboard.register = "unnamedplus";
     options = {
-      clipboard = "unnamedplus";
       mouse = "a";
       cursorline = true;
       cursorcolumn = true;
