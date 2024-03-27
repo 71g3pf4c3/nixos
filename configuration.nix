@@ -282,14 +282,22 @@
     enable = true;
     colorschemes.gruvbox.enable = true;
     plugins = {
-		which-key.enable = true;
-    lightline.enable = true;
-		transparent.enable = true;
-    treesitter = {
-		enable = true;
-    ensureInstalled = "all";
-		};
-		};
+      which-key.enable = true;
+      lightline.enable = true;
+			lightline.colorscheme = "gruvbox";
+      transparent.enable = true;
+			plugins.tmux-navigator.enable = true;
+			plugins.startify.enable = true;
+			plugins.telescope = {
+			enable = true;
+			highlightTheme = "gruvbox";
+			};
+      copilot-lua.enable = true;
+      treesitter = {
+        enable = true;
+        ensureInstalled = "all";
+      };
+    };
 
   };
 
