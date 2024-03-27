@@ -282,6 +282,32 @@
     enable = true;
     colorschemes.gruvbox.enable = true;
     clipboard.providers.wl-copy.enable = true;
+    options = {
+      clipboard = "unnamedplus";
+      mouse = "a";
+      cursorline = true;
+      cursorcolumn = true;
+      number = true;
+      title = true;
+      shiftwidth = 2;
+      tabstop = 2;
+      autoindent = true;
+      hlsearch = true;
+      ignorecase = true;
+      smartcase = true;
+      wrap = false;
+      laststatus = 3;
+      timeoutlen = 200;
+      conceallevel = 2;
+      ch = 0;
+
+    };
+    globals = {
+      loaded_python3_provider = 0;
+      loaded_perl_provider = 0;
+      mapleader = "\\";
+    };
+
     plugins = {
       which-key.enable = true;
       lualine.enable = true;
