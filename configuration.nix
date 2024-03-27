@@ -313,8 +313,7 @@
       lualine.enable = true;
       transparent.enable = true;
       cmp.enable = true;
-      cmp.extraOptions.sources = [
-
+      cmp.settings.sources = [
         { name = "tmux"; }
         { name = "buffer"; }
         { name = "cmdline"; }
@@ -473,6 +472,15 @@
         action = "gg<S-v>G";
         options = {
           desc = "Select all";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<leader>l";
+        action = ":<Esc>";
+        options = {
+          desc = "lsp";
           silent = true;
         };
         mode = "n";
