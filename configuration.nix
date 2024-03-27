@@ -284,21 +284,40 @@
     plugins = {
       which-key.enable = true;
       lightline.enable = true;
-			lightline.colorscheme = "gruvbox";
+      lightline.colorscheme = "gruvbox";
       transparent.enable = true;
-			plugins.tmux-navigator.enable = true;
-			plugins.startify.enable = true;
-			plugins.telescope = {
-			enable = true;
-			highlightTheme = "gruvbox";
-			};
+      tmux-navigator.enable = true;
+      nix.enable = true;
+      lazy.enable = true;
+      startify.enable = true;
+      neorg = {
+        enable = true;
+        lazyLoading = true;
+      };
+      telescope = {
+        enable = true;
+        highlightTheme = "gruvbox";
+      };
       copilot-lua.enable = true;
       treesitter = {
         enable = true;
         ensureInstalled = "all";
       };
-    };
+      lsp = {
+        enable = true;
+        servers = {
+          ansiblels.enable = true;
+          helm-ls.enable = true;
+          gopls.enable = true;
+          nixd.enable = true;
+          sqls.enable = true;
+          terraformls.enable = true;
+          dockerls.enable = true;
+          pylsp.enable = true;
+        };
+      };
 
+    };
   };
 
 }
