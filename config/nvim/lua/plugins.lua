@@ -360,6 +360,6 @@ require("lazy").setup({
 						exclude_groups = {}, -- table: groups you don't want to clear
 					})
 				end
-	}
-	"github/copilot.vim",
+	},
+	"github/copilot.vim"
 })

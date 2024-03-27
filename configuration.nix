@@ -278,11 +278,12 @@
   #   ];
   # };
   # services.ratbagd.enable = true;
-  # programs.nixvim = {
-  #   enable = true;
-  #   colorschemes.gruvbox.enable = true;
-  #   plugins.lightline.enable = true;
-  #
-  # };
+  programs.nixvim = {
+    enable = true;
+    colorschemes.gruvbox.enable = true;
+    plugins.lightline.enable = true;
+    plugins.treesitter.enable = true;
+
+  };
 
 }
