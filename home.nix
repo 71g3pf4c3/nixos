@@ -124,6 +124,7 @@ in {
     unzip
     python3
     pavucontrol
+    luajitPackages.luarocks
     # openssl
     # pango
     # pastel
