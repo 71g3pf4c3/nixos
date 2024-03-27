@@ -281,8 +281,15 @@
   programs.nixvim = {
     enable = true;
     colorschemes.gruvbox.enable = true;
-    plugins.lightline.enable = true;
-    plugins.treesitter.enable = true;
+    plugins = {
+		which-key.enable = true;
+    lightline.enable = true;
+		transparent.enable = true;
+    treesitter = {
+		enable = true;
+    ensureInstalled = "all";
+		};
+		};
 
   };
 
