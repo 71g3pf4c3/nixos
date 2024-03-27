@@ -1242,13 +1242,13 @@ in {
   programs.ripgrep.enable = true;
 
   programs.gpg.enable = true;
-  # services.gpg-agent = {
-  #   enable = true;
-  #   defaultCacheTtl = 34560000;
-  #   maxCacheTtl = 34560000;
-  #   enableSshSupport = true;
-  #   pinentryPackage = lib.mkForce pkgs.pinentry-rofi;
-  # };
+  services.gpg-agent = {
+    enable = true;
+    defaultCacheTtl = 34560000;
+    maxCacheTtl = 34560000;
+    enableSshSupport = true;
+    pinentryPackage = lib.mkForce pkgs.pinentry-gnome3;
+  };
 
   programs.newsboat = {
     enable = true;
