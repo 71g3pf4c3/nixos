@@ -281,6 +281,7 @@
   programs.nixvim = {
     enable = true;
     colorschemes.gruvbox.enable = true;
+    clipboard.providers.wl-copy.enable = true;
     plugins = {
       which-key.enable = true;
       lualine.enable = true;
