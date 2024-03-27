@@ -139,11 +139,11 @@
   ];
 
   programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  #   pinentryPackage = lib.mkForce pkgs.pinentry-gnome3;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = lib.mkForce pkgs.pinentry-gnome3;
+  };
 
   services = {
     openssh.enable = true;
