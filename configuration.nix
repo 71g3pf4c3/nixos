@@ -301,7 +301,7 @@
       gitsigns.enable = true;
       fugitive.enable = true;
       lazy.enable = true;
-      startup.enable = true;
+      # startup.enable = true;
       nvim-autopairs.enable = true;
       surround.enable = true;
       indent-blankline.enable = true;
@@ -323,7 +323,7 @@
       luasnip.enable = true;
       # sniprun.enable = true;
       treesitter-context.enable = true;
-			treesitter-textobjects.enable = true;
+      treesitter-textobjects.enable = true;
       treesitter-refactor.enable = true;
       undotree.enable = true;
       treesitter = {
