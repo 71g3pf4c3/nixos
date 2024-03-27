@@ -283,13 +283,18 @@
     colorschemes.gruvbox.enable = true;
     plugins = {
       which-key.enable = true;
-      lightline.enable = true;
-      lightline.colorscheme = "gruvbox";
+      lualine.enable = true;
       transparent.enable = true;
+      cmp.enable = true;
+      cmp-tmux.enable = true;
+      cmp-treesitter.enable = true;
+      cmp-nvim-lsp.enable = true;
       tmux-navigator.enable = true;
       nix.enable = true;
       lazy.enable = true;
-      startify.enable = true;
+			startup.enable = true;
+			nvim-autopairs.enable = true;
+			surround.enable = true;
       neorg = {
         enable = true;
         lazyLoading = true;
@@ -299,6 +304,14 @@
         highlightTheme = "gruvbox";
       };
       copilot-lua.enable = true;
+      clipboard-image = {
+        enable = true;
+        clipboardPackage = pkgs.wl-clipboard;
+      };
+      bufferline.enable = true;
+			treesitter-context.enable = true;
+			treesitter-refactor.enable = true;
+			undotree.enable = true;
       treesitter = {
         enable = true;
         ensureInstalled = "all";
