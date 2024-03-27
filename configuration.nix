@@ -413,13 +413,32 @@
       }
       {
         key = "<leader>k";
-        action = ":w !kubectl apply -f -<cr>";
+        action = ":w !kubectl appjjly -f -<cr>";
         options = {
           desc = "apply kube";
           silent = true;
         };
         mode = "v";
       }
+      {
+        key = "t";
+        action = ":bn<Return>";
+        options = {
+          desc = "next tab";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "T";
+        action = ":bp<Return>";
+        options = {
+          desc = "previous tab";
+          silent = true;
+        };
+        mode = "n";
+      }
+
     ];
   };
 
