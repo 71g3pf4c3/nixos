@@ -374,6 +374,53 @@
       };
 
     };
+    keymaps = [
+      {
+        key = "yf";
+        action = ":!echo %:p | wl-copy<cr>";
+
+        options = {
+          silent = true;
+          desc = "copy filepath";
+        };
+      }
+      {
+        key = "<leader>e";
+        action = ''function() require("b64").encode() end'';
+        mode = "v";
+        options = {
+          desc = "encode base64";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>d";
+        action = ''function() require("b64").decode() end'';
+        options = {
+          desc = "decode base64";
+          silent = true;
+        };
+        mode = "v";
+      }
+      {
+        key = "<leader>c";
+        action = ":w !sed 's/.*: //g' | base64 -d | wl-copy<cr>";
+        options = {
+          desc = "copy decode base64";
+          silent = true;
+        };
+        mode = "v";
+      }
+      {
+        key = "<leader>k";
+        action = ":w !kubectl apply -f -<cr>";
+        options = {
+          desc = "apply kube";
+          silent = true;
+        };
+        mode = "v";
+      }
+    ];
   };
 
 }
