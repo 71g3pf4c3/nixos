@@ -13,6 +13,7 @@ map("n", "<S-a>", "gg<S-v>G", Default_keyopts)
 map("n", "<C-z>", ":q!<Return>", Default_keyopts)
 map("n", "<C-s>", ":w<Return>", Default_keyopts)
 
+
 --- Move line
 -- map("n", "<A-j>", ":m +1 <Return>", Default_keyopts
 -- map("n", "<A-k>", ":m -2 <Return>", Default_keyopts)

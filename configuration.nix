@@ -313,6 +313,18 @@
       lualine.enable = true;
       transparent.enable = true;
       cmp.enable = true;
+      cmp.extraOptions.sources = [
+
+        { name = "tmux"; }
+        { name = "buffer"; }
+        { name = "cmdline"; }
+        { name = "dictionary"; }
+        { name = "emoji"; }
+        { name = "path"; }
+        { name = "treesitter"; }
+        { name = "luasnip"; }
+        { name = "nvim_lsp"; }
+      ];
       cmp-tmux.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true;
@@ -434,6 +446,33 @@
         action = ":bp<Return>";
         options = {
           desc = "previous tab";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<C-s>";
+        action = ":w<Return>";
+        options = {
+          desc = "Save";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<C-z>";
+        action = ":q!<Return>";
+        options = {
+          desc = "Quit";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<S-a>";
+        action = "gg<S-v>G";
+        options = {
+          desc = "Select all";
           silent = true;
         };
         mode = "n";
