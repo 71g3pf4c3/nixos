@@ -381,6 +381,7 @@
       bufferline.enable = true;
       comment.enable = true;
       luasnip.enable = true;
+      nvim-colorizer.enable = true;
       # sniprun.enable = true;
       treesitter-context.enable = true;
       treesitter-textobjects.enable = true;
