@@ -91,7 +91,6 @@ in {
     ncdu
     telegram-desktop
     fd
-    # neovim
     bkt
     tmux-xpanes
     wtf
@@ -325,13 +324,9 @@ in {
       "kubectl" = "${lib.getExe pkgs.kubecolor}";
       "pp" = "pistol";
       "nx" = "nix shell";
-      "fe" = "${lib.getExe pkgs.neovim} $(fzf)";
       "cat" = "${lib.getExe pkgs.bat}";
       "tree" = "${lib.getExe pkgs.eza} --tree";
       "find" = "${lib.getExe pkgs.fd}";
-      "vim" = "${lib.getExe pkgs.neovim}";
-      "vi" = "${lib.getExe pkgs.neovim}";
-      "nano" = "${lib.getExe pkgs.neovim}";
       "clip" = "${pkgs.wl-clipboard}/bin/wl-copy";
       "cp" = "${lib.getExe pkgs.rsync} -azsP";
       "grep" = "${lib.getExe pkgs.ripgrep}";
@@ -1031,8 +1026,8 @@ in {
               lib.getExe pkgs.flameshot
             } gui --raw | ${pkgs.wl-clipboard}/bin/wl-copy";
           "${modifier}+Shift+Escape" = "exec ${lib.getExe pkgs.swaylock} -fF";
-          "${modifier}+Shift+i" = "move scratchpad";
-          "${modifier}+i" = "scratchpad show";
+          "${modifier}+Control+Shift+k" = "move workspace to output up";
+          "${modifier}+Control+Shift+j" = "move workspace to output down";
         };
       input = {
         "*" = {
@@ -1080,13 +1075,8 @@ in {
         margin-bottom = 0;
         margin-left = 0;
         margin-rignt = 0;
-        modules-left = [
-          "wlr/workspaces"
-          "sway/workspaces"
-          "sway/mode"
-          "sway/scratchpad"
-          "custom/media"
-        ];
+        modules-left =
+          [ "wlr/workspaces" "sway/workspaces" "sway/mode" "custom/media" ];
         modules-center = [ "sway/window" ];
         modules-right = [
           "idle_inhibitor"
@@ -1139,13 +1129,6 @@ in {
         "clock" = { "format" = "{:%H:%M %d.%m }"; };
         "tray" = { };
         "sway/mode" = { "format" = ''<span style="italic">{}</span>''; };
-        "sway/scratchpad" = {
-          "format" = "{icon} {count}";
-          "show-empty" = false;
-          "format-icons" = [ "" "" ];
-          "tooltip" = true;
-          "tooltip-format" = "{app}: {title}";
-        };
         "cpu" = {
           "format" = "{usage}% ";
           "tooltip" = false;
@@ -1227,6 +1210,9 @@ in {
       { id = "omkfmpieigblcllmkgbflkikinpkodlk"; } # enchanced h264ify
     ];
   };
+  xdg.mime.enable = true;
+  xdg.mimeApps = { enable = true; };
+
   xdg.userDirs = {
     desktop = "${config.home.homeDirectory}/tmp";
     download = "${config.home.homeDirectory}/downloads";

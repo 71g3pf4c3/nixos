@@ -1,25 +1,16 @@
-{
-  config,
-  pkgs,
-  self,
-  lib,
-  inputs,
-  ...
-}: {
+{ config, pkgs, self, lib, inputs, ... }: {
   documentation.man = {
     enable = true;
     generateCaches = true;
   };
-  nix.settings.experimental-features = ["nix-command flakes"];
+  nix.settings.experimental-features = [ "nix-command flakes" ];
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = ["electron-22.3.27"];
+  nixpkgs.config.permittedInsecurePackages = [ "electron-22.3.27" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernel.sysctl = {"net.ipv4.ip_unprivileged_port_start" = 80;};
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default. Set your time zone.
-
+  boot.kernel.sysctl = { "net.ipv4.ip_unprivileged_port_start" = 80; };
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
   networking.firewall.enable = false;
   time.timeZone = "Europe/Moscow";
   nix.settings.auto-optimise-store = true;
@@ -27,20 +18,19 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 10d";
+    options = "--delete-older-than 7d";
   };
   nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = true
+    keep-outputs = false
+    keep-derivations = false
   '';
   networking.extraHosts = ''
-    127.0.0.3 cluster-example.mysql.svc.cluster.local
     127.0.0.1:80 kind
     127.0.0.1:443 kind
   '';
   i18n.defaultLocale = "en_US.UTF-8";
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [];
+  programs.nix-ld.libraries = with pkgs; [ ];
   programs.steam = {
     enable = true;
     remotePlay.openFirewall =
@@ -50,8 +40,6 @@
   };
   hardware.opengl.driSupport32Bit =
     true; # Enables support for 32bit libs that steam uses
-
-  # Enable the X11 windowing system.
   programs.light.enable = true;
   services.xserver = {
     enable = true;
@@ -59,52 +47,10 @@
     desktopManager.xterm.enable = false;
   };
   security.polkit.enable = true;
-  security.pki.certificates = [
-    ''
-      -----BEGIN CERTIFICATE-----
-      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
-      OOLCIQcLBs6pxp5ZPA9UAQpZSGaq
-      -----END CERTIFICATE-----
-    ''
-  ];
   services.printing.enable = true;
   programs.zsh.enable = true;
   programs.zsh.enableCompletion = true;
   users.defaultUserShell = pkgs.zsh;
-  users.groups = {docker = {};};
   users.users.t1g3pf4c3 = {
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDM3LX8F/SYt9fDPr0lR1/bDfwNT2mSgTLA8jxoIN63iKzPfDbeeyuLajSBbyZAWy+DjqLKL+htyLORSOWciaIzWkDNUN+9ikCLj3FDbk0Dl8vsgyzGrAoAnaf6Tc3JhhQuk+L68Q36I8ytJgLz0rleSl+Em2nilNlj07RJXqnDTuQXxh3CIfQc2z8EYJX0rWcJy2q4Bg2sHwifOH+MbWTg6M1G7MxoE3uyOp6yJeLAT2qi7cE7auHP02fDKeRgxPOeJ9FEV24b475htiQjgcXOIAFjAZ/+i3xpREue7prPDwHBfEzJNHYOT+FsrB24hXbGgTO8C67lyoWbGFAOlcJIDsZ9reYELlhe4lTDRrdcSK+pqRCPvHng7yw2y5D71j8d9nzcdBf/t7lww4OjPIOlU5yph2ng2WyxBXM7jQ/l9pbKaBzEwGlkHK209pdNFaeBKS8xmouCYNbimLNMjxV6CQ02BlhAH+AAeJu3ZfLZQbU7oT8T4spTWcT86+w8R/OMCWV45ZWSoZpj+e7Qfmu9cR8vXryjt/FaklOIRFz082bpbYKNOorEOD/R8veECVA2fAjKt70BsuzGC3QvqaSJPWPVGPZA+ZNY5Jty4w5UwcNCbPCdW2wvkZcp57c5boYxIm3PEK18RzFJ+PsAnZJxNE53FRZKcaPcEvraufDtkQ== t1g3pf4c3@pop-os" # content of authorized_keys file
@@ -126,30 +72,18 @@
       "qemu-libvirtd"
     ];
   };
-
   environment.systemPackages = with pkgs; [
     man-pages
     man-pages-posix
     alsa-utils
     git
-    # nixos-shell
     pamixer
     podman-compose
     lm_sensors
-    neovim
     wget
     htop
     virt-manager
-    # undervolt
   ];
-
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = lib.mkForce pkgs.pinentry-gnome3;
-  };
-
   services = {
     openssh.enable = true;
     blueman.enable = true;
@@ -174,38 +108,10 @@
         };
       };
     };
-    tlp = {
-      enable = false;
-      settings = {
-        TLP_ENABLE = 1;
-        START_CHARGE_THRESH_BAT0 = 75;
-        STOP_CHARGE_THRESH_BAT0 = 95;
-        RESTORE_THRESHOLDS_ON_BAT = 0;
-        CPU_SCALING_GOVERNOR_ON_AC = "";
-        CPU_SCALING_GOVERNOR_ON_BAT = "";
-        DEVICES_TO_DISABLE_ON_STARTUP = "wwan";
-        DEVICES_TO_ENABLE_ON_STARTUP = "wifi bluetooth";
-        PCIE_ASPM_ON_BAT = "powersupersave";
-        NATACPI_ENABLE = "1";
-        TPACPI_ENABLE = "1";
-        TPSMAPI_ENABLE = "1";
-        SOUND_POWER_SAVE_ON_AC = "0";
-        SOUND_POWER_SAVE_ON_BAT = "1";
-        WIFI_PWR_ON_AC = "off";
-        WIFI_PWR_ON_BAT = "on";
-        PLATFORM_PROFILE_ON_AC = "performance";
-        PLATFORM_PROFILE_ON_BAT = "low-power";
-        DEVICES_TO_DISABLE_ON_BAT = "";
-      };
-    };
   };
-  powerManagement = {
-    enable = true;
-    # powertop.enable = true;
-  };
+  powerManagement = { enable = true; };
   virtualisation = {
     waydroid.enable = true;
-    # docker.enable = true;
     podman = {
       enable = true;
       dockerCompat = true;
@@ -213,505 +119,5 @@
     };
     libvirtd.enable = true;
   };
-
-  programs.dconf.enable = true;
-
-  # system.copySystemConfiguration = true;
-
   system.stateVersion = "23.11"; # Did you read the comment?
-  # services.grafana = {
-  #   enable = true;
-  #   settings = {
-  #     server = {
-  #       domain = "nixos";
-  #       port = 2342;
-  #       addr = "127.0.0.1";
-  #     };
-  #   };
-  #   provision = {
-  #     datasources = {
-  #       settings = {
-  #         datasources = [{
-  #           name = "prometheus";
-  #           type = "prometheus";
-  #           url = "http://localhost:9001";
-  #         }];
-  #       };
-  #
-  #     };
-  #
-  #   };
-  # };
-  # services.prometheus = {
-  #   enable = true;
-  #   port = 9001;
-  #   exporters = {
-  #     node = {
-  #       enable = true;
-  #       enabledCollectors = [ "systemd" "cgroups" "interrupts" "sysctl" "tcpstat" "buddyinfo" ];
-  #       port = 9002;
-  #     };
-  #     smokeping = {
-  #       enable = true;
-  #       port = 9003;
-  #       hosts = [ "reg.ru" "web-bee.ru" "moskit.pro" "nic.ru" "8.8.8.8" "192.168.0.1" "yandex.ru" "77.88.8.8" ];
-  #     };
-  #   };
-  #   scrapeConfigs = [
-  #     {
-  #       job_name = "kube-state-metrics";
-  #       static_configs = [{
-  #         targets = [
-  #           "127.0.0.1:8080"
-  #         ];
-  #       }];
-  #     }
-  #     {
-  #       job_name = "node";
-  #       static_configs = [{
-  #         targets = [
-  #           "127.0.0.1:9002"
-  #         ];
-  #       }];
-  #     }
-  #     {
-  #       job_name = "smokeping";
-  #       static_configs = [{
-  #         targets = [ "127.0.0.1:9003" ];
-  #       }];
-  #     }
-  #   ];
-  # };
-  # services.ratbagd.enable = true;
-  programs.nixvim = {
-    enable = true;
-    colorschemes.gruvbox.enable = true;
-    clipboard.providers.wl-copy.enable = true;
-    clipboard.register = "unnamedplus";
-    options = {
-      mouse = "a";
-      cursorline = true;
-      cursorcolumn = true;
-      number = true;
-      title = true;
-      shiftwidth = 2;
-      tabstop = 2;
-      autoindent = true;
-      hlsearch = true;
-      ignorecase = true;
-      smartcase = true;
-      wrap = false;
-      laststatus = 3;
-      timeoutlen = 200;
-      conceallevel = 2;
-      ch = 0;
-    };
-    globals = {
-      loaded_python3_provider = 0;
-      loaded_perl_provider = 0;
-      mapleader = "\\";
-    };
-
-    plugins = {
-      which-key.enable = true;
-      lualine.enable = true;
-      transparent.enable = true;
-      cmp.enable = true;
-      cmp.settings.sources = [
-        {name = "tmux";}
-        {name = "buffer";}
-        {name = "cmdline";}
-        {name = "dictionary";}
-        {name = "emoji";}
-        {name = "path";}
-        {name = "treesitter";}
-        {name = "luasnip";}
-        {name = "nvim_lsp";}
-      ];
-      twilight.enable = true;
-      cmp-tmux.enable = true;
-      cmp-git.enable = true;
-      cmp-buffer.enable = true;
-      cmp-path.enable = true;
-      cmp-cmdline.enable = true;
-      cmp-dictionary.enable = true;
-      cmp-emoji.enable = true;
-      cmp_luasnip.enable = true;
-      cmp-treesitter.enable = true;
-      cmp-nvim-lsp.enable = true;
-      tmux-navigator.enable = true;
-      project-nvim.enable = true;
-      nix.enable = true;
-      gitsigns.enable = true;
-      fugitive.enable = true;
-      lazy.enable = true;
-      # startup.enable = true;
-      nvim-autopairs.enable = true;
-      surround.enable = true;
-      indent-blankline.enable = true;
-      neorg = {
-        enable = true;
-        lazyLoading = true;
-        modules = {
-          "core.defaults" = {__empty = null;};
-          "core.integrations.treesitter" = {__empty = null;};
-          "core.looking-glass" = {__empty = null;};
-          "core.integrations.nvim-cmp" = {__empty = null;};
-          "core.ui" = {__empty = null;};
-          "core.export" = {__empty = null;};
-          "core.export.markdown" = {__empty = null;};
-          "core.concealer" = {
-            config = {
-              folds = true;
-              icon_preset = "varied";
-            };
-          };
-          "core.dirman" = {
-            config = {workspaces = {work = "~/projects/runity";};};
-          };
-          "core.completion" = {config = {engine = "nvim-cmp";};};
-          "core.promo" = {__empty = null;};
-          "core.journal" = {__empty = null;};
-        };
-      };
-      telescope = {
-        enable = true;
-        highlightTheme = "gruvbox";
-      };
-      clipboard-image = {
-        enable = true;
-        clipboardPackage = pkgs.wl-clipboard;
-      };
-      bufferline.enable = true;
-      comment.enable = true;
-      luasnip.enable = true;
-      nvim-colorizer.enable = true;
-      # sniprun.enable = true;
-      treesitter-context.enable = true;
-      treesitter-textobjects.enable = true;
-      treesitter-refactor.enable = true;
-      undotree.enable = true;
-      treesitter = {
-        enable = true;
-        ensureInstalled = "all";
-      };
-      lsp-lines.enable = true;
-      lsp-format.enable = true;
-      conform-nvim = {
-        enable = true;
-        formatOnSave = ''
-          function()
-             require("conform").format({ async = true, lsp_fallback = true, range = range })
-          end
-        '';
-        formattersByFt = {
-          lua = ["stylua"];
-          python = ["isort" "black"];
-          nix = ["nixfmt" "alejandra"];
-          sh = ["shellcheck" "shellharden"];
-          go = ["goimports" "gofmt"];
-          yaml = ["yamlfix" "yq"];
-          terraform = ["terraform_fmt"];
-          json = ["fixjson" "jq"];
-          "*" = ["codespell" "trim_whitespace" "trim_newlines"];
-        };
-      };
-      lspkind.enable = true;
-
-      diffview.enable = true;
-      lsp = {
-        enable = true;
-        servers = {
-          ansiblels.enable = true;
-          helm-ls.enable = true;
-          gopls.enable = true;
-          nixd.enable = true;
-          sqls.enable = true;
-          terraformls.enable = true;
-          dockerls.enable = true;
-          pylsp.enable = true;
-        };
-      };
-    };
-    keymaps = [
-      {
-        key = "yf";
-        action = ":!echo %:p | wl-copy<cr>";
-
-        options = {
-          silent = true;
-          desc = "copy filepath";
-        };
-      }
-      {
-        key = "<leader>e";
-        lua = true;
-        action = ''function() require("b64").encode() end'';
-        mode = "v";
-        options = {
-          desc = "encode base64";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>d";
-        lua = true;
-        action = ''function() require("b64").decode() end'';
-        options = {
-          desc = "decode base64";
-          silent = true;
-        };
-        mode = "v";
-      }
-      {
-        key = "<leader>c";
-        action = ":w !sed 's/.*: //g' | base64 -d | wl-copy<cr>";
-        options = {
-          desc = "copy decode base64";
-          silent = true;
-        };
-        mode = "v";
-      }
-      {
-        key = "<leader>k";
-        action = ":w !kubectl appjjly -f -<cr>";
-        options = {
-          desc = "apply kube";
-          silent = true;
-        };
-        mode = "v";
-      }
-      {
-        key = "t";
-        action = ":bn<Return>";
-        options = {
-          desc = "next tab";
-          silent = true;
-        };
-        mode = "n";
-      }
-      {
-        key = "T";
-        action = ":bp<Return>";
-        options = {
-          desc = "previous tab";
-          silent = true;
-        };
-        mode = "n";
-      }
-      {
-        key = "<C-s>";
-        action = ":w<Return>";
-        options = {
-          desc = "Save";
-          silent = true;
-        };
-        mode = "n";
-      }
-      {
-        key = "<C-z>";
-        action = ":q!<Return>";
-        options = {
-          desc = "Quit";
-          silent = true;
-        };
-        mode = "n";
-      }
-      {
-        key = "<S-a>";
-        action = "gg<S-v>G";
-        options = {
-          desc = "Select all";
-          silent = true;
-        };
-        mode = "n";
-      }
-      {
-        key = "<leader>p";
-        lua = true;
-        action = ''
-          function() require("telescope").extensions.projects.projects({}) end'';
-        options = {
-          desc = "Projects";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>f";
-        lua = true;
-        action = ''function() require("telescope.builtin").find_files() end'';
-        options = {
-          desc = "Find files";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>b";
-        lua = true;
-        action = ''function() require("telescope.builtin").buffers() end'';
-        options = {
-          desc = "List buffers";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>o";
-        lua = true;
-        action = ''function() require("telescope.builtin").oldfiles() end'';
-        options = {
-          desc = "History";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>j";
-        lua = true;
-        action = ''function() require("telescope.builtin").jumplist() end'';
-        options = {
-          desc = "Find files";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>h";
-        lua = true;
-        action = ''function() require("telescope.builtin").help_tags() end'';
-        options = {
-          desc = "Help tags";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>x";
-        lua = true;
-        action = ''function() require("telescope.builtin").live_grep() end'';
-        options = {
-          desc = "Telegrep";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>x";
-        lua = true;
-        action = ''
-          function() require("telescope.builtin").current_buffer_fuzzy_find() end'';
-        options = {
-          desc = "Fuzzy find";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>m";
-        lua = true;
-        action = ''function() require("telescope.builtin").marks() end'';
-        options = {
-          desc = "Marks";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>l";
-        action = ":<Esc>";
-        options = {
-          desc = "LSP";
-          silent = true;
-        };
-        mode = "n";
-      }
-      {
-        key = "<leader>lr";
-        lua = true;
-        action = ''function() require("telescope.builtin").lsp_references() end'';
-        options = {
-          desc = "References";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>li";
-        lua = true;
-        action = ''function() require("telescope.builtin").lsp_implementations() end'';
-        options = {
-          desc = "Implementations";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>ld";
-        lua = true;
-        action = ''function() require("telescope.builtin").lsp_definitions() end'';
-        options = {
-          desc = "Definitions";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>lf";
-        lua = true;
-        action = ''function() require("telescope.builtin").diagnostics() end'';
-        options = {
-          desc = "Diagnostics";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>gl";
-        action = ":LazyGit<cr>";
-        options = {
-          desc = "Lazygit";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>gb";
-        lua = true;
-        action = ''function() require("telescope.builtin").git_branches({}) end'';
-        options = {
-          desc = "Git branches";
-          silent = true;
-        };
-      }
-      {
-        key = "<leader>;";
-        lua = true;
-        action = ''function() require("telescope.builtin").commands({}) end'';
-        options = {
-          desc = "Commands";
-          silent = true;
-        };
-      }
-      {
-        key = "%";
-        action = ":%s/";
-        options = {
-          desc = "Replace";
-          silent = false;
-        };
-      }
-      {
-        key = "<leader>gs";
-        lua = true;
-        action = ''function() require("telescope.builtin").git_status({}) end'';
-        options = {
-          desc = "Git status";
-          silent = true;
-        };
-      }
-      {
-        key = "<space>f";
-        lua = true;
-        action = ''
-          function()
-             require("conform").format({ async = true, lsp_fallback = true, range = range })
-          end
-        '';
-        options = {
-          desc = "Format";
-          silent = true;
-        };
-        mode = "n";
-      }
-    ];
-    extraPlugins = with pkgs.vimPlugins; [lazygit-nvim];
-  };
 }
