@@ -324,9 +324,13 @@ in {
       "kubectl" = "${lib.getExe pkgs.kubecolor}";
       "pp" = "pistol";
       "nx" = "nix shell";
+      "fe" = "nvim $(fzf)";
       "cat" = "${lib.getExe pkgs.bat}";
       "tree" = "${lib.getExe pkgs.eza} --tree";
       "find" = "${lib.getExe pkgs.fd}";
+      "vim" = "nvim";
+      "vi" = "nvim";
+      "nano" = "nvim";
       "clip" = "${pkgs.wl-clipboard}/bin/wl-copy";
       "cp" = "${lib.getExe pkgs.rsync} -azsP";
       "grep" = "${lib.getExe pkgs.ripgrep}";
@@ -338,9 +342,7 @@ in {
       "cd" = "z";
       "ci" = "zi";
       "upd" = ''
-            ${lib.getExe pkgs.fd} .nix | xargs ${lib.getExe pkgs.nixfmt} && ${
-              lib.getExe pkgs.git
-            } diff | ${
+            ${lib.getExe pkgs.git} diff | ${
               lib.getExe pkgs.bat
             } --no-pager && sudo nixos-rebuild switch --flake /etc/nixos# &&
         ${lib.getExe pkgs.git} commit -am "Config update" && ${
