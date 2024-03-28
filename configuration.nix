@@ -504,7 +504,7 @@
         action = ''
           function() require("telescope").extensions.projects.projects({}) end'';
         options = {
-          desc = "projects";
+          desc = "Projects";
           silent = true;
         };
       }
@@ -585,7 +585,7 @@
         key = "<leader>l";
         action = ":<Esc>";
         options = {
-          desc = "lsp";
+          desc = "LSP";
           silent = true;
         };
         mode = "n";
@@ -626,6 +626,33 @@
         action = ''function() require("telescope.builtin").diagnostics() end'';
         options = {
           desc = "Diagnostics";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>gl";
+        action = ":LazyGit<cr>";
+        options = {
+          desc = "Lazygit";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>gb";
+        lua = true;
+        action =
+          ''function() require("telescope.builtin").git_branches({}) end'';
+        options = {
+          desc = "Git branches";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>gs";
+        lua = true;
+        action = ''function() require("telescope.builtin").git_status({}) end'';
+        options = {
+          desc = "Git status";
           silent = true;
         };
       }
