@@ -6,7 +6,6 @@
   nix.settings.experimental-features = [ "nix-command flakes" ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [ "electron-22.3.27" ];
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernel.sysctl = { "net.ipv4.ip_unprivileged_port_start" = 80; };
@@ -346,6 +345,31 @@
       neorg = {
         enable = true;
         lazyLoading = true;
+        modules = {
+
+          "core.defaults" = { __empty = null; };
+          "core.integrations.treesitter" = { __empty = null; };
+          "core.looking-glass" = { __empty = null; };
+          "core.integrations.nvim-cmp" = { __empty = null; };
+          "core.ui" = { __empty = null; };
+          "core.export" = { __empty = null; };
+          "core.export.markdown" = { __empty = null; };
+          "core.concealer" = {
+            config = {
+              folds = true;
+              icon_preset = "varied";
+            };
+          };
+          "core.dirman" = {
+            config = {
+              workspaces = { work = "~/projects/work/webbee/notes"; };
+            };
+          };
+          "core.completion" = { config = { engine = "nvim-cmp"; }; };
+          "core.promo" = { __empty = null; };
+          "core.journal" = { __empty = null; };
+
+        };
       };
       telescope = {
         enable = true;
