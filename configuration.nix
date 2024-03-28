@@ -346,7 +346,6 @@
         enable = true;
         lazyLoading = true;
         modules = {
-
           "core.defaults" = { __empty = null; };
           "core.integrations.treesitter" = { __empty = null; };
           "core.looking-glass" = { __empty = null; };
@@ -361,9 +360,7 @@
             };
           };
           "core.dirman" = {
-            config = {
-              workspaces = { work = "~/projects/work/webbee/notes"; };
-            };
+            config = { workspaces = { work = "~/projects/runity"; }; };
           };
           "core.completion" = { config = { engine = "nvim-cmp"; }; };
           "core.promo" = { __empty = null; };
@@ -503,15 +500,6 @@
         mode = "n";
       }
       {
-        key = "<leader>l";
-        action = ":<Esc>";
-        options = {
-          desc = "lsp";
-          silent = true;
-        };
-        mode = "n";
-      }
-      {
         key = "<leader>p";
         lua = true;
         action = ''
@@ -529,6 +517,127 @@
           desc = "Find files";
           silent = true;
         };
+      }
+      {
+        key = "<leader>bb";
+        lua = true;
+        action = ''function() require("telescope.builtin").buffers() end'';
+        options = {
+          desc = "List buffers";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>o";
+        lua = true;
+        action = ''function() require("telescope.builtin").oldfiles() end'';
+        options = {
+          desc = "Find files";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>j";
+        lua = true;
+        action = ''function() require("telescope.builtin").jumplist() end'';
+        options = {
+          desc = "Find files";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>h";
+        lua = true;
+        action = ''function() require("telescope.builtin").help_tags() end'';
+        options = {
+          desc = "Help tags";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>x";
+        lua = true;
+        action = ''function() require("telescope.builtin").live_grep() end'';
+        options = {
+          desc = "Telegrep";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>x";
+        lua = true;
+        action = ''
+          function() require("telescope.builtin").current_buffer_fuzzy_find() end'';
+        options = {
+          desc = "Fuzzy find";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>m";
+        lua = true;
+        action = ''function() require("telescope.builtin").marks() end'';
+        options = {
+          desc = "Marks";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>l";
+        action = ":<Esc>";
+        options = {
+          desc = "lsp";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<leader>lr";
+        lua = true;
+        action =
+          ''function() require("telescope.builtin").lsp_references() end'';
+        options = {
+          desc = "References";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>li";
+        lua = true;
+        action =
+          ''function() require("telescope.builtin").lsp_implementations() end'';
+        options = {
+          desc = "Implementations";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>ld";
+        lua = true;
+        action =
+          ''function() require("telescope.builtin").lsp_definitions() end'';
+        options = {
+          desc = "Definitions";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>lf";
+        lua = true;
+        action = ''function() require("telescope.builtin").diagnostics() end'';
+        options = {
+          desc = "Diagnostics";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>g";
+        action = ":<Esc>";
+        options = {
+          desc = "Git";
+          silent = true;
+        };
+        mode = "n";
       }
     ];
   };
