@@ -323,7 +323,9 @@
         { name = "luasnip"; }
         { name = "nvim_lsp"; }
       ];
+      twilight.enable = true;
       cmp-tmux.enable = true;
+      cmp-git.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true;
       cmp-cmdline.enable = true;
@@ -390,6 +392,9 @@
       };
       lsp-lines.enable = true;
       lsp-format.enable = true;
+      lspkind.enable = true;
+
+      diffview.enable = true;
       lsp = {
         enable = true;
         servers = {
@@ -644,6 +649,15 @@
           ''function() require("telescope.builtin").git_branches({}) end'';
         options = {
           desc = "Git branches";
+          silent = true;
+        };
+      }
+      {
+        key = ":";
+        lua = true;
+        action = ''function() require("telescope.builtin").commands({}) end'';
+        options = {
+          desc = "Commands";
           silent = true;
         };
       }
