@@ -372,7 +372,6 @@
         enable = true;
         highlightTheme = "gruvbox";
       };
-      copilot-lua.enable = true;
       clipboard-image = {
         enable = true;
         clipboardPackage = pkgs.wl-clipboard;
@@ -634,9 +633,9 @@
         key = "<space>f";
         lua = true;
         action = ''
-function()
-	vim.lsp.buf.format({ async = true })
-end
+          function()
+          	vim.lsp.buf.format({ async = true })
+          end
         '';
         options = {
           desc = "Format";
