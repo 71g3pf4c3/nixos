@@ -1,14 +1,21 @@
-{ config, pkgs, self, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  self,
+  lib,
+  inputs,
+  ...
+}: {
   documentation.man = {
     enable = true;
     generateCaches = true;
   };
-  nix.settings.experimental-features = [ "nix-command flakes" ];
+  nix.settings.experimental-features = ["nix-command flakes"];
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "electron-22.3.27" ];
+  nixpkgs.config.permittedInsecurePackages = ["electron-22.3.27"];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernel.sysctl = { "net.ipv4.ip_unprivileged_port_start" = 80; };
+  boot.kernel.sysctl = {"net.ipv4.ip_unprivileged_port_start" = 80;};
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable =
     true; # Easiest to use and most distros use this by default. Set your time zone.
@@ -33,10 +40,7 @@
   '';
   i18n.defaultLocale = "en_US.UTF-8";
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs;
-    [
-
-    ];
+  programs.nix-ld.libraries = with pkgs; [];
   programs.steam = {
     enable = true;
     remotePlay.openFirewall =
@@ -55,50 +59,52 @@
     desktopManager.xterm.enable = false;
   };
   security.polkit.enable = true;
-  security.pki.certificates = [''
-    -----BEGIN CERTIFICATE-----
-    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
-    OOLCIQcLBs6pxp5ZPA9UAQpZSGaq
-    -----END CERTIFICATE-----
-  ''];
+  security.pki.certificates = [
+    ''
+      -----BEGIN CERTIFICATE-----
+      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
+      OOLCIQcLBs6pxp5ZPA9UAQpZSGaq
+      -----END CERTIFICATE-----
+    ''
+  ];
   services.printing.enable = true;
   programs.zsh.enable = true;
   programs.zsh.enableCompletion = true;
   users.defaultUserShell = pkgs.zsh;
-  users.groups = { docker = { }; };
+  users.groups = {docker = {};};
   users.users.t1g3pf4c3 = {
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDM3LX8F/SYt9fDPr0lR1/bDfwNT2mSgTLA8jxoIN63iKzPfDbeeyuLajSBbyZAWy+DjqLKL+htyLORSOWciaIzWkDNUN+9ikCLj3FDbk0Dl8vsgyzGrAoAnaf6Tc3JhhQuk+L68Q36I8ytJgLz0rleSl+Em2nilNlj07RJXqnDTuQXxh3CIfQc2z8EYJX0rWcJy2q4Bg2sHwifOH+MbWTg6M1G7MxoE3uyOp6yJeLAT2qi7cE7auHP02fDKeRgxPOeJ9FEV24b475htiQjgcXOIAFjAZ/+i3xpREue7prPDwHBfEzJNHYOT+FsrB24hXbGgTO8C67lyoWbGFAOlcJIDsZ9reYELlhe4lTDRrdcSK+pqRCPvHng7yw2y5D71j8d9nzcdBf/t7lww4OjPIOlU5yph2ng2WyxBXM7jQ/l9pbKaBzEwGlkHK209pdNFaeBKS8xmouCYNbimLNMjxV6CQ02BlhAH+AAeJu3ZfLZQbU7oT8T4spTWcT86+w8R/OMCWV45ZWSoZpj+e7Qfmu9cR8vXryjt/FaklOIRFz082bpbYKNOorEOD/R8veECVA2fAjKt70BsuzGC3QvqaSJPWPVGPZA+ZNY5Jty4w5UwcNCbPCdW2wvkZcp57c5boYxIm3PEK18RzFJ+PsAnZJxNE53FRZKcaPcEvraufDtkQ== t1g3pf4c3@pop-os" # content of authorized_keys file
@@ -299,7 +305,6 @@
       timeoutlen = 200;
       conceallevel = 2;
       ch = 0;
-
     };
     globals = {
       loaded_python3_provider = 0;
@@ -313,15 +318,15 @@
       transparent.enable = true;
       cmp.enable = true;
       cmp.settings.sources = [
-        { name = "tmux"; }
-        { name = "buffer"; }
-        { name = "cmdline"; }
-        { name = "dictionary"; }
-        { name = "emoji"; }
-        { name = "path"; }
-        { name = "treesitter"; }
-        { name = "luasnip"; }
-        { name = "nvim_lsp"; }
+        {name = "tmux";}
+        {name = "buffer";}
+        {name = "cmdline";}
+        {name = "dictionary";}
+        {name = "emoji";}
+        {name = "path";}
+        {name = "treesitter";}
+        {name = "luasnip";}
+        {name = "nvim_lsp";}
       ];
       twilight.enable = true;
       cmp-tmux.enable = true;
@@ -348,13 +353,13 @@
         enable = true;
         lazyLoading = true;
         modules = {
-          "core.defaults" = { __empty = null; };
-          "core.integrations.treesitter" = { __empty = null; };
-          "core.looking-glass" = { __empty = null; };
-          "core.integrations.nvim-cmp" = { __empty = null; };
-          "core.ui" = { __empty = null; };
-          "core.export" = { __empty = null; };
-          "core.export.markdown" = { __empty = null; };
+          "core.defaults" = {__empty = null;};
+          "core.integrations.treesitter" = {__empty = null;};
+          "core.looking-glass" = {__empty = null;};
+          "core.integrations.nvim-cmp" = {__empty = null;};
+          "core.ui" = {__empty = null;};
+          "core.export" = {__empty = null;};
+          "core.export.markdown" = {__empty = null;};
           "core.concealer" = {
             config = {
               folds = true;
@@ -362,12 +367,11 @@
             };
           };
           "core.dirman" = {
-            config = { workspaces = { work = "~/projects/runity"; }; };
+            config = {workspaces = {work = "~/projects/runity";};};
           };
-          "core.completion" = { config = { engine = "nvim-cmp"; }; };
-          "core.promo" = { __empty = null; };
-          "core.journal" = { __empty = null; };
-
+          "core.completion" = {config = {engine = "nvim-cmp";};};
+          "core.promo" = {__empty = null;};
+          "core.journal" = {__empty = null;};
         };
       };
       telescope = {
@@ -393,6 +397,25 @@
       };
       lsp-lines.enable = true;
       lsp-format.enable = true;
+      conform-nvim = {
+        enable = true;
+        formatOnSave = ''
+          function()
+             require("conform").format({ async = true, lsp_fallback = true, range = range })
+          end
+        '';
+        formattersByFt = {
+          lua = ["stylua"];
+          python = ["isort" "black"];
+          nix = ["nixfmt" "alejandra"];
+          sh = ["shellcheck" "shellharden"];
+          go = ["goimports" "gofmt"];
+          yaml = ["yamlfix" "yq"];
+          terraform = ["terraform_fmt"];
+          json = ["fixjson" "jq"];
+          "*" = ["codespell" "trim_whitespace" "trim_newlines"];
+        };
+      };
       lspkind.enable = true;
 
       diffview.enable = true;
@@ -409,7 +432,6 @@
           pylsp.enable = true;
         };
       };
-
     };
     keymaps = [
       {
@@ -599,8 +621,7 @@
       {
         key = "<leader>lr";
         lua = true;
-        action =
-          ''function() require("telescope.builtin").lsp_references() end'';
+        action = ''function() require("telescope.builtin").lsp_references() end'';
         options = {
           desc = "References";
           silent = true;
@@ -609,8 +630,7 @@
       {
         key = "<leader>li";
         lua = true;
-        action =
-          ''function() require("telescope.builtin").lsp_implementations() end'';
+        action = ''function() require("telescope.builtin").lsp_implementations() end'';
         options = {
           desc = "Implementations";
           silent = true;
@@ -619,8 +639,7 @@
       {
         key = "<leader>ld";
         lua = true;
-        action =
-          ''function() require("telescope.builtin").lsp_definitions() end'';
+        action = ''function() require("telescope.builtin").lsp_definitions() end'';
         options = {
           desc = "Definitions";
           silent = true;
@@ -646,8 +665,7 @@
       {
         key = "<leader>gb";
         lua = true;
-        action =
-          ''function() require("telescope.builtin").git_branches({}) end'';
+        action = ''function() require("telescope.builtin").git_branches({}) end'';
         options = {
           desc = "Git branches";
           silent = true;
@@ -684,7 +702,7 @@
         lua = true;
         action = ''
           function()
-          	vim.lsp.buf.format({ async = true })
+             require("conform").format({ async = true, lsp_fallback = true, range = range })
           end
         '';
         options = {
@@ -694,7 +712,6 @@
         mode = "n";
       }
     ];
-    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim ];
+    extraPlugins = with pkgs.vimPlugins; [lazygit-nvim];
   };
-
 }

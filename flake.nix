@@ -12,7 +12,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
   outputs = { nixpkgs, home-manager, nixos-hardware, nixvim, self, }@inputs: {
     nixosConfigurations = {
