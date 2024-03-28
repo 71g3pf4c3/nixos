@@ -631,15 +631,21 @@
         };
       }
       {
-        key = "<leader>g";
-        action = ":<Esc>";
+        key = "<space>f";
+        lua = true;
+        action = ''
+function()
+	vim.lsp.buf.format({ async = true })
+end
+        '';
         options = {
-          desc = "Git";
+          desc = "Format";
           silent = true;
         };
         mode = "n";
       }
     ];
+    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim ];
   };
 
 }
