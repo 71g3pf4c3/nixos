@@ -523,7 +523,7 @@
         };
       }
       {
-        key = "<leader>bb";
+        key = "<leader>b";
         lua = true;
         action = ''function() require("telescope.builtin").buffers() end'';
         options = {
@@ -536,7 +536,7 @@
         lua = true;
         action = ''function() require("telescope.builtin").oldfiles() end'';
         options = {
-          desc = "Find files";
+          desc = "History";
           silent = true;
         };
       }
@@ -653,12 +653,20 @@
         };
       }
       {
-        key = ":";
+        key = "<leader>;";
         lua = true;
         action = ''function() require("telescope.builtin").commands({}) end'';
         options = {
           desc = "Commands";
           silent = true;
+        };
+      }
+      {
+        key = "%";
+        action = ":%s/";
+        options = {
+          desc = "Replace";
+          silent = false;
         };
       }
       {
