@@ -259,8 +259,8 @@ in {
       ];
     };
   };
-  xdg.configFile.".ssh/assh.yml".source = ./config/assh.yml;
-  xdg.configFile.".config/tym" = {
+  xdg.configFile."assh.yml".source = ./config/assh.yml;
+  xdg.configFile."tym" = {
     source = ./config/tym;
     recursive = true;
   };
