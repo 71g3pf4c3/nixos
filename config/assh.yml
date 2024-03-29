@@ -4,6 +4,6 @@ defaults:
   ControlMaster: auto
   ControlPersist: yes
   Port: 22
-  User: t1g3pf4c3
+  User: mkungurov
 localhost:
   User: t1g3pf4c3
