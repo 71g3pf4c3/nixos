@@ -419,7 +419,7 @@ in {
             bind s swap-window
             bind j join-pane
             bind 'C-C' new-session
-            bind -r | split-window -h -c "#{pane_current_path}"
+            bind -r \ split-window -h -c "#{pane_current_path}"
             bind -r - split-window -v -c "#{pane_current_path}"
       bind c new-window -c "#{pane_current_path}"
             bind -T copy-mode-vi v send -X begin-selection
@@ -504,7 +504,7 @@ in {
             sha256 = "sha256-Z16laz2Xeyg4/eCbS5qqXxLB6xpADvHWKWlfJqLYO/k=";
           };
         };
-        extraConfig = "\n				set -g @session-wizard 'h'\n				set -g @session-wizard-width 40\n			";
+        extraConfig = "\n				set -g @ssh-split-h-key '_'\n				set -g @@ssh-split-v-key |\n			";
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
