@@ -441,7 +441,7 @@ in {
               detach-client
             } {
               display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s shell -n "shell"
-              send-keys cd "#{pane_current_path}"
+              send-keys -t "shell" cd "#{pane_current_path}"
             }
             bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${
         lib.getExe pkgs.lazygit
