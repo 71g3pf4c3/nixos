@@ -440,7 +440,7 @@ in {
             bind-key b if-shell -F '#{==:#{session_name},scratch}' {
               detach-client
             } {
-              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" -e DIR="#{pane_current_path}" tmux new -e $CURDIR=$DIR -e SUS="#{pane_current_path}" -A -s scratch -n "scratch"
+              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" -e DIR="#{pane_current_path}" tmux new -e CURDIR=$DIR -e SUS="#{pane_current_path}" -A -s scratch -n "scratch"
             }
             bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${
         lib.getExe pkgs.lazygit
