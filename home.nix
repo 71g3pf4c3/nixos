@@ -437,7 +437,12 @@ in {
             set-option -g status-justify left
             bind-key s set status
       			bind-key n next-window
-            bind-key b if-shell -F '#{==:#{session_name},shell}' { detach-client } { display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s shell -n "#{pane_current_path}" }
+            bind-key b if-shell -F '#{==:#{session_name},shell}' {
+              detach-client 
+            } { 
+              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s shell -n "shell" 
+              send-keys cd "#{pane_current_path}"
+            }
             bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit ${
         lib.getExe pkgs.lazygit
       }
@@ -481,18 +486,6 @@ in {
         plugin = tmuxPlugins.better-mouse-mode;
         extraConfig = "	set -g @scroll-down-exit-copy-mode 'off'\n	set -g @emulate-scroll-for-no-mouse-alternate-buffer 'on'\n";
       }
-      # {
-      #   plugin = tmuxPlugins.resurrect;
-      #   extraConfig = ''
-      #     set -g @resurrect-capture-pane-contents 'on'
-      #     set -g @resurrect-processes 'ssh nvim lazygit k9s fzf lf mosh'
-      #     set -g @resurrect-strategy-nvim 'session'
-      #   '';
-      # }
-      # {
-      #   plugin = tmuxPlugins.continuum;
-      #   extraConfig = "\n				set -g @continuum-restore 'on'\n				set -g @continuum-boot 'on'\n				set -g @continuum-save-interval '10'\n			";
-      # }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
           pluginName = "tmux-ssh-split";
