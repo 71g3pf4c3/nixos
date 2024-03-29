@@ -437,10 +437,11 @@ in {
             set-option -g status-justify left
             bind-key s set status
       			bind-key n next-window
-            bind-key b if-shell -F '#{==:#{session_name},shell}' {
+            bind-key b if-shell -F '#{==:#{session_name},scratch}' {
               detach-client
             } {
-              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" -e DIR="#{pane_current_path}" tmux new -A -s shell -n "shell" "cd $DIR && zsh"
+              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" -e DIR="#{pane_current_path}" tmux new -A -s scratch -n "scratch"
+              send-keys -c "scratch" -t "scratch" cd "#{pane_current_path}"
             }
             bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${
         lib.getExe pkgs.lazygit
