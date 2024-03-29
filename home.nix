@@ -480,18 +480,18 @@ in {
         plugin = tmuxPlugins.better-mouse-mode;
         extraConfig = "	set -g @scroll-down-exit-copy-mode 'off'\n	set -g @emulate-scroll-for-no-mouse-alternate-buffer 'on'\n";
       }
-      {
-        plugin = tmuxPlugins.resurrect;
-        extraConfig = ''
-          set -g @resurrect-capture-pane-contents 'on'
-          set -g @resurrect-processes 'ssh nvim lazygit k9s fzf lf mosh'
-          set -g @resurrect-strategy-nvim 'session'
-        '';
-      }
-      {
-        plugin = tmuxPlugins.continuum;
-        extraConfig = "\n				set -g @continuum-restore 'on'\n				set -g @continuum-boot 'on'\n				set -g @continuum-save-interval '10'\n			";
-      }
+      # {
+      #   plugin = tmuxPlugins.resurrect;
+      #   extraConfig = ''
+      #     set -g @resurrect-capture-pane-contents 'on'
+      #     set -g @resurrect-processes 'ssh nvim lazygit k9s fzf lf mosh'
+      #     set -g @resurrect-strategy-nvim 'session'
+      #   '';
+      # }
+      # {
+      #   plugin = tmuxPlugins.continuum;
+      #   extraConfig = "\n				set -g @continuum-restore 'on'\n				set -g @continuum-boot 'on'\n				set -g @continuum-save-interval '10'\n			";
+      # }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
           pluginName = "session-wizard";
@@ -1004,9 +1004,18 @@ in {
           "${modifier}+v" = "exec ${
             lib.getExe pkgs.cliphist
           } list | rofi -dmenu | cliphist decode | wl-copy ";
-          "Print" = "exec ${
-            lib.getExe pkgs.flameshot
-          } gui --raw | ${pkgs.wl-clipboard}/bin/wl-copy";
+          "Print" = ''
+            exec ${lib.getExe pkgs.sway-contrib.grimshot} savecopy screen && ${
+              lib.getExe pkgs.notify-desktop
+            } 'Screenshot taken' 'Screenshot saved to your clipboard'
+          '';
+          "Control+Print" = ''
+            exec ${lib.getExe pkgs.sway-contrib.grimshot} save area - | ${
+              lib.getExe pkgs.satty
+            } --filename - --early-exit --copy-command wl-copy && ${
+              lib.getExe pkgs.notify-desktop
+            } 'Screenshot taken' 'Screenshot saved to your clipboard'
+          '';
           "${modifier}+Shift+Escape" = "exec ${lib.getExe pkgs.swaylock} -fF";
           "${modifier}+Control+Shift+k" = "move workspace to output up";
           "${modifier}+Control+Shift+j" = "move workspace to output down";
@@ -1210,7 +1219,12 @@ in {
   # };
   programs.atuin = {
     enable = true;
-    settings = {keymap_mode = "vim-normal"; enter_accept=true;inline_height=30;};
+    settings = {
+      invert = true;
+      keymap_mode = "vim-normal";
+      enter_accept = true;
+      inline_height = 30;
+    };
   };
 
   programs.ripgrep.enable = true;
