@@ -267,31 +267,31 @@ in {
   programs.home-manager.enable = true;
   programs.zsh = {
     enable = true;
-    initExtra = lib.concatStrings [
-      ''
-         			zinit wait reset-prompt lucid light-mode for \
-         				OMZL::git.zsh \
-         				OMZP::kubectl \
-         				atload"unalias grv" OMZP::git \
-         				OMZL::clipboard.zsh \
-         				PZT::modules/{'history','rsync'} \
-         				OMZP::sudo \
-         				Aloxaf/fzf-tab \
-         				zdharma-continuum/fast-syntax-highlighting \
-         				olets/zsh-abbr \
-         				zsh-users/zsh-completions
-         			export PS1="❯ "
-         			zinit wait'!' reset-prompt lucid light-mode for \
-         				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
-         			bindkey '^[[Z' autosuggest-accept
-        zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-         			export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
-      ''
-    ];
+    # initExtra = lib.concatStrings [
+    #   ''
+    #      			zinit wait reset-prompt lucid light-mode for \
+    #      				OMZL::git.zsh \
+    #      				OMZP::kubectl \
+    #      				atload"unalias grv" OMZP::git \
+    #      				OMZL::clipboard.zsh \
+    #      				PZT::modules/{'history','rsync'} \
+    #      				OMZP::sudo \
+    #      				Aloxaf/fzf-tab \
+    #      				zdharma-continuum/fast-syntax-highlighting \
+    #      				olets/zsh-abbr \
+    #      				zsh-users/zsh-completions
+    #      			export PS1="❯ "
+    #      			zinit wait'!' reset-prompt lucid light-mode for \
+    #      				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
+    #      			bindkey '^[[Z' autosuggest-accept
+    #     zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+    #     zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+    #      			export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+    #   ''
+    # ];
     autosuggestion.enable = true;
-    enableCompletion = false;
-    completionInit = "autoload -Uz compinit && compinit";
+    # enableCompletion = false;
+    # completionInit = "autoload -Uz compinit && compinit";
     sessionVariables = {
       PATH = "$PATH:$HOME/.local/bin";
       EDITOR = "nvim";
@@ -438,9 +438,9 @@ in {
             bind-key s set status
       			bind-key n next-window
             bind-key b if-shell -F '#{==:#{session_name},scratch}' {
-              detach-client
+              kill-session -t scratch
             } {
-              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s scratch -n "scratch" -c $PWD
+              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s scratch -n "scratch"
             }
             bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${
         lib.getExe pkgs.lazygit
