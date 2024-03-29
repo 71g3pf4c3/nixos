@@ -28,8 +28,10 @@
           ./hardware-configuration.nix
           ./configuration.nix
           ./sway.nix
+          ./nixvim.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
           home-manager.nixosModules.home-manager
+          nixvim.homeManagerModules.nixvim
           nixvim.nixosModules.nixvim
           {
             home-manager.useGlobalPkgs = true;
