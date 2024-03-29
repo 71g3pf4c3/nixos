@@ -13,22 +13,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {
-    nixpkgs,
-    home-manager,
-    nixos-hardware,
-    nixvim,
-    self,
-  } @ inputs: {
+  outputs = { nixpkgs, home-manager, nixos-hardware, nixvim, self, }@inputs: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit self inputs;};
+        specialArgs = { inherit self inputs; };
         modules = [
           ./hardware-configuration.nix
           ./configuration.nix
           ./sway.nix
-          ./nixvim.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
           home-manager.nixosModules.home-manager
           nixvim.nixosModules.nixvim

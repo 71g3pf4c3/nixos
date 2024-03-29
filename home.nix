@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  unstable,
   lib,
   inputs,
   ...
@@ -95,6 +96,7 @@ in {
     assh
     ncdu
     telegram-desktop
+    kubectl
     fd
     bkt
     tmux-xpanes
@@ -221,7 +223,6 @@ in {
       tray = true;
     };
     blueman-applet.enable = true;
-    flameshot.enable = true;
     mako = {
       enable = true;
       anchor = "bottom-center";
@@ -436,10 +437,8 @@ in {
             set-option -g status-justify left
             bind-key s set status
       			bind-key n next-window
-            bind-key b if-shell -F '#{==:#{session_name},shell}' { kill-session -t shell } { display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s shell -n "shell" }
-            bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit ${
-        lib.getExe pkgs.lazygit
-      }
+            bind-key b if-shell -F '#{==:#{session_name},shell}' { detach-client } { display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s shell -n "shell" "cd $PWD && zsh" }
+            bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit ${lib.getExe pkgs.lazygit}
             bind-key y if-shell -F '#{==:#{session_name},kubectx}' { kill-session -t kubectx } { display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx" }
             bind-key m if-shell -F '#{==:#{session_name},k9s}' { detach-client } { display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml" }
             bind-key u display-popup -h 50% -w 50% -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s update -n update "upd "
@@ -1005,7 +1004,9 @@ in {
             lib.getExe pkgs.cliphist
           } list | rofi -dmenu | cliphist decode | wl-copy ";
           "Print" = ''
-            exec ${lib.getExe pkgs.sway-contrib.grimshot} savecopy screen && ${
+            exec ${lib.getExe pkgs.sway-contrib.grimshot} save screen - | ${
+              lib.getExe pkgs.satty
+            } --filename - --early-exit --fullscreen --copy-command wl-copy && ${
               lib.getExe pkgs.notify-desktop
             } 'Screenshot taken' 'Screenshot saved to your clipboard'
           '';
