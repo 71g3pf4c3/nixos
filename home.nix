@@ -495,7 +495,7 @@ in {
       # }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
-          pluginName = "tmux-ssh-split";
+          pluginName = "ssh-split";
           version = "bccb77f";
           src = pkgs.fetchFromGitHub {
             owner = "pschmitt";
