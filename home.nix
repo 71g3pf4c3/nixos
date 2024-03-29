@@ -1210,7 +1210,7 @@ in {
   # };
   programs.atuin = {
     enable = true;
-    settings = {keymap_mode = "vim-normal";};
+    settings = {keymap_mode = "vim-normal"; enter_accept=true;};
   };
 
   programs.ripgrep.enable = true;
