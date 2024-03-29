@@ -440,8 +440,7 @@ in {
             bind-key b if-shell -F '#{==:#{session_name},scratch}' {
               detach-client
             } {
-              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" -e DIR="#{pane_current_path}" tmux new -e CURDIR="#{pane_current_path}" -A -s scratch -n "scratch"
-              send-keys -c "scratch" -t "scratch" cd "#{pane_current_path}"
+              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" -e DIR="#{pane_current_path}" tmux new -A -s scratch -n "scratch"
             }
             bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${
         lib.getExe pkgs.lazygit
@@ -449,7 +448,7 @@ in {
             bind-key y if-shell -F '#{==:#{session_name},kubectx}' {
               kill-session -t kubectx
             } {
-              display-popup -h 40% -w 40% -E -d "#{pane_c cd "#{pane_current_path}"urrent_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx"
+              display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx"
             }
             bind-key m if-shell -F '#{==:#{session_name},k9s}' { detach-client } { display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml" }
             bind-key u display-popup -h 50% -w 50% -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s update -n update "upd "
