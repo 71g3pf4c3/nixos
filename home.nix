@@ -437,7 +437,7 @@ in {
             set-option -g status-justify left
             bind-key s set status
       			bind-key n next-window
-            bind-key b if-shell -F '#{==:#{session_name},shell}' { detach-client } { display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s shell -n "shell" "cd $PWD && zsh" }
+            bind-key b if-shell -F '#{==:#{session_name},shell}' { detach-client } { display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s shell -n "shell" "cd #{pane_current_path} && zsh" }
             bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit ${lib.getExe pkgs.lazygit}
             bind-key y if-shell -F '#{==:#{session_name},kubectx}' { kill-session -t kubectx } { display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx" }
             bind-key m if-shell -F '#{==:#{session_name},k9s}' { detach-client } { display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml" }
