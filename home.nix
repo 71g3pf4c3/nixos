@@ -267,27 +267,30 @@ in {
   programs.home-manager.enable = true;
   programs.zsh = {
     enable = true;
-    # initExtra = lib.concatStrings [
-    #   ''
-    #      			zinit wait reset-prompt lucid light-mode for \
-    #      				OMZL::git.zsh \
-    #      				OMZP::kubectl \
-    #      				atload"unalias grv" OMZP::git \
-    #      				OMZL::clipboard.zsh \
-    #      				PZT::modules/{'history','rsync'} \
-    #      				OMZP::sudo \
-    #      				Aloxaf/fzf-tab \
-    #      				zdharma-continuum/fast-syntax-highlighting \
-    #      				olets/zsh-abbr \
-    #      				zsh-users/zsh-completions
-    #      			export PS1="❯ "
-    #      			zinit wait'!' reset-prompt lucid light-mode for \
-    #      				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
-    #      			bindkey '^[[Z' autosuggest-accept
-    #     zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-    #     zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-    #   ''
-    # ];
+    initExtra = lib.concatStrings [
+      ''
+        #      			zinit wait reset-prompt lucid light-mode for \
+        #      				OMZL::git.zsh \
+        #      				OMZP::kubectl \
+        #      				atload"unalias grv" OMZP::git \
+        #      				OMZL::clipboard.zsh \
+        #      				PZT::modules/{'history','rsync'} \
+        #      				OMZP::sudo \
+        #      				Aloxaf/fzf-tab \
+        #      				zdharma-continuum/fast-syntax-highlighting \
+        #      				olets/zsh-abbr \
+        #      				zsh-users/zsh-completions
+        #      			export PS1="❯ "
+        #      			zinit wait'!' reset-prompt lucid light-mode for \
+        #      				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
+            bindkey '^[[Z' autosuggest-accept
+            zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+            zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+            fpath+=(${pkgs.pure-prompt}/share/zsh/site-functions/prompt_pure_setup)
+            autoload -U promptinit; promptinit
+            prompt pure
+      ''
+    ];
     autosuggestion.enable = true;
     # enableCompletion = false;
     # completionInit = "autoload -Uz compinit && compinit";
@@ -306,7 +309,7 @@ in {
       PASSWORD_STORE_ENABLE_EXTENSIONS = "true pass fzf";
       PASSWORD_STORE_DIR = "$HOME/.password-store";
     };
-    envExtra = "skip_global_compinit=1";
+    # envExtra = "skip_global_compinit=1";
     history = {
       path = "${config.home.homeDirectory}/.histfile";
       size = 500000;
