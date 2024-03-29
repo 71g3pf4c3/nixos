@@ -267,32 +267,32 @@ in {
   programs.home-manager.enable = true;
   programs.zsh = {
     enable = true;
-    initExtra = lib.concatStrings [
-      ''
-         			zinit wait reset-prompt lucid light-mode for \
-         				OMZL::git.zsh \
-         				OMZP::kubectl \
-         				atload"unalias grv" OMZP::git \
-         				OMZL::clipboard.zsh \
-         				PZT::modules/{'history','rsync'} \
-         				OMZP::sudo \
-         				Aloxaf/fzf-tab \
-         				zdharma-continuum/fast-syntax-highlighting \
-         				olets/zsh-abbr \
-         				zsh-users/zsh-completions
-         			export PS1="❯ "
-         			zinit wait'!' reset-prompt lucid light-mode for \
-         				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
-         			bindkey '^[[Z' autosuggest-accept
-        zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-         			export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
-      ''
-    ];
+    # initExtra = lib.concatStrings [
+    #   ''
+    #      			zinit wait reset-prompt lucid light-mode for \
+    #      				OMZL::git.zsh \
+    #      				OMZP::kubectl \
+    #      				atload"unalias grv" OMZP::git \
+    #      				OMZL::clipboard.zsh \
+    #      				PZT::modules/{'history','rsync'} \
+    #      				OMZP::sudo \
+    #      				Aloxaf/fzf-tab \
+    #      				zdharma-continuum/fast-syntax-highlighting \
+    #      				olets/zsh-abbr \
+    #      				zsh-users/zsh-completions
+    #      			export PS1="❯ "
+    #      			zinit wait'!' reset-prompt lucid light-mode for \
+    #      				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
+    #      			bindkey '^[[Z' autosuggest-accept
+    #     zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+    #     zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+    #   ''
+    # ];
     autosuggestion.enable = true;
-    enableCompletion = false;
-    completionInit = "autoload -Uz compinit && compinit";
+    # enableCompletion = false;
+    # completionInit = "autoload -Uz compinit && compinit";
     sessionVariables = {
+      ZSH_AUTOSUGGEST_STRATEGY = "(match_prev_cmd history completion)";
       PATH = "$PATH:$HOME/.local/bin";
       EDITOR = "nvim";
       VISUAL = "nvim";
@@ -347,6 +347,34 @@ in {
     defaultKeymap = "viins";
     autocd = true;
     plugins = [
+      {
+        name = "zsh-fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+      }
+      {
+        name = "zsh-abbr";
+        src = pkgs.zsh-abbr;
+      }
+      {
+        name = "pure";
+        src = pkgs.pure-prompt;
+      }
+      {
+        name = "zsh-clipboard";
+        src = pkgs.zsh-clipboard;
+      }
+      {
+        name = "zsh-completions";
+        src = pkgs.zsh-completions;
+      }
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+      }
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+      }
       {
         name = "zsh-nix-shell";
         file = "zinit.zsh";
