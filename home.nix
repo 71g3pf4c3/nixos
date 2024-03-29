@@ -495,7 +495,8 @@ in {
       # }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
-          pluginName = "ssh-split";
+          pluginName = "tmux-ssh-split";
+          rtpFilePath = "ssh-split.tmux";
           version = "bccb77f";
           src = pkgs.fetchFromGitHub {
             owner = "pschmitt";
@@ -508,13 +509,14 @@ in {
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
-          pluginName = "session-wizard";
-          version = "68f0e3a";
+          pluginName = "tmux-session-wizard";
+          version = "e13c4c4";
+          rtpFilePath = "sessio-wizard.tmux";
           src = pkgs.fetchFromGitHub {
-            owner = "71g3pf4c3";
+            owner = "27medkamal";
             repo = "tmux-session-wizard";
-            rev = "68f0e3aac030f587061a625c47f4ae59dba43a70";
-            sha256 = "sha256-Ds2rIdOpsb+HN3aa4PBHJawjs91F/rFligqbVWzEFQY=";
+            rev = "e13c4c47c72039b3bcf2706ecf428b099c00b215";
+            sha256 = "sha256-Nz1vfl4owkQG3l2laao9Z6IW1w0nlhYuwHTuag1ajwM=";
           };
         };
         extraConfig = "\n				set -g @session-wizard 'h'\n				set -g @session-wizard-width 40\n			";
