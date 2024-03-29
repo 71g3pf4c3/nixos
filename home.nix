@@ -505,13 +505,13 @@ in {
             sha256 = "sha256-Z16laz2Xeyg4/eCbS5qqXxLB6xpADvHWKWlfJqLYO/k=";
           };
         };
-        extraConfig = "\n				set -g @ssh-split-h-key '_'\n				set -g @@ssh-split-v-key |\n			";
+        extraConfig = "\n				set -g @ssh-split-v-key '_'\n				set -g @ssh-split-h-key |\n			";
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
           pluginName = "tmux-session-wizard";
           version = "e13c4c4";
-          rtpFilePath = "sessio-wizard.tmux";
+          rtpFilePath = "session-wizard.tmux";
           src = pkgs.fetchFromGitHub {
             owner = "27medkamal";
             repo = "tmux-session-wizard";
