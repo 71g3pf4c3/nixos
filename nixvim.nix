@@ -53,6 +53,17 @@
             "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
             "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           };
+          sources = [
+            {name = "tmux";}
+            {name = "buffer";}
+            {name = "cmdline";}
+            {name = "dictionary";}
+            {name = "emoji";}
+            {name = "path";}
+            {name = "treesitter";}
+            {name = "luasnip";}
+            {name = "nvim_lsp";}
+          ];
         };
         cmdline = {
           "/" = {
