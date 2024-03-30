@@ -33,19 +33,6 @@ in {
   environment.systemPackages = with pkgs; [
     sway
     dbus-sway-environment
-    configure-gtk
-    wayland
-    slurp
-    xdg-utils # for opening default programs when clicking links
-    glib # gsettings
-    gnome3.adwaita-icon-theme # default gnome cursors
-    swaylock
-    swayidle
-    wayshot # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by swaywm maintainer
-    wdisplays # tool to configure displays
-    swaybg
   ];
   xdg.portal = {
     enable = true;

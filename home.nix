@@ -120,6 +120,7 @@ in {
     cargo
     nodejs
     go
+    wdisplays
     gcc_multi
     rocketchat-desktop
     cool-retro-term
