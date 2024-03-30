@@ -47,14 +47,6 @@ in {
     wdisplays # tool to configure displays
     swaybg
   ];
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-  services.dbus.enable = true;
-  services.dbus.implementation = "broker";
   xdg.portal = {
     enable = true;
     wlr.enable = true;

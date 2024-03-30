@@ -28,7 +28,7 @@
         modules = [
           ./hardware-configuration.nix
           ./configuration.nix
-          ./sway.nix
+          # ./sway.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
           home-manager.nixosModules.home-manager
           {
@@ -36,9 +36,8 @@
               useGlobalPkgs = true;
               useUserPackages = false;
               users.t1g3pf4c3 = import ./home.nix;
-              extraSpecialArgs = {inherit inputs; };
+              extraSpecialArgs = {inherit inputs;};
             };
-
           }
         ];
       };

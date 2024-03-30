@@ -53,6 +53,11 @@
     displayManager.defaultSession = "sway";
     desktopManager.xterm.enable = false;
   };
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraSessionCommands = "	export SDL_VIDEODRIVER=wayland\n	export QT_QPA_PLATFORM=wayland\n	export QT_WAYLAND_DISABLE_WINDOWDECORATION=\"1\"\n	export _JAVA_AWT_WM_NONREPARENTING=1\n	export XDG_SESSION_TYPE=wayland\n	export XDG_CURRENT_DESKTOP=sway\n	export XDG_SESSION_DESKTOP=sway\n	export SDL_VIDEODRIVER=wayland\n";
+  };
   security.polkit.enable = true;
   services.printing.enable = true;
   programs.zsh.enable = true;
@@ -92,6 +97,16 @@
     virt-manager
   ];
   services = {
+    dbus = {
+      enable = true;
+      implementation = "broker";
+    };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
     openssh.enable = true;
     blueman.enable = true;
     thermald.enable = true;
