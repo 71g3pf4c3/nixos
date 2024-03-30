@@ -867,13 +867,30 @@ in {
   programs.htop.enable = true;
   programs.git = {
     enable = true;
-    includes = [{path = "/etc/nixos/config/gitconfig";}];
+    includes = [
+      {
+        contents = {
+          user = {
+            email = "mkungurov@runity.ru";
+            name = "Кунгуров Макар Евгеньевич";
+          };
+        };
+      }
+      {
+        contents = {
+          user = {
+            email = "71g3pf4c3@gmail.com";
+            name = "71g3pf4c3";
+          };
+        };
+      }
+    ];
     delta = {
       enable = true;
       options = {
         side-by-side = true;
         line-numbers = true;
-        syntax-theme = "gruvbox-light";
+        syntax-theme = "${colorscheme.light.name}";
       };
     };
   };
@@ -897,27 +914,27 @@ in {
     config = {
       startup = [
         {
-          command = "systemctl --user restart blueman-applet";
+          command = "systemctl --user start blueman-applet";
           always = true;
         }
         {
-          command = "systemctl --user restart tym-daemon";
+          command = "systemctl --user start tym-daemon";
           always = true;
         }
         {
-          command = "systemctl --user restart swayidle";
+          command = "systemctl --user start swayidle";
           always = true;
         }
         {
-          command = "systemctl --user restart waybar";
+          command = "systemctl --user start waybar";
           always = true;
         }
         {
-          command = "systemctl --user restart network-manager-applet";
+          command = "systemctl --user start network-manager-applet";
           always = true;
         }
         {
-          command = "systemctl --user restart swaybg";
+          command = "systemctl --user start swaybg";
           always = true;
         }
       ];
