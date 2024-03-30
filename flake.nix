@@ -24,22 +24,24 @@
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit self inputs;};
+
         modules = [
           ./hardware-configuration.nix
           ./configuration.nix
           ./sway.nix
-          ./nixvim.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
+
           home-manager.nixosModules.home-manager
-          nixvim.nixosModules.nixvim
-          nixvim.homeManagerModules.nixvim
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.t1g3pf4c3 = import ./home.nix;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = false;
+              users.t1g3pf4c3 = import ./home.nix;
+            };
           }
         ];
       };
     };
+    homeManagerModules.default = [nixvim.homeManagerModules.nixvim];
   };
 }
