@@ -30,7 +30,6 @@
           ./configuration.nix
           ./sway.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -38,7 +37,6 @@
               useUserPackages = false;
               users.t1g3pf4c3 = import ./home.nix;
               extraSpecialArgs = {inherit inputs; };
-
             };
 
           }
