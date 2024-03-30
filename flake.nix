@@ -37,11 +37,13 @@
               useGlobalPkgs = true;
               useUserPackages = false;
               users.t1g3pf4c3 = import ./home.nix;
+              extraSpecialArgs = {inherit inputs; };
+
             };
+
           }
         ];
       };
     };
-    homeManagerModules.default = [nixvim.homeManagerModules.nixvim];
   };
 }

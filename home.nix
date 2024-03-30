@@ -264,6 +264,8 @@ in {
     recursive = true;
   };
   programs.home-manager.enable = true;
+
+  imports = [inputs.nixvim.homeManagerModules.nixvim];
   programs.zsh = {
     enable = true;
     initExtra = lib.concatStrings [
@@ -1782,5 +1784,4 @@ in {
   #   ];
   #   extraPlugins = with pkgs.vimPlugins; [lazygit-nvim];
   # };
-
 }
