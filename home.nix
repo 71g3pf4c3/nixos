@@ -1267,7 +1267,7 @@ in {
     defaultCacheTtl = 34560000;
     maxCacheTtl = 34560000;
     enableSshSupport = true;
-    pinentryPackage = lib.mkForce pkgs.pinentry-rofi;
+    pinentryPackage = lib.mkForce pkgs.pinentry-gnome3;
   };
 
   programs.newsboat = {
