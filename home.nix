@@ -778,7 +778,7 @@ in {
       '';
       zi = "	\${{\n			__zoxide_zi\n	}}\n";
       kubeapply = "	\${{\n			kubectl apply -f  \"$fx\"\n	}}\n";
-      copy-path = "	\${{\n			printf \"$fx\" | wl-copy \n	}}\n";
+      copy-path = "	\${{\n			printf \"$fx\" | ${pkgs.wl-clipboard}/bin/wl-copy \n	}}\n";
       dragdrop = "	\${{\n			printf '%s\\n' \"$fx\" | dragon -a -x -T -I \n	}}\n";
       copy-content = ''
           ''${{
@@ -1269,7 +1269,7 @@ in {
     defaultCacheTtl = 34560000;
     maxCacheTtl = 34560000;
     enableSshSupport = true;
-    pinentryPackage = lib.mkForce pkgs.pinentry-gnome3;
+    pinentryPackage = lib.mkForce pkgs.pinentry-curses;
   };
 
   programs.newsboat = {
