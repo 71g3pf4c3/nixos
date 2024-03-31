@@ -428,7 +428,7 @@ in {
       bind c new-window -c "#{pane_current_path}"
       bind -T copy-mode-vi v send -X begin-selection
       bind -T copy-mode-vi V send -X select-line
-      bind -T copy-mode-vi y send -X copy-pipe-and-cancel 'wl-copy'
+      bind -T copy-mode-vi y send -X copy-pipe '${pkgs.wl-clipboard}/bin/wl-copy'
       bind -T copy-mode-vi 'C-h' select-pane -L
       bind -T copy-mode-vi 'C-j' select-pane -D
       bind -T copy-mode-vi 'C-k' select-pane -U
