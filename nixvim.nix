@@ -57,13 +57,14 @@
             {name = "nvim_lsp";}
             {name = "luasnip";}
             {name = "neorg";}
+            {name = "neorg";}
             {name = "treesitter";}
             {name = "dictionary";}
             {name = "buffer";}
-            {name = "tmux";}
             {name = "path";}
             {name = "cmdline";}
             {name = "emoji";}
+            {name = "tmux";}
           ];
         };
         cmdline = {
@@ -84,6 +85,7 @@
         };
       };
       cmp-tmux.enable = true;
+      cmp-spell.enable = true;
       cmp-git.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true;

@@ -1319,7 +1319,6 @@ in {
       }
       {url = "https://hnrss.org/newest?count=80&q=Cloud+OR+cloud";}
       {url = "https://hnrss.org/best?count=80";}
-      {url = "https://rsshub.app/telegram/channel/bbbreaking";}
       {url = "https://rsshub.app/telegram/channel/flant_ru";}
       {url = "https://rsshub.app/telegram/channel/open_source_friend";}
       {url = "https://rsshub.app/telegram/channel/black_triangle_tg";}
