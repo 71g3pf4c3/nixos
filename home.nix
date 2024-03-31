@@ -142,6 +142,7 @@ in {
     yq-go
     codespell
 
+    gptcommit
     # openssl
     # pango
     # pastel
