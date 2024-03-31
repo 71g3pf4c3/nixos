@@ -340,12 +340,10 @@ in {
       "cd" = "z";
       "ci" = "zi";
       "upd" = ''
-            ${lib.getExe pkgs.git} diff | ${
-          lib.getExe pkgs.bat
-        } --no-pager && sudo nixos-rebuild switch -j 16  --flake .# &&
-        ${lib.getExe pkgs.git} commit -a && ${
-          lib.getExe pkgs.git
-        } push && ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
+        ${lib.getExe pkgs.git} diff | \
+        ${lib.getExe pkgs.bat} --no-pager && sudo nixos-rebuild switch -j 16  --flake .# &&\
+          ${lib.getExe pkgs.git} commit -a && ${lib.getExe pkgs.git} push &&\
+          ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
       '';
     };
     defaultKeymap = "viins";

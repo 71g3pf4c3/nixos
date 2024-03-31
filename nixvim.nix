@@ -160,7 +160,7 @@
         formattersByFt = {
           lua = ["stylua"];
           python = ["isort" "black"];
-          nix = ["nixfmt" "alejandra"];
+          nix = ["nixfmt"];
           sh = ["shellcheck" "shellharden"];
           go = ["goimports" "gofmt"];
           yaml = ["yamlfix" "yq"];
