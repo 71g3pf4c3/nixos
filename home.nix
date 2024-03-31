@@ -491,7 +491,6 @@ in {
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.logging
       {
-
         plugin = tmuxPlugins.better-mouse-mode;
         extraConfig = "	set -g @scroll-down-exit-copy-mode 'off'\n	set -g @emulate-scroll-for-no-mouse-alternate-buffer 'on'\n";
       }
