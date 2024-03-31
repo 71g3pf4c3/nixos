@@ -401,84 +401,85 @@ in {
     clock24 = true;
     shell = "${lib.getExe pkgs.zsh}";
     extraConfig = ''
-            set -g set-titles on
-            set -g status-keys vi
-            set -g set-titles-string '#S:#I.#P #W'
-            setw -g automatic-rename
-            bind x kill-pane
-            bind & kill-window
-            bind v copy-mode
-            bind V choose-buffer
-            bind S setw synchronize-panes
-            bind C-V pasteb
-            bind ";" next-layout
-            bind -r  r source-file ${config.home.homeDirectory}/.config/tmux/tmux.conf
-            bind < swap-pane -D
-            bind > swap-pane -U
-            # pane resizing
-            bind -r H resize-pane -L 2
-            bind -r J resize-pane -D 2
-            bind -r K resize-pane -U 2
-            bind -r L resize-pane -R 2
-            bind s swap-window
-            bind j join-pane
-            bind 'C-C' new-session
-            bind -r \\ split-window -h -c "#{pane_current_path}"
-            bind -r - split-window -v -c "#{pane_current_path}"
-      bind c new-window -c "#{pane_current_path}"
-            bind -T copy-mode-vi v send -X begin-selection
-            bind -T copy-mode-vi V send -X select-line
-            bind -T copy-mode-vi y send -X copy-pipe-and-cancel 'wl-copy'
-            bind -T copy-mode-vi 'C-h' select-pane -L
-            bind -T copy-mode-vi 'C-j' select-pane -D
-            bind -T copy-mode-vi 'C-k' select-pane -U
-            bind -T copy-mode-vi 'C-l' select-pane -R
-            bind -T copy-mode-vi '^\' select-pane -l
-            bind -T copy-mode-vi 'C-Space' select-pane -t:.+
-            set -ga terminal-overrides ",*256col*:Tc"
-            set-option -g renumber-windows on
-            set-option -g status-position top
-            set-option -g status-justify left
-            bind-key s set status
-      			bind-key n next-window
-            bind-key b if-shell -F '#{==:#{session_name},scratch}' {
-              kill-session -t scratch
-            } {
-              display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s scratch -n "scratch"
-            }
-            bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${
+         set -g set-titles on
+         set -g status-keys vi
+         set -g set-titles-string '#S:#I.#P #W'
+         setw -g automatic-rename
+         bind x kill-pane
+         bind & kill-window
+         bind v copy-mode
+         bind V choose-buffer
+         bind S setw synchronize-panes
+         bind C-V pasteb
+         bind ";" next-layout
+         bind -r  r source-file ${config.home.homeDirectory}/.config/tmux/tmux.conf
+         bind < swap-pane -D
+         bind > swap-pane -U
+         # pane resizing
+         bind -r H resize-pane -L 2
+         bind -r J resize-pane -D 2
+         bind -r K resize-pane -U 2
+         bind -r L resize-pane -R 2
+         bind s swap-window
+         bind j join-pane
+         bind 'C-C' new-session
+         bind -r \\ split-window -h -c "#{pane_current_path}"
+         bind -r - split-window -v -c "#{pane_current_path}"
+         bind c new-window -c "#{pane_current_path}"
+         bind -T copy-mode-vi v send -X begin-selection
+         bind -T copy-mode-vi V send -X select-line
+         bind -T copy-mode-vi y send -X copy-pipe-and-cancel 'wl-copy'
+         bind -T copy-mode-vi 'C-h' select-pane -L
+         bind -T copy-mode-vi 'C-j' select-pane -D
+         bind -T copy-mode-vi 'C-k' select-pane -U
+         bind -T copy-mode-vi 'C-l' select-pane -R
+         bind -T copy-mode-vi '^\' select-pane -l
+         bind -T copy-mode-vi 'C-Space' select-pane -t:.+
+         set -ga terminal-overrides ",*256col*:Tc"
+         set-option -g renumber-windows on
+         set-option -g status-position top
+         set-option -g status-justify left
+         bind-key s set status
+      bind-key n next-window
+         bind-key b if-shell -F '#{==:#{session_name},scratch}' {
+           kill-session -t scratch
+         } {
+           display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s scratch -n "scratch"
+         }
+         bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${
         lib.getExe pkgs.lazygit
       }"
-            bind-key y if-shell -F '#{==:#{session_name},kubectx}' {
-              kill-session -t kubectx
-            } {
-              display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx"
-            }
-            bind-key m if-shell -F '#{==:#{session_name},k9s}' { detach-client } { display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml" }
-            bind-key u display-popup -h 50% -w 50% -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s update -n update "upd "
-            # only show status bar if there is more then one window
-            set -g status on
-            set-option -g status-interval 5
-            set-option -g automatic-rename on
-            set-option -g automatic-rename-format '#{b:pane_current_path}'
-            set-option -g automatic-rename-format "#{?#{==:#{b:pane_current_path},t1g3pf4c3},#{pane_current_command},#{b:pane_current_path}}"
-            set -g status-fg "${colorscheme.light.grayalt}"
-            set -g status-bg "${colorscheme.light.bg3}"
-            set-option -g status-left "#[fg=${colorscheme.light.gray}, bg=${colorscheme.light.bg2}, bold] #{session_name} "
-            set-window-option -g window-status-current-format "#[bg=${colorscheme.light.bg}, fg=${colorscheme.light.fg},bold,italics] #[noitalics]#[italics]#W#{?window_zoomed_flag,*Z,} "
-            set-window-option -g window-status-format "#[noitalics,bg=${colorscheme.light.bg3},fg=${colorscheme.light.bg}] #[noitalics]#W "
-            set-window-option -g window-status-separator ""
-            set-option -g window-style 'bg=default'
-            set-option -g popup-border-lines heavy
-            set-option -g pane-border-lines heavy
-            set-option -g popup-border-style 'fg=${colorscheme.light.green},bold'
-            set-option -g pane-border-style 'fg=${colorscheme.light.bg2}'
-            set-option -g pane-active-border-style 'fg=${colorscheme.light.green}'
-            set -g pane-border-status off
-            set -g pane-border-format "#[bold,fg=${colorscheme.light.bg}, bg=${colorscheme.light.green} ] #{pane_index}:#{pane_title} #[default]"
-            set-hook -g window-layout-changed 'set-window -F pane-border-status "#{?#{==:#{window_panes},1},off,bottom}"'
-            set-hook -g after-new-window 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
-            set-hook -g after-kill-pane 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
+         bind-key y if-shell -F '#{==:#{session_name},kubectx}' {
+           kill-session -t kubectx
+         } {
+           display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx"
+         }
+         bind-key m if-shell -F '#{==:#{session_name},k9s}' { detach-client } { display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml" }
+         bind-key u display-popup -h 50% -w 50% -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s update -n update "upd "
+         # only show status bar if there is more then one window
+         set -g status on
+         set-option -g status-interval 5
+         set-option -g automatic-rename on
+         set-option -g automatic-rename-format '#{b:pane_current_path}'
+         set-option -g automatic-rename-format "#{?#{==:#{b:pane_current_path},t1g3pf4c3},#{pane_current_command},#{b:pane_current_path}}"
+         set -g status-fg "${colorscheme.light.grayalt}"
+         set -g status-bg "${colorscheme.light.bg3}"
+         set-option -g status-left "#[fg=${colorscheme.light.gray}, bg=${colorscheme.light.bg2}, bold] #{session_name} "
+         set-window-option -g window-status-current-format "#[bg=${colorscheme.light.bg}, fg=${colorscheme.light.fg},bold,italics] #[noitalics]#[italics]#W#{?window_zoomed_flag,*Z,} "
+         set-window-option -g window-status-format "#[noitalics,bg=${colorscheme.light.bg3},fg=${colorscheme.light.bg}] #[noitalics]#W "
+         set-window-option -g window-status-separator ""
+         set-option -g window-style 'bg=default'
+         set-option -g popup-border-lines heavy
+         set-option -g pane-border-lines heavy
+         set-option -g popup-border-style 'fg=${colorscheme.light.green},bold'
+         set-option -g pane-border-style 'fg=${colorscheme.light.bg2}'
+         set-option -g pane-active-border-style 'fg=${colorscheme.light.green}'
+         set -g pane-border-status off
+         set -s copy-command 'wl-copy'
+         set -g pane-border-format "#[bold,fg=${colorscheme.light.bg}, bg=${colorscheme.light.green} ] #{pane_index}:#{pane_title} #[default]"
+         set-hook -g window-layout-changed 'set-window -F pane-border-status "#{?#{==:#{window_panes},1},off,bottom}"'
+         set-hook -g after-new-window 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
+         set-hook -g after-kill-pane 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
     '';
     plugins = with pkgs; [
       {
