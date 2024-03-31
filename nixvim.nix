@@ -56,6 +56,7 @@
           sources = [
             {name = "nvim_lsp";}
             {name = "luasnip";}
+            {name = "neorg";}
             {name = "treesitter";}
             {name = "dictionary";}
             {name = "buffer";}
