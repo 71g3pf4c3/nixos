@@ -888,14 +888,14 @@ in {
         };
       }
     ];
-    # delta = {
-    #   enable = true;
-    #   options = {
-    #     side-by-side = true;
-    #     line-numbers = true;
-    #     syntax-theme = "${colorscheme.light.name}";
-    #   };
-    # };
+    delta = {
+      enable = true;
+      options = {
+        side-by-side = true;
+        line-numbers = true;
+        syntax-theme = "${colorscheme.light.name}";
+      };
+    };
   };
   programs.gh.enable = true;
   wayland.windowManager.sway = {
