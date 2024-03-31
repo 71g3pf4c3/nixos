@@ -9,10 +9,32 @@
   programs.nixvim = {
     enable = true;
     colorschemes.gruvbox.enable = true;
+    colorschemes.gruvbox.settings = {
+      undercurl = true;
+      underline = true;
+      transparent_mode = true;
+      background = "light";
+      bold = true;
+      italic = {
+        strings = true;
+        comments = true;
+        operators = false;
+        folds = true;
+      };
+      strikethrough = true;
+      invert_selection = false;
+      invert_signs = false;
+      invert_tabline = false;
+      invert_intend_guides = false;
+      inverse = true;
+      contrast = "soft";
+    };
     clipboard.providers.wl-copy.enable = true;
     clipboard.register = "unnamedplus";
     opts = {
       mouse = "a";
+      spell = true;
+      spelllang = ["en_us" "ru"];
       cursorline = true;
       cursorcolumn = true;
       number = true;
