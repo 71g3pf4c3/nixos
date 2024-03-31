@@ -8,6 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    stylix.url = "github:danth/stylix";
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +20,7 @@
     home-manager,
     nixos-hardware,
     nixvim,
+    stylix,
     self,
   } @ inputs: {
     nixosConfigurations = {
@@ -28,7 +31,6 @@
         modules = [
           ./hardware-configuration.nix
           ./configuration.nix
-          # ./sway.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
           home-manager.nixosModules.home-manager
           {

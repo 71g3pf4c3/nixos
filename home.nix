@@ -1,12 +1,10 @@
 {
   config,
   pkgs,
-  unstable,
   lib,
   inputs,
   ...
 }: let
-  # distant = (pkgs.callPackage ./pkgs/distant/default.nix { });
   font = "Comic Code Ligatures";
   terminal = "${lib.getExe pkgs.tym}";
   colorscheme = {
@@ -88,7 +86,11 @@
     };
   };
 in {
-  imports = [inputs.nixvim.homeManagerModules.nixvim ./config/nixvim.nix];
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+    ./config/nixvim.nix
+    # inputs.stylix.homeManagerModules.stylix
+  ];
   home.username = "t1g3pf4c3";
   home.homeDirectory = "/home/t1g3pf4c3";
   home.stateVersion = "23.11";
@@ -339,7 +341,7 @@ in {
       "upd" = ''
             ${lib.getExe pkgs.git} diff | ${
           lib.getExe pkgs.bat
-        } --no-pager && sudo nixos-rebuild switch -j 16  --flake /etc/nixos# &&
+        } --no-pager && sudo nixos-rebuild switch -j 16  --flake .# &&
         ${lib.getExe pkgs.git} commit -am "Config update" && ${
           lib.getExe pkgs.git
         } push && ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
