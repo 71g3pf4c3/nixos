@@ -141,8 +141,8 @@ in {
     shellharden
     yq-go
     codespell
-
     gptcommit
+    aichat
     # openssl
     # pango
     # pastel

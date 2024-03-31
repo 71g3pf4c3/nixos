@@ -465,6 +465,6 @@
         mode = "n";
       }
     ];
-    extraPlugins = with pkgs.vimPlugins; [lazygit-nvim];
+    extraPlugins = with pkgs.vimPlugins; [lazygit-nvim ChatGPT-nvim];
   };
 }
