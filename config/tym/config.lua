@@ -63,6 +63,10 @@ tym.set_keymaps({
 		tym.send_key("<Ctrl>b")
 		tym.send_key("P")
 	end,
+	["<Alt>s"] = function()
+		tym.send_key("<Ctrl>b")
+		tym.send_key("s")
+	end,
 	["<Alt>o"] = function()
 		tym.send_key("<Ctrl>b")
 		tym.send_key("h")

@@ -116,6 +116,7 @@ in {
     qbittorrent
     libreoffice
     drawio
+    k8sgpt
     kube-capacity
     kubectl-tree
     kubectl-node-shell
@@ -437,7 +438,7 @@ in {
       set-option -g renumber-windows on
       set-option -g status-position top
       set-option -g status-justify left
-      bind-key s set status
+      bind-key q set status
       bind-key n next-window
       bind-key b if-shell -F '#{==:#{session_name},scratch}' {
         kill-session -t scratch
@@ -451,6 +452,11 @@ in {
         kill-session -t kubectx
       } {
         display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx"
+      }
+      bind-key s if-shell -F '#{==:#{session_name},news}' {
+        detach-client
+      } {
+        display-popup -h 90% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s news -n news "newsboat"
       }
       bind-key m if-shell -F '#{==:#{session_name},k9s}' { detach-client } { display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml" }
       bind-key u display-popup -h 50% -w 50% -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s update -n update "upd "
@@ -927,7 +933,7 @@ in {
           always = true;
         }
         {
-          command = "systemctl --user start waybar";
+          command = "systemctl --user restart waybar";
           always = true;
         }
         {
