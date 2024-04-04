@@ -144,6 +144,7 @@ in {
     codespell
     gptcommit
     aichat
+    python311Packages.pyclip
     # openssl
     # pango
     # pastel
@@ -202,7 +203,8 @@ in {
     # freerdp
     # vhs
     # keystore-explorer
-    # discord
+    discord
+    restic
     # thunderbird
   ];
   home.pointerCursor = {
