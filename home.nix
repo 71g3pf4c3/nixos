@@ -107,7 +107,8 @@ in {
     tree-sitter
     postgresql
     mysql80
-    webcord-vencord
+    # webcord-vencord
+    webcord
     zoom-us
     popeye
     dig
@@ -203,8 +204,7 @@ in {
     # freerdp
     # vhs
     # keystore-explorer
-    discord
-    xwaylandvideobridge
+    # discord
     restic
     # thunderbird
   ];
@@ -345,7 +345,9 @@ in {
       "ci" = "zi";
       "upd" = ''
         ${lib.getExe pkgs.git} diff | \
-        ${lib.getExe pkgs.bat} --no-pager && sudo nixos-rebuild switch -j 16  --flake .# &&\
+        ${
+          lib.getExe pkgs.bat
+        } --no-pager && sudo nixos-rebuild switch -j 16  --flake .# &&\
           ${lib.getExe pkgs.git} commit -a && ${lib.getExe pkgs.git} push &&\
           ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
       '';
