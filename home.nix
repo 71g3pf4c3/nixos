@@ -204,6 +204,7 @@ in {
     # vhs
     # keystore-explorer
     discord
+    xwaylandvideobridge
     restic
     # thunderbird
   ];
