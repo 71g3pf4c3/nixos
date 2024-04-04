@@ -107,8 +107,7 @@ in {
     tree-sitter
     postgresql
     mysql80
-    # webcord-vencord
-    webcord
+    webcord-vencord
     zoom-us
     popeye
     dig
@@ -925,6 +924,14 @@ in {
     '';
     config = {
       startup = [
+        {
+          command = "systemctl --user start xdg-desktop-portal";
+          always = true;
+        }
+        {
+          command = "systemctl --user start xdg-desktop-portal-wlr";
+          always = true;
+        }
         {
           command = "systemctl --user start blueman-applet";
           always = true;
