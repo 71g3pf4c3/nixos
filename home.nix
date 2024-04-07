@@ -124,24 +124,18 @@ in {
     kubernetes-helm
     cargo
     nodejs
-    go
     buku
     bukubrow
-    vieb
     wdisplays
     gcc_multi
-    rocketchat-desktop
-    cool-retro-term
     xdragon
     wineWowPackages.waylandFull
     unzip
     python3
     pavucontrol
-    luajitPackages.luarocks
-
+    restic
     stylua
     nixfmt
-    alejandra
     shellcheck
     shellharden
     yq-go
@@ -149,6 +143,10 @@ in {
     gptcommit
     aichat
     python311Packages.pyclip
+    # alejandra
+    # vieb
+    # rocketchat-desktop
+    # cool-retro-term
     # openssl
     # pango
     # pastel
@@ -207,7 +205,6 @@ in {
     # vhs
     # keystore-explorer
     # discord
-    restic
     # thunderbird
   ];
   home.pointerCursor = {
@@ -346,12 +343,12 @@ in {
       "cd" = "z";
       "ci" = "zi";
       "upd" = ''
-        ${lib.getExe pkgs.git} diff | \
-        ${
-          lib.getExe pkgs.bat
-        } --no-pager && sudo nixos-rebuild switch -j 16  --flake ~/nixos/# &&\
-          ${lib.getExe pkgs.git} commit -a && ${lib.getExe pkgs.git} push &&\
-          ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
+        ${lib.getExe pkgs.nixfmt} &&\
+        ${lib.getExe pkgs.git} diff |\
+        ${lib.getExe pkgs.bat} --no-pager\
+        && sudo nixos-rebuild switch -j 16  --flake ~/nixos/# &&\
+        ${lib.getExe pkgs.git} commit -a && ${lib.getExe pkgs.git} push &&\
+        ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
       '';
     };
     defaultKeymap = "viins";

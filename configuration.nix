@@ -1,21 +1,14 @@
-{
-  config,
-  pkgs,
-  self,
-  lib,
-  inputs,
-  ...
-}: {
+{ config, pkgs, self, lib, inputs, ... }: {
   documentation.man = {
     enable = true;
     generateCaches = true;
   };
-  nix.settings.experimental-features = ["nix-command flakes"];
+  nix.settings.experimental-features = [ "nix-command flakes" ];
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = ["electron-22.3.27"];
+  nixpkgs.config.permittedInsecurePackages = [ "electron-22.3.27" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernel.sysctl = {"net.ipv4.ip_unprivileged_port_start" = 80;};
+  boot.kernel.sysctl = { "net.ipv4.ip_unprivileged_port_start" = 80; };
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
@@ -37,7 +30,7 @@
   '';
   i18n.defaultLocale = "en_US.UTF-8";
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [];
+  programs.nix-ld.libraries = with pkgs; [ ];
   programs.steam = {
     enable = true;
     remotePlay.openFirewall =
@@ -125,7 +118,7 @@
       };
     };
   };
-  powerManagement = {enable = true;};
+  powerManagement = { enable = true; };
   virtualisation = {
     waydroid.enable = true;
     podman = {
@@ -138,12 +131,13 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    extraSessionCommands = "	export SDL_VIDEODRIVER=wayland\n	export QT_QPA_PLATFORM=wayland\n	export QT_WAYLAND_DISABLE_WINDOWDECORATION=\"1\"\n	export _JAVA_AWT_WM_NONREPARENTING=1\n	export XDG_SESSION_TYPE=wayland\n	export XDG_CURRENT_DESKTOP=sway\n	export XDG_SESSION_DESKTOP=sway\n	export SDL_VIDEODRIVER=wayland\n";
+    extraSessionCommands =
+      "	export SDL_VIDEODRIVER=wayland\n	export QT_QPA_PLATFORM=wayland\n	export QT_WAYLAND_DISABLE_WINDOWDECORATION=\"1\"\n	export _JAVA_AWT_WM_NONREPARENTING=1\n	export XDG_SESSION_TYPE=wayland\n	export XDG_CURRENT_DESKTOP=sway\n	export XDG_SESSION_DESKTOP=sway\n	export SDL_VIDEODRIVER=wayland\n";
   };
   system.stateVersion = "23.11"; # Did you read the comment?
 }
