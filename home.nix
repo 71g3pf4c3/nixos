@@ -124,6 +124,8 @@ in {
     cargo
     nodejs
     go
+    buku
+    vieb
     wdisplays
     gcc_multi
     rocketchat-desktop
@@ -159,7 +161,6 @@ in {
     # autossh
     # dig
     # yq-go
-    # buku
     # podman-tui
     # bluetuith
     # wemux
