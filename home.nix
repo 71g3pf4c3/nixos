@@ -1,10 +1,5 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: let
+{ config, pkgs, lib, inputs, ... }:
+let
   font = "Comic Code Ligatures";
   terminal = "${lib.getExe pkgs.tym}";
   colorscheme = {
@@ -243,12 +238,10 @@ in {
     };
     swayidle = {
       enable = true;
-      events = [
-        {
-          event = "before-sleep";
-          command = "${pkgs.swaylock}/bin/swaylock -fF";
-        }
-      ];
+      events = [{
+        event = "before-sleep";
+        command = "${pkgs.swaylock}/bin/swaylock -fF";
+      }];
       timeouts = [
         {
           timeout = 60 * 3;
@@ -274,28 +267,26 @@ in {
   programs.home-manager.enable = true;
   programs.zsh = {
     enable = true;
-    initExtra = lib.concatStrings [
-      ''
-         			zinit wait reset-prompt lucid light-mode for \
-         				OMZL::git.zsh \
-         				OMZP::kubectl \
-         				atload"unalias grv" OMZP::git \
-         				OMZL::clipboard.zsh \
-         				PZT::modules/{'history','rsync'} \
-         				OMZP::sudo \
-         				Aloxaf/fzf-tab \
-         				zdharma-continuum/fast-syntax-highlighting \
-         				olets/zsh-abbr \
-         				zsh-users/zsh-completions
-         			export PS1="❯ "
-         			zinit wait'!' reset-prompt lucid light-mode for \
-         				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
-         			bindkey '^[[Z' autosuggest-accept
-        zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-         			export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
-      ''
-    ];
+    initExtra = lib.concatStrings [''
+       			zinit wait reset-prompt lucid light-mode for \
+       				OMZL::git.zsh \
+       				OMZP::kubectl \
+       				atload"unalias grv" OMZP::git \
+       				OMZL::clipboard.zsh \
+       				PZT::modules/{'history','rsync'} \
+       				OMZP::sudo \
+       				Aloxaf/fzf-tab \
+       				zdharma-continuum/fast-syntax-highlighting \
+       				olets/zsh-abbr \
+       				zsh-users/zsh-completions
+       			export PS1="❯ "
+       			zinit wait'!' reset-prompt lucid light-mode for \
+       				nocd atload"PURE_PROMPT_SYMBOL=" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
+       			bindkey '^[[Z' autosuggest-accept
+      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+       			export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+    ''];
     autosuggestion.enable = true;
     enableCompletion = false;
     completionInit = "autoload -Uz compinit && compinit";
@@ -378,7 +369,8 @@ in {
   };
   programs.fzf = {
     enable = true;
-    defaultCommand = "${pkgs.fd}/bin/fd --strip-cwd-prefix --hidden --follow --exclude .git";
+    defaultCommand =
+      "${pkgs.fd}/bin/fd --strip-cwd-prefix --hidden --follow --exclude .git";
     fileWidgetOptions = [
       "--bind=alt-k:up,alt-j:down"
       "--preview '${lib.getExe pkgs.pistol} {}'"
@@ -388,7 +380,7 @@ in {
     enable = true;
     config = {
       theme = colorscheme.light.name;
-      map-syntax = ["*.jenkinsfile:Groovy" "*Jenkinsfile:Groovy"];
+      map-syntax = [ "*.jenkinsfile:Groovy" "*Jenkinsfile:Groovy" ];
       pager = "${lib.getExe pkgs.less} -FR";
     };
   };
@@ -500,7 +492,8 @@ in {
       tmuxPlugins.logging
       {
         plugin = tmuxPlugins.better-mouse-mode;
-        extraConfig = "	set -g @scroll-down-exit-copy-mode 'off'\n	set -g @emulate-scroll-for-no-mouse-alternate-buffer 'on'\n";
+        extraConfig =
+          "	set -g @scroll-down-exit-copy-mode 'off'\n	set -g @emulate-scroll-for-no-mouse-alternate-buffer 'on'\n";
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
@@ -514,7 +507,10 @@ in {
             sha256 = "sha256-Z16laz2Xeyg4/eCbS5qqXxLB6xpADvHWKWlfJqLYO/k=";
           };
         };
-        extraConfig = "\n				set -g @ssh-split-v-key '_'\n				set -g @ssh-split-h-key |\n			";
+        extraConfig = ''
+          set -g @ssh-split-v-key '_'
+          set -g @ssh-split-h-key |
+        '';
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
@@ -528,7 +524,10 @@ in {
             sha256 = "sha256-Nz1vfl4owkQG3l2laao9Z6IW1w0nlhYuwHTuag1ajwM=";
           };
         };
-        extraConfig = "\n				set -g @session-wizard 'h'\n				set -g @session-wizard-width 40\n			";
+        extraConfig = ''
+          set -g @session-wizard 'h'
+          set -g @session-wizard-width 40
+        '';
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
@@ -541,7 +540,8 @@ in {
             sha256 = "1zbci8kmkr4kis2zv0lgzi04knbjzx6zsxyxwrpc46z8hagyq328";
           };
         };
-        extraConfig = "\n				set -g @mode_indicator_empty_mode_style 'bold,bg=${colorscheme.dark.bg4},fg=${colorscheme.dark.fg}'\n				set -g @mode_indicator_prefix_mode_style 'bold,bg=${colorscheme.dark.blue},fg=${colorscheme.dark.fg}'\n				set -g @mode_indicator_copy_mode_style 'bold,bg=${colorscheme.dark.red},fg=${colorscheme.dark.fg}'\n				set -g @mode_indicator_sync_mode_style 'bold,bg=${colorscheme.dark.orange},fg=${colorscheme.dark.fg}'\n				set-option -g status-right \"#[bold,fg=${colorscheme.dark.fg}, bg=${colorscheme.dark.green} ] #{host} #{tmux_mode_indicator}\" \n			";
+        extraConfig =
+          "\n				set -g @mode_indicator_empty_mode_style 'bold,bg=${colorscheme.dark.bg4},fg=${colorscheme.dark.fg}'\n				set -g @mode_indicator_prefix_mode_style 'bold,bg=${colorscheme.dark.blue},fg=${colorscheme.dark.fg}'\n				set -g @mode_indicator_copy_mode_style 'bold,bg=${colorscheme.dark.red},fg=${colorscheme.dark.fg}'\n				set -g @mode_indicator_sync_mode_style 'bold,bg=${colorscheme.dark.orange},fg=${colorscheme.dark.fg}'\n				set-option -g status-right \"#[bold,fg=${colorscheme.dark.fg}, bg=${colorscheme.dark.green} ] #{host} #{tmux_mode_indicator}\" \n			";
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
@@ -566,7 +566,11 @@ in {
             sha256 = "0j7vjrwc7gniwkv1076q3wc8ccwj42zph5wdmsm9ibz6029wlmzv";
           };
         };
-        extraConfig = "	set -g @suspend_key 'F12'\n						set -g @suspend_suspended_options \" \\\n						@mode_indicator_custom_prompt:: SUSP\"\n					";
+        extraConfig = ''
+          set -g @suspend_key 'F12'
+          set -g @suspend_suspended_options \" \\
+          @mode_indicator_custom_prompt:: SUSP\"
+        '';
       }
     ];
   };
@@ -608,7 +612,7 @@ in {
     terminal = terminal;
     pass = {
       enable = true;
-      stores = ["${config.home.homeDirectory}/.password-store"];
+      stores = [ "${config.home.homeDirectory}/.password-store" ];
       package = pkgs.rofi-pass-wayland;
       extraConfig = ''
         delay=0.001
@@ -631,86 +635,86 @@ in {
       {
         fpath = ".*.md$";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.bat
-        } --paging=never --color=always %pistol-filename%";
+            lib.getExe pkgs.bat
+          } --paging=never --color=always %pistol-filename%";
       }
       {
         fpath = ".*.pem$";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.openssl
-        } x509 -text -noout -in %pistol-filename% || bat %pistol-filename%";
+            lib.getExe pkgs.openssl
+          } x509 -text -noout -in %pistol-filename% || bat %pistol-filename%";
       }
       {
         fpath = ".*.crt$";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.openssl
-        } x509 -text -noout -in %pistol-filename% || bat %pistol-filename%";
+            lib.getExe pkgs.openssl
+          } x509 -text -noout -in %pistol-filename% || bat %pistol-filename%";
       }
       {
         fpath = ".*.csr$";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.openssl
-        } x509 -text -noout -in %pistol-filename% || bat %pistol-filename%";
+            lib.getExe pkgs.openssl
+          } x509 -text -noout -in %pistol-filename% || bat %pistol-filename%";
       }
       {
         fpath = ".*.md$";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.bat
-        } --paging=never --color=always %pistol-filename% ";
+            lib.getExe pkgs.bat
+          } --paging=never --color=always %pistol-filename% ";
       }
       {
         fpath = ".*.ini$";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.bat
-        } --paging=never --color=always %pistol-filename% ";
+            lib.getExe pkgs.bat
+          } --paging=never --color=always %pistol-filename% ";
       }
       {
         fpath = ".*.norg$";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.bat
-        } --paging=never --color=always %pistol-filename% ";
+            lib.getExe pkgs.bat
+          } --paging=never --color=always %pistol-filename% ";
       }
       {
         fpath = ".*.log$";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.lnav
-        } %pistol-filename%";
+            lib.getExe pkgs.lnav
+          } %pistol-filename%";
       }
       {
         fpath = ".*.docx";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.python311Packages.docx2txt
-        } %pistol-filename%";
+            lib.getExe pkgs.python311Packages.docx2txt
+          } %pistol-filename%";
       }
       {
         fpath = ".*.odt";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.odt2txt
-        } %pistol-filename%";
+            lib.getExe pkgs.odt2txt
+          } %pistol-filename%";
       }
       {
         fpath = ".*.zip";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.unzip
-        } -l %pistol-filename%";
+            lib.getExe pkgs.unzip
+          } -l %pistol-filename%";
       }
       {
         fpath = ".*.tar.*";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.gnutar
-        } -tavf %pistol-filename%";
+            lib.getExe pkgs.gnutar
+          } -tavf %pistol-filename%";
       }
       {
         fpath = ".*.torrent";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.nodePackages.webtorrent-cli
-        } info %pistol-filename%";
+            lib.getExe pkgs.nodePackages.webtorrent-cli
+          } info %pistol-filename%";
       }
       {
         mime = "image/*";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.chafa
-        } %pistol-filename%";
+            lib.getExe pkgs.chafa
+          } %pistol-filename%";
       }
       {
         mime = "application/*";
@@ -719,20 +723,20 @@ in {
       {
         mime = "application/json";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.jq
-        } %pistol-filename%";
+            lib.getExe pkgs.jq
+          } %pistol-filename%";
       }
       {
         mime = "application/pdf";
         command = "sh: ${
-          lib.getExe pkgs.bkt
-        } --ttl=30s -- ${pkgs.poppler_utils}/bin/pdftotext %pistol-filename%";
+            lib.getExe pkgs.bkt
+          } --ttl=30s -- ${pkgs.poppler_utils}/bin/pdftotext %pistol-filename%";
       }
       {
         mime = "application/x-x509-ca-cert";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.openssl
-        } x509 -text -noout -in %pistol-filename%";
+            lib.getExe pkgs.openssl
+          } x509 -text -noout -in %pistol-filename%";
       }
       {
         mime = "application/x-executable";
@@ -741,14 +745,14 @@ in {
       {
         mime = "inode/directory";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.eza
-        } --tree --icons --level=1 %pistol-filename%";
+            lib.getExe pkgs.eza
+          } --tree --icons --level=1 %pistol-filename%";
       }
       {
         mime = "text/*";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${
-          lib.getExe pkgs.bat
-        } --paging=never --color=always %pistol-filename%";
+            lib.getExe pkgs.bat
+          } --paging=never --color=always %pistol-filename%";
       }
     ];
   };
@@ -786,8 +790,10 @@ in {
       '';
       zi = "	\${{\n			__zoxide_zi\n	}}\n";
       kubeapply = "	\${{\n			kubectl apply -f  \"$fx\"\n	}}\n";
-      copy-path = "	\${{\n			printf \"$fx\" | ${pkgs.wl-clipboard}/bin/wl-copy \n	}}\n";
-      dragdrop = "	\${{\n			printf '%s\\n' \"$fx\" | dragon -a -x -T -I \n	}}\n";
+      copy-path =
+        "	\${{\n			printf \"$fx\" | ${pkgs.wl-clipboard}/bin/wl-copy \n	}}\n";
+      dragdrop =
+        "	\${{\n			printf '%s\\n' \"$fx\" | dragon -a -x -T -I \n	}}\n";
       copy-content = ''
           ''${{
         cat $fx | ${pkgs.wl-clipboard}/bin/wl-copy
@@ -832,7 +838,7 @@ in {
       '';
     };
   };
-  programs.eza = {enable = true;};
+  programs.eza = { enable = true; };
   programs.jq.enable = true;
   programs.lazygit.enable = true;
   programs.k9s = {
@@ -869,7 +875,8 @@ in {
   programs.mpv = {
     enable = true;
     config = {
-      ytdl-format = "bestvideo[height<=?720][fps<=?30][vcodec!=?h264]+worstaudio/[acodec=opus][abr<=?70]";
+      ytdl-format =
+        "bestvideo[height<=?720][fps<=?30][vcodec!=?h264]+worstaudio/[acodec=opus][abr<=?70]";
       geometry = "40%+90%+10%";
       script-opts = "ytdl_hook-ytdl_path=${lib.getExe pkgs.yt-dlp}";
     };
@@ -915,7 +922,7 @@ in {
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_WM_NONREPARENTING=1
     '';
-    wrapperFeatures = {gtk = true;};
+    wrapperFeatures = { gtk = true; };
     extraConfig = ''
          titlebar_border_thickness 0
          titlebar_padding 20 0
@@ -989,7 +996,7 @@ in {
         };
       };
       fonts = {
-        names = [font];
+        names = [ font ];
         style = "Regular";
         size = 9.0;
       };
@@ -1008,32 +1015,36 @@ in {
       modifier = "Mod4";
       terminal = "${terminal} -- tmux new -A";
       menu = "${lib.getExe pkgs.rofi-wayland} -show drun";
-      bars = [];
+      bars = [ ];
       bindkeysToCode = true;
-      keybindings = let
-        modifier = config.wayland.windowManager.sway.config.modifier;
-      in
-        lib.mkOptionDefault {
+      keybindings =
+        let modifier = config.wayland.windowManager.sway.config.modifier;
+        in lib.mkOptionDefault {
           "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 2";
           "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 2";
-          "XF86AudioRaiseVolume" = "exec ${lib.getExe pkgs.pamixer} --allow-boost -i 5";
-          "XF86AudioLowerVolume" = "exec ${lib.getExe pkgs.pamixer} --allow-boost -d 5";
+          "XF86AudioRaiseVolume" =
+            "exec ${lib.getExe pkgs.pamixer} --allow-boost -i 5";
+          "XF86AudioLowerVolume" =
+            "exec ${lib.getExe pkgs.pamixer} --allow-boost -d 5";
           "XF86AudioMute" = "exec ${lib.getExe pkgs.pamixer} --toggle-mute";
-          "XF86AudioMicMute" = "exec ${lib.getExe pkgs.pamixer} --default-source -t t";
-          "${modifier}+t" = "exec ${lib.getExe pkgs.sway-overfocus} group-rw group-dw";
+          "XF86AudioMicMute" =
+            "exec ${lib.getExe pkgs.pamixer} --default-source -t t";
+          "${modifier}+t" =
+            "exec ${lib.getExe pkgs.sway-overfocus} group-rw group-dw";
           "${modifier}+h" = "exec ${
-            lib.getExe pkgs.sway-overfocus
-          } split-lt float-lt output-ls";
+              lib.getExe pkgs.sway-overfocus
+            } split-lt float-lt output-ls";
           "${modifier}+k" = "exec ${
-            lib.getExe pkgs.sway-overfocus
-          } split-ut float-ut output-us";
+              lib.getExe pkgs.sway-overfocus
+            } split-ut float-ut output-us";
           "${modifier}+j" = "exec ${
-            lib.getExe pkgs.sway-overfocus
-          } split-dt float-dt output-ds";
+              lib.getExe pkgs.sway-overfocus
+            } split-dt float-dt output-ds";
           "${modifier}+l" = "exec ${
-            lib.getExe pkgs.sway-overfocus
-          } split-rt float-rt output-rs";
-          "${modifier}+Shift+t" = "exec ${lib.getExe pkgs.sway-overfocus} group-lw group-uw";
+              lib.getExe pkgs.sway-overfocus
+            } split-rt float-rt output-rs";
+          "${modifier}+Shift+t" =
+            "exec ${lib.getExe pkgs.sway-overfocus} group-lw group-uw";
           "${modifier}+w" = "kill";
           "${modifier}+Shift+r" = "reload";
           "${modifier}+Control+h" = "resize shrink width 4";
@@ -1048,10 +1059,11 @@ in {
           "${modifier}+Shift+v" = "exec ${lib.getExe pkgs.rofi-pass-wayland}";
           "${modifier}+n" = "focus mode_toggle";
           "${modifier}+p" = "exec ${lib.getExe pkgs.rofi-wayland} -show drun";
-          "${modifier}+Tab" = "exec ${lib.getExe pkgs.rofi-wayland} -show window";
+          "${modifier}+Tab" =
+            "exec ${lib.getExe pkgs.rofi-wayland} -show window";
           "${modifier}+v" = "exec ${
-            lib.getExe pkgs.cliphist
-          } list | rofi -dmenu | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy ";
+              lib.getExe pkgs.cliphist
+            } list | rofi -dmenu | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy ";
           "Print" = ''
             exec ${lib.getExe pkgs.sway-contrib.grimshot} save screen - | ${
               lib.getExe pkgs.satty
@@ -1075,7 +1087,8 @@ in {
       input = {
         "*" = {
           xkb_layout = "us,ru";
-          xkb_options = "caps:swapescape,grp:win_space_toggle"; # map caps to escape.
+          xkb_options =
+            "caps:swapescape,grp:win_space_toggle"; # map caps to escape.
         };
         "type:touchpad" = {
           natural_scroll = "enabled";
@@ -1117,8 +1130,9 @@ in {
         margin-bottom = 0;
         margin-left = 0;
         margin-rignt = 0;
-        modules-left = ["wlr/workspaces" "sway/workspaces" "sway/mode" "custom/media"];
-        modules-center = ["sway/window"];
+        modules-left =
+          [ "wlr/workspaces" "sway/workspaces" "sway/mode" "custom/media" ];
+        modules-center = [ "sway/window" ];
         modules-right = [
           "idle_inhibitor"
           "pulseaudio"
@@ -1132,8 +1146,8 @@ in {
           "clock"
           "tray"
         ];
-        "sway/window" = {};
-        "sway/language" = {};
+        "sway/window" = { };
+        "sway/language" = { };
         "sway/workspaces" = {
           "format" = "{icon}";
           "format-icons" = {
@@ -1167,14 +1181,14 @@ in {
             "deactivated" = "";
           };
         };
-        "clock" = {"format" = "{:%H:%M %d.%m }";};
-        "tray" = {};
-        "sway/mode" = {"format" = ''<span style="italic">{}</span>'';};
+        "clock" = { "format" = "{:%H:%M %d.%m }"; };
+        "tray" = { };
+        "sway/mode" = { "format" = ''<span style="italic">{}</span>''; };
         "cpu" = {
           "format" = "{usage}% ";
           "tooltip" = false;
         };
-        "memory" = {"format" = "{}% ";};
+        "memory" = { "format" = "{}% "; };
         "battery" = {
           "states" = {
             "good" = 95;
@@ -1185,13 +1199,13 @@ in {
           "format-charging" = "{capacity}% ";
           "format-plugged" = "{capacity}% ";
           "format-alt" = "{time} {icon}";
-          "format-icons" = ["" "" "" "" ""];
+          "format-icons" = [ "" "" "" "" "" ];
         };
         "temperature" = {
           "critical-threshold" = 80;
           "format-critical" = "{temperatureC}°C {icon}";
           "format" = "{temperatureC}°C {icon}";
-          "format-icons" = [""];
+          "format-icons" = [ "" ];
         };
         "pulseaudio" = {
           "scroll-step" = 1;
@@ -1208,7 +1222,7 @@ in {
             "phone" = "";
             "portable" = "";
             "car" = "";
-            "default" = ["" "" ""];
+            "default" = [ "" "" "" ];
           };
         };
         "network" = {
@@ -1225,34 +1239,34 @@ in {
   systemd.user.services.swaybg = {
     Unit = {
       Description = "Wayland wallpaper daemon";
-      PartOf = ["graphical-session.target"];
+      PartOf = [ "graphical-session.target" ];
     };
     Service = {
       ExecStart = "${
-        lib.getExe pkgs.swaybg
-      } -i ${config.home.homeDirectory}/pictures/wallpapers/struct3_sepia_nix.png -m fill";
+          lib.getExe pkgs.swaybg
+        } -i ${config.home.homeDirectory}/pictures/wallpapers/struct3_sepia_nix.png -m fill";
       Restart = "on-failure";
     };
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
   programs.swaylock = {
     enable = true;
-    settings = {color = colorscheme.dark.bg;};
+    settings = { color = colorscheme.dark.bg; };
   };
   programs.chromium = {
     enable = true;
     extensions = [
-      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
-      {id = "aleakchihdccplidncghkekgioiakgal";} # h264ify
-      {id = "dbepggeogbaibhgnhhndojpepiihcmeb";} # vimium
-      {id = "jhnleheckmknfcgijgkadoemagpecfol";} # auto tab discard
-      {id = "bfidboloedlamgdmenmlbipfnccokknp";} # purevpn
-      {id = "amddgdnlkmohapieeekfknakgdnpbleb";} # xtab
-      {id = "omkfmpieigblcllmkgbflkikinpkodlk";} # enchanced h264ify
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+      { id = "aleakchihdccplidncghkekgioiakgal"; } # h264ify
+      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
+      { id = "jhnleheckmknfcgijgkadoemagpecfol"; } # auto tab discard
+      { id = "bfidboloedlamgdmenmlbipfnccokknp"; } # purevpn
+      { id = "amddgdnlkmohapieeekfknakgdnpbleb"; } # xtab
+      { id = "omkfmpieigblcllmkgbflkikinpkodlk"; } # enchanced h264ify
     ];
   };
   xdg.mime.enable = true;
-  xdg.mimeApps = {enable = true;};
+  xdg.mimeApps = { enable = true; };
 
   xdg.userDirs = {
     desktop = "${config.home.homeDirectory}/tmp";
@@ -1263,7 +1277,7 @@ in {
   programs.zoxide.enable = true;
   programs.direnv = {
     enable = true;
-    nix-direnv = {enable = true;};
+    nix-direnv = { enable = true; };
   };
   # programs.obs-studio = {
   #   enable = true;
@@ -1329,34 +1343,36 @@ in {
       notify-program "${lib.getExe pkgs.notify-desktop}"
     '';
     urls = [
-      {url = "https://www.opennet.ru/opennews/opennews_all_utf.rss";}
+      { url = "https://www.opennet.ru/opennews/opennews_all_utf.rss"; }
       {
-        url = "https://hnrss.org/newest?count=80&q=NixOs+OR+nixos+OR+nix+OR+nixpkgs+OR+Nix+OR+nix";
+        url =
+          "https://hnrss.org/newest?count=80&q=NixOs+OR+nixos+OR+nix+OR+nixpkgs+OR+Nix+OR+nix";
       }
-      {url = "https://hnrss.org/newest?count=80&q=Go+OR+Golang+OR+GoLang";}
+      { url = "https://hnrss.org/newest?count=80&q=Go+OR+Golang+OR+GoLang"; }
       {
-        url = "https://hnrss.org/newest?count=80&q=Kube+OR+Kubernetes+OR+kube+OR+kubernetes+OR+Docker+OR+docker+OR+Podman+OR+podman";
+        url =
+          "https://hnrss.org/newest?count=80&q=Kube+OR+Kubernetes+OR+kube+OR+kubernetes+OR+Docker+OR+docker+OR+Podman+OR+podman";
       }
-      {url = "https://hnrss.org/newest?count=80&q=Cloud+OR+cloud";}
-      {url = "https://hnrss.org/best?count=80";}
-      {url = "https://rsshub.app/telegram/channel/flant_ru";}
-      {url = "https://rsshub.app/telegram/channel/open_source_friend";}
-      {url = "https://rsshub.app/telegram/channel/black_triangle_tg";}
-      {url = "https://rsshub.app/telegram/channel/bashdays";}
-      {url = "https://rsshub.app/telegram/channel/k8security";}
-      {url = "https://rsshub.app/telegram/channel/SysadminNotes";}
-      {url = "https://rsshub.app/telegram/channel/k8sjust";}
-      {url = "https://rsshub.app/telegram/channel/devopsforlove";}
-      {url = "https://rsshub.app/telegram/channel/tech_b0lt_Genona";}
-      {url = "https://rsshub.app/telegram/channel/sysadmin_tools";}
-      {url = "https://rsshub.app/telegram/channel/ieucariot";}
-      {url = "https://rsshub.app/telegram/channel/owl_tech";}
-      {url = "https://rsshub.app/telegram/channel/tazlog";}
-      {url = "https://rsshub.app/telegram/channel/devopslibrary";}
-      {url = "https://rsshub.app/telegram/channel/count0_digest";}
-      {url = "https://rsshub.app/telegram/channel/linkmeup_podcast";}
-      {url = "https://kubernetes.io/feed.xml";}
-      {url = "https://www.cncf.io/feed/";}
+      { url = "https://hnrss.org/newest?count=80&q=Cloud+OR+cloud"; }
+      { url = "https://hnrss.org/best?count=80"; }
+      { url = "https://rsshub.app/telegram/channel/flant_ru"; }
+      { url = "https://rsshub.app/telegram/channel/open_source_friend"; }
+      { url = "https://rsshub.app/telegram/channel/black_triangle_tg"; }
+      { url = "https://rsshub.app/telegram/channel/bashdays"; }
+      { url = "https://rsshub.app/telegram/channel/k8security"; }
+      { url = "https://rsshub.app/telegram/channel/SysadminNotes"; }
+      { url = "https://rsshub.app/telegram/channel/k8sjust"; }
+      { url = "https://rsshub.app/telegram/channel/devopsforlove"; }
+      { url = "https://rsshub.app/telegram/channel/tech_b0lt_Genona"; }
+      { url = "https://rsshub.app/telegram/channel/sysadmin_tools"; }
+      { url = "https://rsshub.app/telegram/channel/ieucariot"; }
+      { url = "https://rsshub.app/telegram/channel/owl_tech"; }
+      { url = "https://rsshub.app/telegram/channel/tazlog"; }
+      { url = "https://rsshub.app/telegram/channel/devopslibrary"; }
+      { url = "https://rsshub.app/telegram/channel/count0_digest"; }
+      { url = "https://rsshub.app/telegram/channel/linkmeup_podcast"; }
+      { url = "https://kubernetes.io/feed.xml"; }
+      { url = "https://www.cncf.io/feed/"; }
     ];
   };
   # programs.foot = {
