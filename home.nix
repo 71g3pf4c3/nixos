@@ -524,10 +524,8 @@ in {
             sha256 = "sha256-Nz1vfl4owkQG3l2laao9Z6IW1w0nlhYuwHTuag1ajwM=";
           };
         };
-        extraConfig = ''
-          set -g @session-wizard 'h'
-          set -g @session-wizard-width 40
-        '';
+        extraConfig =
+          "\n				set -g @session-wizard 'h'\n				set -g @session-wizard-width 40\n			";
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
@@ -566,11 +564,8 @@ in {
             sha256 = "0j7vjrwc7gniwkv1076q3wc8ccwj42zph5wdmsm9ibz6029wlmzv";
           };
         };
-        extraConfig = ''
-          set -g @suspend_key 'F12'
-          set -g @suspend_suspended_options \" \\
-          @mode_indicator_custom_prompt:: SUSP\"
-        '';
+        extraConfig =
+          "	set -g @suspend_key 'F12'\n						set -g @suspend_suspended_options \" \\\n						@mode_indicator_custom_prompt:: SUSP\"\n					";
       }
     ];
   };
