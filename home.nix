@@ -499,6 +499,7 @@ in {
           set -g @extrakto_clip_tool	'${pkgs.wl-clipboard}/bin/wl-copy'
         '';
       }
+      tmuxPlugins.open
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.logging
       {
