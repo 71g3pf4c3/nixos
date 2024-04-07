@@ -1276,7 +1276,7 @@ in {
       # invert = true;
       keymap_mode = "vim-normal";
       enter_accept = true;
-      inline_height = 30;
+      # inline_height = 30;
     };
   };
 
