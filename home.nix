@@ -1081,7 +1081,7 @@ in {
         "type:touchpad" = {
           natural_scroll = "enabled";
           tap = "enabled";
-          dwt = "enabled";
+          dwt = "disabled";
           pointer_accel = "0.5"; # set mouse sensitivity (between -1 and 1)
         };
         "type:trackpoint" = {
@@ -1360,4 +1360,19 @@ in {
       {url = "https://www.cncf.io/feed/";}
     ];
   };
+  # programs.foot = {
+  #   enable = true;
+  #   server.enable = true;
+  #   settings = {
+  #     main = {
+  #       term = "xterm-256color";
+  #       font = "${font}:size=14";
+  #       dpi-aware = "yes";
+  #       shell = "${lib.getExe pkgs.zsh}";
+  #     };
+  #     mouse = {hide-when-typing = "yes";};
+  #     text-bindings = {
+  #     };
+  #   };
+  # };
 }

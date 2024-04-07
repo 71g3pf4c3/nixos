@@ -38,9 +38,6 @@ tym.set_keymaps({
 })
 -- TMUX
 tym.set_keymaps({
-	["<Ctrl><Alt>k"] = function()
-		tym.send_key("<Ctrl>b")
-	end,
 	["<Ctrl><Alt>t"] = function()
 		tym.send_key("<Ctrl>b")
 		tym.send_key("<Ctrl>b")
