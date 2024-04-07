@@ -209,9 +209,7 @@ in {
     size = 22;
   };
   services = {
-    udiskie = {
-      enable = true;
-    };
+    udiskie = { enable = true; };
     kdeconnect = {
       enable = true;
       indicator = true;
@@ -1241,7 +1239,7 @@ in {
     Service = {
       ExecStart = "${
           lib.getExe pkgs.swaybg
-        } -i ${config.home.homeDirectory}/pictures/wallpapers/struct3_sepia_nix.png -m fill";
+        } -i ${config.home.homeDirectory}/etc/wallpapers/struct3_sepia_nix.png -m fill";
       Restart = "on-failure";
     };
     Install.WantedBy = [ "graphical-session.target" ];
@@ -1268,7 +1266,7 @@ in {
   xdg.userDirs = {
     desktop = "${config.home.homeDirectory}/tmp";
     download = "${config.home.homeDirectory}/var/downloads";
-    pictures = "${config.home.homeDirectory}/pictures";
+    pictures = "${config.home.homeDirectory}/var/pictures";
   };
 
   programs.zoxide.enable = true;
