@@ -1273,7 +1273,7 @@ in {
   programs.atuin = {
     enable = true;
     settings = {
-      invert = true;
+      # invert = true;
       keymap_mode = "vim-normal";
       enter_accept = true;
       inline_height = 30;
