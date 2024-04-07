@@ -53,6 +53,7 @@
     trackpoint = {
       enable = true;
       emulateWheel = true;
+      sensitivity = 255;
     };
     cpu.intel.updateMicrocode =
       lib.mkDefault config.hardware.enableRedistributableFirmware;
