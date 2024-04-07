@@ -499,14 +499,7 @@ in {
           set -g @extrakto_clip_tool	'${pkgs.wl-clipboard}/bin/wl-copy'
         '';
       }
-      {
-        plugin = tmuxPlugins.open;
-        extraConfig = ''
-          set -g @open 'o'
-           set -g @open-editor 'C-o'
-           set -g @open-S 'https://www.google.com/search?q='
-        '';
-      }
+      tmuxPlugins.open
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.logging
       {
