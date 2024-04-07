@@ -138,9 +138,9 @@ in {
     gptcommit
     aichat
     python311Packages.pyclip
+    rocketchat-desktop
     # alejandra
     # vieb
-    # rocketchat-desktop
     # cool-retro-term
     # openssl
     # pango
@@ -334,7 +334,6 @@ in {
       "cd" = "z";
       "ci" = "zi";
       "upd" = ''
-        ${lib.getExe pkgs.nixfmt} &&\
         ${lib.getExe pkgs.git} diff |\
         ${lib.getExe pkgs.bat} --no-pager\
         && sudo nixos-rebuild switch -j 16  --flake ~/nixos/# &&\
