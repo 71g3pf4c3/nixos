@@ -1084,7 +1084,7 @@ in {
           pointer_accel = "0.5"; # set mouse sensitivity (between -1 and 1)
         };
         "type:trackpoint" = {
-          pointer_accel = "0.2"; # set mouse sensitivity (between -1 and 1)
+          pointer_accel = "0.3"; # set mouse sensitivity (between -1 and 1)
         };
       };
     };
