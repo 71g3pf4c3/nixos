@@ -112,7 +112,7 @@
           start_threshold = 60;
           stop_threshold = 85;
           scaling_min_freq = 800000;
-          governor = "powersave";
+          governor = "schedutil";
           turbo = "auto";
           energy_performance_preference = "power";
         };

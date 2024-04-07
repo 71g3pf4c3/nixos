@@ -103,6 +103,7 @@ in {
     fd
     tmux-xpanes
     wtf
+    playerctl
     translate-shell
     tree-sitter
     postgresql
