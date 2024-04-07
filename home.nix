@@ -125,6 +125,7 @@ in {
     nodejs
     go
     buku
+    bukubrow
     vieb
     wdisplays
     gcc_multi
