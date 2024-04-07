@@ -18,20 +18,36 @@
   outputs =
     { nixpkgs, home-manager, nixos-hardware, nixvim, stylix, self, }@inputs: {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        paduse = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit self inputs; };
-
           modules = [
-            ./hardware-configuration.nix
-            ./configuration.nix
+            ./hosts/paduse/hardware-configuration.nix
+            ./hosts/paduse/configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad-t480s
             home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = false;
-                users.t1g3pf4c3 = import ./home.nix;
+                users.t1g3pf4c3 = import ./hosts/paduse/home.nix;
+                extraSpecialArgs = { inherit inputs; };
+              };
+            }
+          ];
+        };
+        asuse = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit self inputs; };
+          modules = [
+            ./hosts/asuse/hardware-configuration.nix
+            ./hosts/asuse/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = false;
+                users.t1g3pf4c3 = import ./hosts/asuse/home.nix;
                 extraSpecialArgs = { inherit inputs; };
               };
             }

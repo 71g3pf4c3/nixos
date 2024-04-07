@@ -83,7 +83,7 @@ let
 in {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    ./config/nixvim.nix
+    ../../config/nixvim.nix
     # inputs.stylix.homeManagerModules.stylix
   ];
   home.username = "t1g3pf4c3";
@@ -91,7 +91,6 @@ in {
   home.stateVersion = "23.11";
   home.packages = with pkgs; [
     tym
-    assh
     ncdu
     telegram-desktop
     kubectl
@@ -100,9 +99,6 @@ in {
     wtf
     playerctl
     translate-shell
-    tree-sitter
-    postgresql
-    mysql80
     webcord-vencord
     zoom-us
     popeye
@@ -137,70 +133,6 @@ in {
     codespell
     gptcommit
     aichat
-    python311Packages.pyclip
-    rocketchat-desktop
-    # alejandra
-    # vieb
-    # cool-retro-term
-    # openssl
-    # pango
-    # pastel
-    # glab
-    # winbox
-    # kubectl
-    # kubectl-explore
-    # kubectl-example
-    # webtorrent_desktop
-    # kubectl-view-allocations
-    # gimp
-    # autossh
-    # dig
-    # yq-go
-    # podman-tui
-    # bluetuith
-    # wemux
-    # frp
-    # cli superpowers
-    # entr
-    # gptcommit
-    # gotty
-    # sshpass
-    # ttyd
-    # libsixel
-    # tmux-cssh
-    # prog
-    # trivy
-    # apache-directory-studio
-    # jira-cli-go
-    # doctl
-    # dbeaver
-    #nix tools
-    # nixos-container
-    # slack
-    # lnav
-    # kubespy
-    # distrobox
-    # shortcut
-    # google-chrome
-    # firefox
-    # zap
-    # jmeter
-    # python311Packages.selenium
-    # ozr
-    # clipman
-    # clipboard-jh
-    # wineWowPackages.fonts
-    # grafterm
-    # git-annex
-    # wireshark
-    # mosh
-    # pueue
-    # pulsemixer
-    # freerdp
-    # vhs
-    # keystore-explorer
-    # discord
-    # thunderbird
   ];
   home.pointerCursor = {
     gtk.enable = true;
@@ -209,7 +141,6 @@ in {
     size = 22;
   };
   services = {
-    udiskie = { enable = true; };
     kdeconnect = {
       enable = true;
       indicator = true;
@@ -219,50 +150,9 @@ in {
       enable = true;
       systemdTarget = "sway-session.target";
     };
-    gammastep = {
-      enable = true;
-      latitude = "56.7";
-      longitude = "37.1";
-      tray = true;
-    };
-    blueman-applet.enable = true;
-    mako = {
-      enable = true;
-      anchor = "bottom-center";
-      defaultTimeout = 5000;
-      ignoreTimeout = true;
-      backgroundColor = "${colorscheme.dark.bg}";
-      borderColor = "${colorscheme.dark.green}";
-      textColor = "${colorscheme.dark.fg}";
-      borderSize = 2;
-      borderRadius = 5;
-    };
-    swayidle = {
-      enable = true;
-      events = [{
-        event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock -fF";
-      }];
-      timeouts = [
-        {
-          timeout = 60 * 3;
-          command = "${lib.getExe pkgs.swaylock} -fF";
-        }
-        {
-          timeout = 60 * 2;
-          command = "${lib.getExe pkgs.light} -U 30";
-          resumeCommand = "${lib.getExe pkgs.light} -A 30";
-        }
-        {
-          timeout = 60 * 4;
-          command = ''${pkgs.sway}/bin/swaymsg "output * dpms off"'';
-          resumeCommand = ''${pkgs.sway}/bin/swaymsg "output * dpms on"'';
-        }
-      ];
-    };
   };
   xdg.configFile."tym" = {
-    source = ./config/tym;
+    source = ../../config/tym;
     recursive = true;
   };
   programs.home-manager.enable = true;
@@ -306,13 +196,6 @@ in {
       PASSWORD_STORE_DIR = "$HOME/.password-store";
     };
     envExtra = "skip_global_compinit=1";
-    # history = {
-    #   path = "${config.home.homeDirectory}/.histfile";
-    #   size = 500000;
-    #   save = 500000;
-    #   share = true;
-    #   extended = true;
-    # };
     shellAliases = {
       "kubectl" = "${lib.getExe pkgs.kubecolor}";
       "pp" = "pistol";
@@ -864,7 +747,7 @@ in {
     };
   };
   home.file.".config/k9s/skins" = {
-    source = ./config/k9s/skins;
+    source = ../../config/k9s/skins;
     recursive = true;
   };
   programs.mpv = {
@@ -908,346 +791,6 @@ in {
     };
   };
   programs.gh.enable = true;
-  wayland.windowManager.sway = {
-    enable = true;
-    systemd.enable = true;
-    extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-    '';
-    wrapperFeatures = { gtk = true; };
-    extraConfig = ''
-         titlebar_border_thickness 0
-         titlebar_padding 20 0
-      exec dbus-sway-environment
-      exec configure-gtk
-    '';
-    config = {
-      startup = [
-        {
-          command = "systemctl --user start xdg-desktop-portal";
-          always = true;
-        }
-        {
-          command = "systemctl --user start xdg-desktop-portal-wlr";
-          always = true;
-        }
-        {
-          command = "systemctl --user start blueman-applet";
-          always = true;
-        }
-        {
-          command = "systemctl --user start tym-daemon";
-          always = true;
-        }
-        {
-          command = "systemctl --user start swayidle";
-          always = true;
-        }
-        {
-          command = "systemctl --user restart waybar";
-          always = true;
-        }
-        {
-          command = "systemctl --user start network-manager-applet";
-          always = true;
-        }
-        {
-          command = "systemctl --user start swaybg";
-          always = true;
-        }
-      ];
-      window = {
-        hideEdgeBorders = "smart";
-        border = 3;
-        titlebar = true;
-      };
-      workspaceLayout = "tabbed";
-      workspaceAutoBackAndForth = true;
-      colors = {
-        background = colorscheme.light.bg1;
-        focused = {
-          background = colorscheme.light.bg;
-          border = colorscheme.light.green;
-          childBorder = colorscheme.light.greenalt;
-          text = colorscheme.light.fg;
-          indicator = colorscheme.light.aqua;
-        };
-        focusedInactive = {
-          background = colorscheme.light.bg3;
-          border = colorscheme.light.bg3;
-          childBorder = colorscheme.light.bg3;
-          text = colorscheme.light.fg;
-          indicator = colorscheme.light.aqua;
-        };
-        unfocused = {
-          background = colorscheme.light.bg3;
-          border = colorscheme.light.bg1;
-          childBorder = colorscheme.light.bg1;
-          text = colorscheme.light.fg;
-          indicator = colorscheme.light.aqua;
-        };
-      };
-      fonts = {
-        names = [ font ];
-        style = "Regular";
-        size = 9.0;
-      };
-      gaps = {
-        top = 1;
-        bottom = 1;
-        horizontal = 2;
-        vertical = 2;
-        inner = 2;
-        outer = 2;
-        left = 2;
-        right = 2;
-        smartBorders = "on";
-        smartGaps = true;
-      };
-      modifier = "Mod4";
-      terminal = "${terminal} -- tmux new -A";
-      menu = "${lib.getExe pkgs.rofi-wayland} -show drun";
-      bars = [ ];
-      bindkeysToCode = true;
-      keybindings =
-        let modifier = config.wayland.windowManager.sway.config.modifier;
-        in lib.mkOptionDefault {
-          "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 2";
-          "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 2";
-          "XF86AudioRaiseVolume" =
-            "exec ${lib.getExe pkgs.pamixer} --allow-boost -i 5";
-          "XF86AudioLowerVolume" =
-            "exec ${lib.getExe pkgs.pamixer} --allow-boost -d 5";
-          "XF86AudioMute" = "exec ${lib.getExe pkgs.pamixer} --toggle-mute";
-          "XF86AudioMicMute" =
-            "exec ${lib.getExe pkgs.pamixer} --default-source -t t";
-          "${modifier}+t" =
-            "exec ${lib.getExe pkgs.sway-overfocus} group-rw group-dw";
-          "${modifier}+h" = "exec ${
-              lib.getExe pkgs.sway-overfocus
-            } split-lt float-lt output-ls";
-          "${modifier}+k" = "exec ${
-              lib.getExe pkgs.sway-overfocus
-            } split-ut float-ut output-us";
-          "${modifier}+j" = "exec ${
-              lib.getExe pkgs.sway-overfocus
-            } split-dt float-dt output-ds";
-          "${modifier}+l" = "exec ${
-              lib.getExe pkgs.sway-overfocus
-            } split-rt float-rt output-rs";
-          "${modifier}+Shift+t" =
-            "exec ${lib.getExe pkgs.sway-overfocus} group-lw group-uw";
-          "${modifier}+w" = "kill";
-          "${modifier}+Shift+r" = "reload";
-          "${modifier}+Control+h" = "resize shrink width 4";
-          "${modifier}+Control+l" = "resize grow width 4";
-          "${modifier}+Control+j" = "resize shrink height 4";
-          "${modifier}+Control+k" = "resize grow height 4";
-          "${modifier}+Shift+q" = "exit";
-          "${modifier}+s" = "layout stacking";
-          "${modifier}+x" = "layout tabbed";
-          "${modifier}+f" = "fullscreen";
-          "${modifier}+Shift+f" = "floating toggle";
-          "${modifier}+Shift+v" = "exec ${lib.getExe pkgs.rofi-pass-wayland}";
-          "${modifier}+n" = "focus mode_toggle";
-          "${modifier}+p" = "exec ${lib.getExe pkgs.rofi-wayland} -show drun";
-          "${modifier}+Tab" =
-            "exec ${lib.getExe pkgs.rofi-wayland} -show window";
-          "${modifier}+v" = "exec ${
-              lib.getExe pkgs.cliphist
-            } list | rofi -dmenu | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy ";
-          "Print" = ''
-            exec ${lib.getExe pkgs.sway-contrib.grimshot} save screen - | ${
-              lib.getExe pkgs.satty
-            } --filename - --early-exit --fullscreen --copy-command ${pkgs.wl-clipboard}/bin/wl-copy && ${
-              lib.getExe pkgs.notify-desktop
-            } 'Screenshot taken' 'Screenshot saved to your clipboard'
-          '';
-          "Control+Print" = ''
-            exec ${lib.getExe pkgs.sway-contrib.grimshot} save area - | ${
-              lib.getExe pkgs.satty
-            } --filename - --early-exit --copy-command ${pkgs.wl-clipboard}/bin/wl-copy && ${
-              lib.getExe pkgs.notify-desktop
-            } 'Screenshot taken' 'Screenshot saved to your clipboard'
-          '';
-          "${modifier}+Shift+Escape" = "exec ${lib.getExe pkgs.swaylock} -fF";
-          "${modifier}+Control+Shift+h" = "move workspace to output left";
-          "${modifier}+Control+Shift+l" = "move workspace to output right";
-          "${modifier}+Control+Shift+k" = "move workspace to output up";
-          "${modifier}+Control+Shift+j" = "move workspace to output down";
-        };
-      input = {
-        "*" = {
-          xkb_layout = "us,ru";
-          xkb_options =
-            "caps:swapescape,grp:win_space_toggle"; # map caps to escape.
-        };
-        "type:touchpad" = {
-          natural_scroll = "enabled";
-          tap = "enabled";
-          dwt = "disabled";
-          pointer_accel = "0.5"; # set mouse sensitivity (between -1 and 1)
-        };
-        "type:trackpoint" = {
-          pointer_accel = "0.3"; # set mouse sensitivity (between -1 and 1)
-        };
-      };
-    };
-  };
-  programs.waybar = {
-    enable = true;
-    systemd.enable = true;
-    style = lib.concatStrings [
-      ''
-        * {
-        		font-family: ${font};
-        		font-size: 13px;
-        }
-      ''
-      (builtins.readFile (pkgs.substituteAll {
-        src = ./config/wayland/waybar/style.css;
-        bg = colorscheme.dark.bg;
-        fg = colorscheme.dark.fg;
-        green = colorscheme.dark.greenalt;
-        red = colorscheme.dark.redalt;
-        yellow = colorscheme.dark.yellowalt;
-        gray = colorscheme.dark.gray;
-      }))
-    ];
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "bottom";
-        margin-top = 0;
-        margin-bottom = 0;
-        margin-left = 0;
-        margin-rignt = 0;
-        modules-left =
-          [ "wlr/workspaces" "sway/workspaces" "sway/mode" "custom/media" ];
-        modules-center = [ "sway/window" ];
-        modules-right = [
-          "idle_inhibitor"
-          "pulseaudio"
-          "network"
-          "cpu"
-          "memory"
-          "temperature"
-          "keyboard-state"
-          "sway/language"
-          "battery"
-          "clock"
-          "tray"
-        ];
-        "sway/window" = { };
-        "sway/language" = { };
-        "sway/workspaces" = {
-          "format" = "{icon}";
-          "format-icons" = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            # "focused" = "";
-            "default" = "";
-          };
-        };
-        "wlr/workspaces" = {
-          "format" = "{icon}";
-          "format-icons" = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "focused" = "";
-            "default" = "";
-          };
-          "on-scroll-up" = "hyprctl dispatch workspace e+1";
-          "on-scroll-down" = "hyprctl dispatch workspace e-1";
-        };
-        "idle_inhibitor" = {
-          "format" = "{icon}";
-          "format-icons" = {
-            "activated" = "";
-            "deactivated" = "";
-          };
-        };
-        "clock" = { "format" = "{:%H:%M %d.%m }"; };
-        "tray" = { };
-        "sway/mode" = { "format" = ''<span style="italic">{}</span>''; };
-        "cpu" = {
-          "format" = "{usage}% ";
-          "tooltip" = false;
-        };
-        "memory" = { "format" = "{}% "; };
-        "battery" = {
-          "states" = {
-            "good" = 95;
-            "warning" = 30;
-            "critical" = 15;
-          };
-          "format" = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
-          "format-plugged" = "{capacity}% ";
-          "format-alt" = "{time} {icon}";
-          "format-icons" = [ "" "" "" "" "" ];
-        };
-        "temperature" = {
-          "critical-threshold" = 80;
-          "format-critical" = "{temperatureC}°C {icon}";
-          "format" = "{temperatureC}°C {icon}";
-          "format-icons" = [ "" ];
-        };
-        "pulseaudio" = {
-          "scroll-step" = 1;
-          "format" = "{volume}% {icon} {format_source}";
-          "format-bluetooth" = "{volume}% {icon} {format_source}";
-          "format-bluetooth-muted" = "🔇 {icon} {format_source}";
-          "format-muted" = "🔇 {format_source}";
-          "format-source" = "{volume}% ";
-          "format-source-muted" = "";
-          "format-icons" = {
-            "headphone" = "";
-            "hands-free" = "";
-            "headset" = "";
-            "phone" = "";
-            "portable" = "";
-            "car" = "";
-            "default" = [ "" "" "" ];
-          };
-        };
-        "network" = {
-          "format-wifi" = "{essid} ({signalStrength}%) ";
-          "format-ethernet" = "{ipaddr}/{cidr} ";
-          "tooltip-format" = "{ifname} via {gwaddr} ";
-          "format-linked" = "{ifname} (No IP) ";
-          "format-disconnected" = "Disconnected ⚠";
-          "format-alt" = "{ifname}: {ipaddr}/{cidr}";
-        };
-      };
-    };
-  };
-  systemd.user.services.swaybg = {
-    Unit = {
-      Description = "Wayland wallpaper daemon";
-      PartOf = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${
-          lib.getExe pkgs.swaybg
-        } -i ${config.home.homeDirectory}/etc/wallpapers/struct3_sepia_nix.png -m fill";
-      Restart = "on-failure";
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
-  };
-  programs.swaylock = {
-    enable = true;
-    settings = { color = colorscheme.dark.bg; };
-  };
   programs.chromium = {
     enable = true;
     extensions = [
@@ -1263,12 +806,6 @@ in {
   xdg.mime.enable = true;
   xdg.mimeApps = { enable = true; };
 
-  xdg.userDirs = {
-    desktop = "${config.home.homeDirectory}/tmp";
-    download = "${config.home.homeDirectory}/var/downloads";
-    pictures = "${config.home.homeDirectory}/var/pictures";
-  };
-
   programs.zoxide.enable = true;
   programs.direnv = {
     enable = true;
@@ -1281,7 +818,6 @@ in {
   programs.atuin = {
     enable = true;
     settings = {
-      # invert = true;
       keymap_mode = "vim-normal";
       enter_accept = true;
       # inline_height = 30;
