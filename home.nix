@@ -209,6 +209,9 @@ in {
     size = 22;
   };
   services = {
+    udiskie = {
+      enable = true;
+    };
     kdeconnect = {
       enable = true;
       indicator = true;
@@ -1264,7 +1267,7 @@ in {
 
   xdg.userDirs = {
     desktop = "${config.home.homeDirectory}/tmp";
-    download = "${config.home.homeDirectory}/downloads";
+    download = "${config.home.homeDirectory}/var/downloads";
     pictures = "${config.home.homeDirectory}/pictures";
   };
 
