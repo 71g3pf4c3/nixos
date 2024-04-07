@@ -107,15 +107,15 @@
     auto-cpufreq = {
       enable = true;
       settings = {
-        battery = {
-          enable_thresholds = true;
-          start_threshold = 60;
-          stop_threshold = 85;
-          scaling_min_freq = 800000;
-          governor = "schedutil";
-          turbo = "auto";
-          energy_performance_preference = "power";
-        };
+        # battery = {
+        #   enable_thresholds = true;
+        #   start_threshold = 60;
+        #   stop_threshold = 85;
+        #   scaling_min_freq = 800000;
+        #   governor = "schedutil";
+        #   turbo = "auto";
+        #   energy_performance_preference = "power";
+        # };
         charger = {
           ideapad_laptop_conservation_mode = false;
           governor = "performance";
