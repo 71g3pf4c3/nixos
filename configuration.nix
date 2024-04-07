@@ -52,10 +52,6 @@
     displayManager.defaultSession = "sway";
     desktopManager.xterm.enable = false;
   };
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
   security.polkit.enable = true;
   services.printing.enable = true;
   programs.zsh.enable = true;
@@ -63,7 +59,7 @@
   users.defaultUserShell = pkgs.zsh;
   users.users.t1g3pf4c3 = {
     openssh.authorizedKeys.keys = [
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDM3LX8F/SYt9fDPr0lR1/bDfwNT2mSgTLA8jxoIN63iKzPfDbeeyuLajSBbyZAWy+DjqLKL+htyLORSOWciaIzWkDNUN+9ikCLj3FDbk0Dl8vsgyzGrAoAnaf6Tc3JhhQuk+L68Q36I8ytJgLz0rleSl+Em2nilNlj07RJXqnDTuQXxh3CIfQc2z8EYJX0rWcJy2q4Bg2sHwifOH+MbWTg6M1G7MxoE3uyOp6yJeLAT2qi7cE7auHP02fDKeRgxPOeJ9FEV24b475htiQjgcXOIAFjAZ/+i3xpREue7prPDwHBfEzJNHYOT+FsrB24hXbGgTO8C67lyoWbGFAOlcJIDsZ9reYELlhe4lTDRrdcSK+pqRCPvHng7yw2y5D71j8d9nzcdBf/t7lww4OjPIOlU5yph2ng2WyxBXM7jQ/l9pbKaBzEwGlkHK209pdNFaeBKS8xmouCYNbimLNMjxV6CQ02BlhAH+AAeJu3ZfLZQbU7oT8T4spTWcT86+w8R/OMCWV45ZWSoZpj+e7Qfmu9cR8vXryjt/FaklOIRFz082bpbYKNOorEOD/R8veECVA2fAjKt70BsuzGC3QvqaSJPWPVGPZA+ZNY5Jty4w5UwcNCbPCdW2wvkZcp57c5boYxIm3PEK18RzFJ+PsAnZJxNE53FRZKcaPcEvraufDtkQ== t1g3pf4c3@pop-os" # content of authorized_keys file
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAoEHHbqoioIXbk6bsQHEhiT1mYMShboCY27BvdXkJFg t1g3pf4c3@nixos"
     ];
     isNormalUser = true;
     home = "/home/t1g3pf4c3";
@@ -143,6 +139,11 @@
     enable = true;
     wlr.enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  };
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraSessionCommands = "	export SDL_VIDEODRIVER=wayland\n	export QT_QPA_PLATFORM=wayland\n	export QT_WAYLAND_DISABLE_WINDOWDECORATION=\"1\"\n	export _JAVA_AWT_WM_NONREPARENTING=1\n	export XDG_SESSION_TYPE=wayland\n	export XDG_CURRENT_DESKTOP=sway\n	export XDG_SESSION_DESKTOP=sway\n	export SDL_VIDEODRIVER=wayland\n";
   };
   system.stateVersion = "23.11"; # Did you read the comment?
 }

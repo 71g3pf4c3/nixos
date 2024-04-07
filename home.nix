@@ -314,13 +314,13 @@ in {
       PASSWORD_STORE_DIR = "$HOME/.password-store";
     };
     envExtra = "skip_global_compinit=1";
-    history = {
-      path = "${config.home.homeDirectory}/.histfile";
-      size = 500000;
-      save = 500000;
-      share = true;
-      extended = true;
-    };
+    # history = {
+    #   path = "${config.home.homeDirectory}/.histfile";
+    #   size = 500000;
+    #   save = 500000;
+    #   share = true;
+    #   extended = true;
+    # };
     shellAliases = {
       "kubectl" = "${lib.getExe pkgs.kubecolor}";
       "pp" = "pistol";
@@ -346,7 +346,7 @@ in {
         ${lib.getExe pkgs.git} diff | \
         ${
           lib.getExe pkgs.bat
-        } --no-pager && sudo nixos-rebuild switch -j 16  --flake .# &&\
+        } --no-pager && sudo nixos-rebuild switch -j 16  --flake ~/nixos/# &&\
           ${lib.getExe pkgs.git} commit -a && ${lib.getExe pkgs.git} push &&\
           ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
       '';
@@ -1067,6 +1067,8 @@ in {
             } 'Screenshot taken' 'Screenshot saved to your clipboard'
           '';
           "${modifier}+Shift+Escape" = "exec ${lib.getExe pkgs.swaylock} -fF";
+          "${modifier}+Control+Shift+h" = "move workspace to output left";
+          "${modifier}+Control+Shift+l" = "move workspace to output right";
           "${modifier}+Control+Shift+k" = "move workspace to output up";
           "${modifier}+Control+Shift+j" = "move workspace to output down";
         };
@@ -1285,7 +1287,7 @@ in {
     defaultCacheTtl = 34560000;
     maxCacheTtl = 34560000;
     enableSshSupport = true;
-    pinentryPackage = lib.mkForce pkgs.pinentry-curses;
+    pinentryPackage = lib.mkForce pkgs.pinentry-qt;
   };
 
   programs.newsboat = {
