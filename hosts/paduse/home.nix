@@ -1,6 +1,7 @@
 { config, pkgs, lib, inputs, ... }:
 let
   font = "Comic Code Ligatures";
+
   terminal = "${lib.getExe pkgs.tym}";
   colorscheme = {
     light = {
@@ -436,7 +437,6 @@ in {
       set-option -g status-interval 5
       set-option -g automatic-rename on
       set-option -g automatic-rename-format '#{b:pane_current_path}'
-      set-option -g automatic-rename-format "#{?#{==:#{b:pane_current_path},t1g3pf4c3},#{pane_current_command},#{b:pane_current_path}}"
       set -g status-fg "${colorscheme.light.grayalt}"
       set -g status-bg "${colorscheme.light.bg3}"
       set-option -g status-left "#[fg=${colorscheme.light.gray}, bg=${colorscheme.light.bg2}, bold] #{session_name} "
@@ -518,8 +518,8 @@ in {
           };
         };
         extraConfig = ''
-          set -g @ssh-split-v-key '_'
-          set -g @ssh-split-h-key |
+          set -g @ssh-split-v-key '-n M-_'
+          set -g @ssh-split-h-key '-n M-|'
         '';
       }
       {

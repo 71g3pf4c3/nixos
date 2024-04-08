@@ -194,14 +194,15 @@
       lsp = {
         enable = true;
         servers = {
-          ansiblels.enable = true;
+          ansiblels.enable = false;
           helm-ls.enable = true;
           gopls.enable = true;
           nixd.enable = true;
           sqls.enable = true;
           terraformls.enable = true;
           dockerls.enable = true;
-          pylsp.enable = true;
+
+          pylsp.enable = false;
         };
       };
     };
@@ -488,6 +489,8 @@
         mode = "n";
       }
     ];
-    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim ChatGPT-nvim neorg-telescope ];
+    extraPlugins = with pkgs.vimPlugins; [
+      lazygit-nvim
+    ];
   };
 }
