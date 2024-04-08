@@ -31,13 +31,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [ ];
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
-  };
   hardware.opengl.driSupport32Bit =
     true; # Enables support for 32bit libs that steam uses
   services.xserver = {
