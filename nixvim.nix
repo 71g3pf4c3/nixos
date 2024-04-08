@@ -488,6 +488,6 @@
         mode = "n";
       }
     ];
-    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim ChatGPT-nvim ];
+    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim ChatGPT-nvim neorg-telescope ];
   };
 }

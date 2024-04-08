@@ -14,7 +14,6 @@ tym.set_config({
 	silent = true,
 	bold_is_bright = true,
 	cell_height= 90,
-	background_image = '/home/t1g3pf4c3/pictures/amongus0.jpg'
 })
 
 tym.set_keymaps({
@@ -30,75 +29,70 @@ tym.set_keymaps({
 		-- tym.notify("scale:" .. s .. "%")
 		return true -- notification is shown and `Y` will be inserted
 	end,
-	["<Ctrl><Shift>t"] = function()
-		tym.put("tmux attach || tmux")
-		tym.send_key("Return")
-		-- return true -- notification is shown and `Y` will be inserted
-	end,
 })
 -- TMUX
-tym.set_keymaps({
-	["<Ctrl><Alt>t"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("<Ctrl>b")
-		tym.send_key("N")
-	end,
-	["<Ctrl><Alt><Shift>t"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("<Ctrl>b")
-		tym.send_key("P")
-	end,
-	["<Alt>t"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("N")
-	end,
-	["<Alt>f"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("Z")
-	end,
-	["<Alt><Shift>t"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("P")
-	end,
-	["<Alt>s"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("s")
-	end,
-	["<Alt>o"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("h")
-	end,
-	["<Alt><Return>"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("b")
-	end,
-	["<Alt>b"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("b")
-	end,
-	["<Alt>g"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("g")
-	end,
-	["<Alt>y"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("y")
-	end,
-	["<Alt>m"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("m")
-	end,
-	["<Alt>x"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("x")
-	end,
-	["<Alt>u"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("u")
-	end,
-	["<Ctrl><Alt>x"] = function()
-		tym.send_key("<Ctrl>b")
-		tym.send_key("<Ctrl>b")
-		tym.send_key("x")
-	end,
-})
+-- tym.set_keymaps({
+-- 	["<Ctrl><Alt>t"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("N")
+-- 	end,
+-- 	["<Ctrl><Alt><Shift>t"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("P")
+-- 	end,
+-- 	["<Alt>t"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("N")
+-- 	end,
+-- 	["<Alt>f"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("Z")
+-- 	end,
+-- 	["<Alt><Shift>t"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("P")
+-- 	end,
+-- 	["<Alt>s"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("s")
+-- 	end,
+-- 	["<Alt>o"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("h")
+-- 	end,
+-- 	["<Alt><Return>"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("b")
+-- 	end,
+-- 	["<Alt>b"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("b")
+-- 	end,
+-- 	["<Alt>g"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("g")
+-- 	end,
+-- 	["<Alt>y"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("y")
+-- 	end,
+-- 	["<Alt>m"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("m")
+-- 	end,
+-- 	["<Alt>x"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("x")
+-- 	end,
+-- 	["<Alt>u"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("u")
+-- 	end,
+-- 	["<Ctrl><Alt>x"] = function()
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("<Ctrl>b")
+-- 		tym.send_key("x")
+-- 	end,
+-- })

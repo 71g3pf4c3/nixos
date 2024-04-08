@@ -81,10 +81,7 @@ let
     };
   };
 in {
-  imports = [
-    inputs.nixvim.homeManagerModules.nixvim
-    ../../config/nixvim.nix
-  ];
+  imports = [ inputs.nixvim.homeManagerModules.nixvim ../../config/nixvim.nix ];
   home.username = "t1g3pf4c3";
   home.homeDirectory = "/home/t1g3pf4c3";
   home.stateVersion = "23.11";
@@ -434,27 +431,6 @@ in {
       set-option -g status-position top
       set-option -g status-justify left
       bind-key q set status
-      bind-key n next-window
-      bind-key b if-shell -F '#{==:#{session_name},scratch}' {
-        kill-session -t scratch
-      } {
-        display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s scratch -n "scratch"
-      }
-      bind-key g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${
-        lib.getExe pkgs.lazygit
-      }"
-      bind-key y if-shell -F '#{==:#{session_name},kubectx}' {
-        kill-session -t kubectx
-      } {
-        display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx"
-      }
-      bind-key s if-shell -F '#{==:#{session_name},news}' {
-        detach-client
-      } {
-        display-popup -h 90% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s news -n news "newsboat"
-      }
-      bind-key m if-shell -F '#{==:#{session_name},k9s}' { detach-client } { display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml" }
-      bind-key u display-popup -h 50% -w 50% -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s update -n update "upd "
       # only show status bar if there is more then one window
       set -g status on
       set-option -g status-interval 5
@@ -479,6 +455,41 @@ in {
       set-hook -g window-layout-changed 'set-window -F pane-border-status "#{?#{==:#{window_panes},1},off,bottom}"'
       set-hook -g after-new-window 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
       set-hook -g after-kill-pane 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
+
+      bind-key -n M-e new-window
+      bind-key -n M-t next-window
+      bind-key -n M-T previous-window
+      bind-key -n M-c new-session -c "#{pane_current_path}"
+      bind-key -n M-\\ split-window -h -c "#{pane_current_path}"
+      bind-key -n M-- split-window -v -c "#{pane_current_path}"
+      bind-key -n M-x kill-pane
+      bind-key -n M-h select-pane -L
+      bind-key -n M-j select-pane -D
+      bind-key -n M-k select-pane -U
+      bind-key -n M-l select-pane -R
+      bind-key -n M-b if-shell -F '#{==:#{session_name},scratch}' {
+        kill-session -t scratch
+      } {
+        display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s scratch -n "scratch"
+      }
+      bind-key -n M-g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${
+        lib.getExe pkgs.lazygit
+      }"
+      bind-key -n M-y if-shell -F '#{==:#{session_name},kubectx}' {
+        kill-session -t kubectx
+      } {
+        display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx"
+      }
+      bind-key -n M-n if-shell -F '#{==:#{session_name},news}' {
+        detach-client
+      } {
+        display-popup -h 90% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s news -n news "newsboat"
+      }
+      bind-key -n M-u if-shell -F '#{==:#{session_name},k9s}' {
+        detach-client
+      } {
+        display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml"
+      }
     '';
     plugins = with pkgs; [
       {
@@ -1383,4 +1394,5 @@ in {
   #     };
   #   };
   # };
+
 }
