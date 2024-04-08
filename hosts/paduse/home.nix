@@ -1376,12 +1376,13 @@ in {
     settings = {
       main = {
         term = "xterm-256color";
-        font = "${font}:size=14";
+        font = "${font}:size=10";
         dpi-aware = "yes";
         shell = "${lib.getExe pkgs.zsh}";
       };
       mouse = { hide-when-typing = "yes"; };
       colors = {
+        alpha=0.9;
         background = lib.strings.removePrefix "#" "${colorscheme.light.bg}";
         foreground = lib.strings.removePrefix "#" "${colorscheme.light.fg}";
         regular0 = lib.strings.removePrefix "#" "${colorscheme.light.bg}";
