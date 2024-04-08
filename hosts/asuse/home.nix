@@ -1,7 +1,6 @@
 { config, pkgs, lib, inputs, ... }:
 let
   font = "Comic Code Ligatures";
-  terminal = "${lib.getExe pkgs.tym}";
   colorscheme = {
     light = {
       name = "gruvbox-light";
@@ -90,70 +89,30 @@ in {
   home.homeDirectory = "/home/t1g3pf4c3";
   home.stateVersion = "23.11";
   home.packages = with pkgs; [
-    tym
     ncdu
-    telegram-desktop
-    kubectl
-    fd
-    tmux-xpanes
-    wtf
-    playerctl
-    translate-shell
-    webcord-vencord
-    zoom-us
-    popeye
-    dig
+   
     nodePackages.webtorrent-cli
-    sxiv
     qbittorrent
     libreoffice
-    drawio
-    k8sgpt
-    kube-capacity
-    kubectl-tree
-    kubectl-node-shell
-    kubernetes-helm
-    cargo
-    nodejs
     buku
     bukubrow
-    wdisplays
     gcc_multi
-    xdragon
     wineWowPackages.waylandFull
     unzip
-    python3
-    pavucontrol
-    restic
+    bottles
+    lutris
     stylua
     nixfmt
     shellcheck
     shellharden
     yq-go
     codespell
-    gptcommit
-    aichat
   ];
   home.pointerCursor = {
     gtk.enable = true;
     package = pkgs.vanilla-dmz;
     name = "Vanilla-DMZ";
     size = 22;
-  };
-  services = {
-    kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
-    network-manager-applet.enable = true;
-    cliphist = {
-      enable = true;
-      systemdTarget = "sway-session.target";
-    };
-  };
-  xdg.configFile."tym" = {
-    source = ../../config/tym;
-    recursive = true;
   };
   programs.home-manager.enable = true;
   programs.zsh = {
@@ -177,6 +136,8 @@ in {
       zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
       zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
        			export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+            export XDG_DATA_HOME="$HOME/.local/share"
+
     ''];
     autosuggestion.enable = true;
     enableCompletion = false;
@@ -482,31 +443,6 @@ in {
       PASSWORD_STORE_CLIP_TIME = "60";
     };
   };
-  programs.rofi = {
-    # plugins = with pkgs; [ rofi-emoji rofi-calc ];
-    package = pkgs.rofi-wayland;
-    enable = true;
-    theme = colorscheme.light.name;
-    terminal = terminal;
-    pass = {
-      enable = true;
-      stores = [ "${config.home.homeDirectory}/.password-store" ];
-      package = pkgs.rofi-pass-wayland;
-      extraConfig = ''
-        delay=0.001
-        wait=0.001
-        type_delay=1
-        auto_enter='true'
-        default_autotype='pass'
-        clip_clear=3
-        default_do='typePass'
-      '';
-    };
-    extraConfig = {
-      kb-primary-paste = "Control+V,Shift+Insert";
-      kb-secondary-paste = "Control+v,Insert";
-    };
-  };
   programs.pistol = {
     enable = true;
     associations = [
@@ -671,7 +607,7 @@ in {
       copy-path =
         "	\${{\n			printf \"$fx\" | ${pkgs.wl-clipboard}/bin/wl-copy \n	}}\n";
       dragdrop =
-        "	\${{\n			printf '%s\\n' \"$fx\" | dragon -a -x -T -I \n	}}\n";
+        "	\${{\n			printf '%s\\n' \"$fx\" | ${pkgs.xdragon}/bin/dragon -a -x -T -I \n	}}\n";
       copy-content = ''
           ''${{
         cat $fx | ${pkgs.wl-clipboard}/bin/wl-copy
@@ -746,10 +682,6 @@ in {
       };
     };
   };
-  home.file.".config/k9s/skins" = {
-    source = ../../config/k9s/skins;
-    recursive = true;
-  };
   programs.mpv = {
     enable = true;
     config = {
@@ -759,7 +691,6 @@ in {
       script-opts = "ytdl_hook-ytdl_path=${lib.getExe pkgs.yt-dlp}";
     };
   };
-  programs.watson.enable = true;
   programs.htop.enable = true;
   programs.git = {
     enable = true;
@@ -805,7 +736,6 @@ in {
   };
   xdg.mime.enable = true;
   xdg.mimeApps = { enable = true; };
-
   programs.zoxide.enable = true;
   programs.direnv = {
     enable = true;
@@ -823,9 +753,7 @@ in {
       # inline_height = 30;
     };
   };
-
   programs.ripgrep.enable = true;
-
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;

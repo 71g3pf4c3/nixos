@@ -9,7 +9,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernel.sysctl = { "net.ipv4.ip_unprivileged_port_start" = 80; };
-  networking.hostName = "nixos";
+  networking.hostName = "paduse";
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
   time.timeZone = "Europe/Moscow";
@@ -140,5 +140,5 @@
       "	export SDL_VIDEODRIVER=wayland\n	export QT_QPA_PLATFORM=wayland\n	export QT_WAYLAND_DISABLE_WINDOWDECORATION=\"1\"\n	export _JAVA_AWT_WM_NONREPARENTING=1\n	export XDG_SESSION_TYPE=wayland\n	export XDG_CURRENT_DESKTOP=sway\n	export XDG_SESSION_DESKTOP=sway\n	export SDL_VIDEODRIVER=wayland\n";
   };
   system.stateVersion = "23.11"; # Did you read the comment?
-services.udisks2.enable = true;
+  services.udisks2.enable = true;
 }

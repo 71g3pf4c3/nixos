@@ -5,10 +5,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -24,7 +23,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-nix.settings.experimental-features = ["nix-command flakes"];
+  nix.settings.experimental-features = [ "nix-command flakes" ];
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
 
@@ -83,7 +87,7 @@ nix.settings.experimental-features = ["nix-command flakes"];
   programs.zsh.enable = true;
   programs.zsh.enableCompletion = true;
   users.defaultUserShell = pkgs.zsh;
-    users.users.t1g3pf4c3 = {
+  users.users.t1g3pf4c3 = {
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAoEHHbqoioIXbk6bsQHEhiT1mYMShboCY27BvdXkJFg t1g3pf4c3@nixos"
     ];
@@ -105,7 +109,6 @@ nix.settings.experimental-features = ["nix-command flakes"];
     ];
   };
 
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -116,15 +119,6 @@ nix.settings.experimental-features = ["nix-command flakes"];
     git
     wget
   ];
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
-  };
-  hardware.opengl.driSupport32Bit =
-    true; # Enables support for 32bit libs that steam uses
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -137,7 +131,7 @@ nix.settings.experimental-features = ["nix-command flakes"];
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -153,4 +147,55 @@ nix.settings.experimental-features = ["nix-command flakes"];
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall =
+      true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall =
+      true; # Open ports in the firewall for Source Dedicated Server
+  };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
+    # of just the bare essentials.
+    powerManagement.enable = false;
+
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+    open = false;
+
+    # Enable the Nvidia settings menu,
+    # accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+  hardware.nvidia.prime = {
+    # Make sure to use the correct Bus ID values for your system!
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+
+    };
+
+  };
 }
