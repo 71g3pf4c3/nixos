@@ -1393,14 +1393,14 @@ in {
         regular5 = lib.strings.removePrefix "#" "${colorscheme.light.purple}";
         regular6 = lib.strings.removePrefix "#" "${colorscheme.light.aqua}";
         regular7 = lib.strings.removePrefix "#" "${colorscheme.light.fg}";
-        bright0 = lib.strings.removePrefix "#" "${colorscheme.light.bg}";
+        bright0 = lib.strings.removePrefix "#" "${colorscheme.light.bg2}";
         bright1 = lib.strings.removePrefix "#" "${colorscheme.light.redalt}";
         bright2 = lib.strings.removePrefix "#" "${colorscheme.light.greenalt}";
         bright3 = lib.strings.removePrefix "#" "${colorscheme.light.yellowalt}";
         bright4 = lib.strings.removePrefix "#" "${colorscheme.light.bluealt}";
         bright5 = lib.strings.removePrefix "#" "${colorscheme.light.purplealt}";
         bright6 = lib.strings.removePrefix "#" "${colorscheme.light.aquaalt}";
-        bright7 = lib.strings.removePrefix "#" "${colorscheme.light.bg1}";
+        bright7 = lib.strings.removePrefix "#" "${colorscheme.light.bg4}";
       };
     };
   };
