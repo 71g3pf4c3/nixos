@@ -2,7 +2,7 @@
 let
   font = "Comic Code Ligatures";
 
-  terminal = "${lib.getExe pkgs.tym}";
+  terminal = "${lib.getExe pkgs.foot}";
   colorscheme = {
     light = {
       name = "gruvbox-light";
@@ -18,7 +18,7 @@ let
       greenalt = "#79740e";
       yellowalt = "#b57614";
       bluealt = "#076678";
-      magentaalt = "#8f3f71";
+      purplealt = "#8f3f71";
       aquaalt = "#427b58";
       fg = "#3c3836";
       grayalt = "#928374";
@@ -44,14 +44,14 @@ let
       green = "#98971a";
       yellow = "#d79921";
       blue = "#458588";
-      magenta = "#b16286";
+      purple = "#b16286";
       aqua = "#689d6a";
       gray = "#a89984";
       redalt = "#fb4934";
       greenalt = "#b8bb26";
       yellowalt = "#fabd2f";
       bluealt = "#83a598";
-      magentaalt = "#d3869b";
+      purplealt = "#d3869b";
       aquaalt = "#8ec07c";
       fg = "#ebdbb2";
       grayalt = "#928374";
@@ -87,7 +87,6 @@ in {
   home.homeDirectory = "/home/t1g3pf4c3";
   home.stateVersion = "23.11";
   home.packages = with pkgs; [
-    tym
     ncdu
     telegram-desktop
     kubectl
@@ -257,10 +256,6 @@ in {
         }
       ];
     };
-  };
-  xdg.configFile."tym" = {
-    source = ../../config/tym;
-    recursive = true;
   };
   programs.home-manager.enable = true;
   programs.zsh = {
@@ -587,7 +582,7 @@ in {
       recolor-darkcolor = colorscheme.dark.bg;
       default-bg = colorscheme.dark.bg;
       highlight-color = colorscheme.dark.orange;
-      highlight-active-color = colorscheme.dark.magenta;
+      highlight-active-color = colorscheme.dark.purple;
       inputbar-fg = colorscheme.dark.fg;
       inputbar-bg = colorscheme.dark.bg1;
       statusbar-fg = colorscheme.dark.fg;
@@ -946,10 +941,6 @@ in {
         }
         {
           command = "systemctl --user start blueman-applet";
-          always = true;
-        }
-        {
-          command = "systemctl --user start tym-daemon";
           always = true;
         }
         {
@@ -1379,20 +1370,39 @@ in {
       { url = "https://www.cncf.io/feed/"; }
     ];
   };
-  # programs.foot = {
-  #   enable = true;
-  #   server.enable = true;
-  #   settings = {
-  #     main = {
-  #       term = "xterm-256color";
-  #       font = "${font}:size=14";
-  #       dpi-aware = "yes";
-  #       shell = "${lib.getExe pkgs.zsh}";
-  #     };
-  #     mouse = {hide-when-typing = "yes";};
-  #     text-bindings = {
-  #     };
-  #   };
-  # };
+  programs.foot = {
+    enable = true;
+    server.enable = true;
+    settings = {
+      main = {
+        term = "xterm-256color";
+        font = "${font}:size=14";
+        dpi-aware = "yes";
+        shell = "${lib.getExe pkgs.zsh}";
+      };
+      mouse = { hide-when-typing = "yes"; };
+      colors = {
+        background = lib.strings.removePrefix "#" "${colorscheme.light.bg}";
+        foreground = lib.strings.removePrefix "#" "${colorscheme.light.fg}";
+        regular0 = lib.strings.removePrefix "#" "${colorscheme.light.bg}";
+        regular1 = lib.strings.removePrefix "#" "${colorscheme.light.red}";
+        regular2 = lib.strings.removePrefix "#" "${colorscheme.light.green}";
+        regular3 = lib.strings.removePrefix "#" "${colorscheme.light.yellow}";
+        regular4 = lib.strings.removePrefix "#" "${colorscheme.light.blue}";
+        regular5 = lib.strings.removePrefix "#" "${colorscheme.light.purple}";
+        regular6 = lib.strings.removePrefix "#" "${colorscheme.light.aqua}";
+        regular7 = lib.strings.removePrefix "#" "${colorscheme.light.fg}";
+        bright0 = lib.strings.removePrefix "#" "${colorscheme.light.bg1}";
+        bright1 = lib.strings.removePrefix "#" "${colorscheme.light.redalt}";
+        bright2 = lib.strings.removePrefix "#" "${colorscheme.light.greenalt}";
+        bright3 = lib.strings.removePrefix "#" "${colorscheme.light.yellowalt}";
+        bright4 = lib.strings.removePrefix "#" "${colorscheme.light.bluealt}";
+        bright5 =
+          lib.strings.removePrefix "#" "${colorscheme.light.purplealt}";
+        bright6 = lib.strings.removePrefix "#" "${colorscheme.light.aquaalt}";
+        bright7 = lib.strings.removePrefix "#" "${colorscheme.light.bg2}";
+      };
+    };
+  };
 
 }
