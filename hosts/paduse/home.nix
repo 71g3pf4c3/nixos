@@ -1376,13 +1376,13 @@ in {
     settings = {
       main = {
         term = "xterm-256color";
-        font = "${font}:size=10";
+        font = "${font}:size=9";
         dpi-aware = "yes";
         shell = "${lib.getExe pkgs.zsh}";
       };
       mouse = { hide-when-typing = "yes"; };
       colors = {
-        alpha=0.9;
+        alpha = 0.9;
         background = lib.strings.removePrefix "#" "${colorscheme.light.bg}";
         foreground = lib.strings.removePrefix "#" "${colorscheme.light.fg}";
         regular0 = lib.strings.removePrefix "#" "${colorscheme.light.bg}";
@@ -1398,8 +1398,7 @@ in {
         bright2 = lib.strings.removePrefix "#" "${colorscheme.light.greenalt}";
         bright3 = lib.strings.removePrefix "#" "${colorscheme.light.yellowalt}";
         bright4 = lib.strings.removePrefix "#" "${colorscheme.light.bluealt}";
-        bright5 =
-          lib.strings.removePrefix "#" "${colorscheme.light.purplealt}";
+        bright5 = lib.strings.removePrefix "#" "${colorscheme.light.purplealt}";
         bright6 = lib.strings.removePrefix "#" "${colorscheme.light.aquaalt}";
         bright7 = lib.strings.removePrefix "#" "${colorscheme.light.bg2}";
       };
