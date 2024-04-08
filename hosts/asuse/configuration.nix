@@ -116,6 +116,15 @@ nix.settings.experimental-features = ["nix-command flakes"];
     git
     wget
   ];
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall =
+      true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall =
+      true; # Open ports in the firewall for Source Dedicated Server
+  };
+  hardware.opengl.driSupport32Bit =
+    true; # Enables support for 32bit libs that steam uses
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
