@@ -307,8 +307,6 @@ in {
               ln -sv /tmp/tmp_$USER /home/$USER/tmp
               ln -sv /tmp/tmp_$USER/downloads /home/$USER/downloads
           fi
-          export TMPDIR=/home/$USER/tmp/
-          export TMPDIR=/home/$USER/tmp/
       fi
 
     '';
