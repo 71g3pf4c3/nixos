@@ -305,7 +305,6 @@ in {
                   mkdir -p /tmp/tmp_$USER/downloads
               fi
               ln -sv /tmp/tmp_$USER /home/$USER/tmp
-              ln -sv /tmp/tmp_$USER/downloads /home/$USER/downloads
           fi
       fi
 
@@ -1271,8 +1270,9 @@ in {
 
   xdg.userDirs = {
     desktop = "${config.home.homeDirectory}/tmp";
-    download = "${config.home.homeDirectory}/var/downloads";
+    download = "${config.home.homeDirectory}/tmp/downloads";
     pictures = "${config.home.homeDirectory}/var/pictures";
+    documents = "${config.home.homeDirectory}/var/docs";
   };
 
   programs.zoxide.enable = true;
