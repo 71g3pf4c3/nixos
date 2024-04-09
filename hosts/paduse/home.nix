@@ -298,13 +298,20 @@ in {
       PASSWORD_STORE_DIR = "$HOME/.password-store";
     };
     envExtra = "skip_global_compinit=1";
-    # history = {
-    #   path = "${config.home.homeDirectory}/.histfile";
-    #   size = 500000;
-    #   save = 500000;
-    #   share = true;
-    #   extended = true;
-    # };
+    profileExtra = ''
+      if [ "$EUID" -ne 0 ]; then
+          if [[ ! ( -d /home/$USER/tmp ) ]]; then
+              if [[ ! ( -d /tmp/tmp_$USER ) ]]; then
+                  mkdir -p /tmp/tmp_$USER/downloads
+              fi
+              ln -sv /tmp/tmp_$USER /home/$USER/tmp
+              ln -sv /tmp/tmp_$USER/downloads /home/$USER/downloads
+          fi
+          export TMPDIR=/home/$USER/tmp/
+          export TMPDIR=/home/$USER/tmp/
+      fi
+
+    '';
     shellAliases = {
       "kubectl" = "${lib.getExe pkgs.kubecolor}";
       "pp" = "pistol";
@@ -329,7 +336,7 @@ in {
       "upd" = ''
         ${lib.getExe pkgs.git} diff |\
         ${lib.getExe pkgs.bat} --no-pager\
-        && sudo nixos-rebuild switch -j 16  --flake ~/nixos/# &&\
+        && sudo nixos-rebuild switch -j 16  --flake ~/etc/nixos/# &&\
         ${lib.getExe pkgs.git} commit -a && ${lib.getExe pkgs.git} push &&\
         ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
       '';
