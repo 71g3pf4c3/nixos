@@ -1,7 +1,30 @@
 { config, pkgs, unstable, lib, inputs, ... }: {
   programs.nixvim = {
     enable = true;
-    colorschemes.gruvbox.enable = true;
+    colorschemes.gruvbox = {
+      enable = true;
+      settings = {
+        undercurl = true;
+        underline = true;
+        transparent_mode = false;
+        background = "light";
+        bold = true;
+        italic = {
+          strings = true;
+          comments = true;
+          operators = true;
+          folds = true;
+        };
+        strikethrough = true;
+        invert_selection = false;
+        invert_signs = false;
+        invert_tabline = false;
+        invert_intend_guides = false;
+        inverse = true;
+        contrast = "soft";
+        overrides = { };
+      };
+    };
     clipboard.providers.wl-copy.enable = true;
     clipboard.register = "unnamedplus";
     opts = {
@@ -13,6 +36,7 @@
       shiftwidth = 2;
       tabstop = 2;
       autoindent = true;
+      undofile = true;
       hlsearch = true;
       ignorecase = true;
       smartcase = true;
@@ -467,4 +491,3 @@
     extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim ];
   };
 }
-
