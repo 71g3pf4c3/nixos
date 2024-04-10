@@ -6,7 +6,7 @@ let
   colorscheme = {
     light = {
       name = "gruvbox-light";
-      bg = "#ebdbb2";
+      bg = "#fbf1c7";
       red = "#cc241d";
       green = "#98971a";
       yellow = "#d79921";

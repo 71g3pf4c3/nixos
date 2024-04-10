@@ -4,6 +4,7 @@
     colorschemes.gruvbox = {
       enable = true;
       settings = {
+        terminal_colors = true;
         undercurl = true;
         underline = true;
         transparent_mode = false;
