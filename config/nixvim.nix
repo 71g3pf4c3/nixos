@@ -29,6 +29,7 @@
     clipboard.providers.wl-copy.enable = true;
     clipboard.register = "unnamedplus";
     opts = {
+      background = "light";
       mouse = "a";
       cursorline = true;
       cursorcolumn = true;
