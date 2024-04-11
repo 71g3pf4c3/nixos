@@ -247,7 +247,7 @@
       }
       {
         key = "<leader>k";
-        action = ":w !kubectl appjjly -f -<cr>";
+        action = ":w !kubectl apply -f -<cr>";
         options = {
           desc = "apply kube";
           silent = true;
