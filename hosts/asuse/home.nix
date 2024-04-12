@@ -158,6 +158,7 @@ in {
     };
     envExtra = "skip_global_compinit=1";
     shellAliases = {
+      "zz" = "__zoxide_zi";
       "kubectl" = "${lib.getExe pkgs.kubecolor}";
       "pp" = "pistol";
       "nx" = "nix shell";
@@ -177,7 +178,7 @@ in {
       "open" = "xdg-open";
       "mount" = "sudo mount -o uid=1000,gid=984";
       "cd" = "z";
-      "ci" = "zi";
+      "ci" = "__zoxide_zi";
       "upd" = ''
         ${lib.getExe pkgs.git} diff |\
         ${lib.getExe pkgs.bat} --no-pager\
@@ -417,7 +418,7 @@ in {
           zoxide add "$PWD"
         }}
       '';
-      zi = "	\${{\n			__zoxide_zi\n	}}\n";
+      zi = "	\${{\n			zoxide query --interactive && cd \n	}}\n";
       kubeapply = "	\${{\n			kubectl apply -f  \"$fx\"\n	}}\n";
       copy-path =
         "	\${{\n			printf \"$fx\" | ${pkgs.wl-clipboard}/bin/wl-copy \n	}}\n";
