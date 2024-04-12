@@ -90,7 +90,6 @@ in {
   home.stateVersion = "23.11";
   home.packages = with pkgs; [
     ncdu
-   
     nodePackages.webtorrent-cli
     qbittorrent
     libreoffice
