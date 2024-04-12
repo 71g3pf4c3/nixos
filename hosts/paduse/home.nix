@@ -125,7 +125,7 @@ in {
     pavucontrol
     restic
     stylua
-    nixfmt
+    nixfmt-rfc-style
     shellcheck
     shellharden
     yq-go
