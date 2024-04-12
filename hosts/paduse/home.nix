@@ -334,7 +334,7 @@ in {
         ${lib.getExe pkgs.git} diff |\
         ${lib.getExe pkgs.bat} --no-pager\
         && sudo nixos-rebuild switch -j 16  --flake ~/etc/nixos/# &&\
-        ${lib.getExe pkgs.git} commit -a && ${lib.getExe pkgs.git} push &&\
+        ${lib.getExe pkgs.git} commit -a ~/etc/nixos && ${lib.getExe pkgs.git} push &&\
         ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
       '';
     };
@@ -792,7 +792,7 @@ in {
           zoxide add "$PWD"
         }}
       '';
-      zi = "	\${{\n			zoxide query --interactive && cd \n	}}\n";
+      zi = "	\${{\n			zoxide query --interactive | cd \n	}}\n";
       kubeapply = "	\${{\n			kubectl apply -f  \"$fx\"\n	}}\n";
       copy-path =
         "	\${{\n			printf \"$fx\" | ${pkgs.wl-clipboard}/bin/wl-copy \n	}}\n";
