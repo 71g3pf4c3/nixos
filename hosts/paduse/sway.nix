@@ -43,13 +43,6 @@ in {
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  services.dbus.enable = true;
-  services.dbus.implementation = "broker";
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;

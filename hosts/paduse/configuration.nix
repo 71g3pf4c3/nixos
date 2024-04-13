@@ -136,4 +136,6 @@
   system.stateVersion = "23.11"; # Did you read the comment?
   services.udisks2.enable = true;
   services.guix.enable = false;
+  services.dbus.enable = true;
+  services.dbus.implementation = "broker";
 }
