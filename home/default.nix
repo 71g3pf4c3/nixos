@@ -12,9 +12,9 @@
     inputs.nix-colors.homeManagerModules.default
     ./terminal
     ./desktop
+    ./colors
     ./wm
     ./home.nix
     ./xdg.nix
   ];
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-light-medium;
 }
