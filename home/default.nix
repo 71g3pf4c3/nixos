@@ -13,7 +13,6 @@
     ./terminal
     ./desktop
     ./colors
-    ./wm
     ./home.nix
     ./xdg.nix
   ];
