@@ -7,7 +7,7 @@
     Service = {
       ExecStart = "${
         lib.getExe pkgs.swaybg
-      } -i ${config.home.homeDirectory}/pictures/wallpapers/struct3_sepia_nix.png -m fill";
+      } -i ${config.home.homeDirectory}/etc/wallpapers/struct3_sepia_nix.png -m fill";
       Restart = "on-failure";
     };
     Install.WantedBy = ["graphical-session.target"];
