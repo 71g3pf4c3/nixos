@@ -3,7 +3,7 @@
     # plugins = with pkgs; [ rofi-emoji rofi-calc ];
     package = pkgs.rofi-wayland;
     enable = true;
-    theme = "gruvbox-light";
+    theme = config.colorScheme.palette.lightname;
     terminal = "${lib.getExe pkgs.foot}";
     pass = {
       enable = true;

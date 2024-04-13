@@ -41,7 +41,7 @@
       lightgreenalt = "79740e";
       lightyellowalt = "b57614";
       lightbluealt = "076678";
-      lightmagentaalt = "8f3f71";
+      lightpurplealt = "8f3f71";
       lightaquaalt = "427b58";
       lightfg = "3c3836";
       lightgrayalt = "928374";
@@ -65,14 +65,14 @@
       darkgreen = "98971a";
       darkyellow = "d79921";
       darkblue = "458588";
-      darkmagenta = "b16286";
+      darkpurple = "b16286";
       darkaqua = "689d6a";
       darkgray = "a89984";
       darkredalt = "fb4934";
       darkgreenalt = "b8bb26";
       darkyellowalt = "fabd2f";
       darkbluealt = "83a598";
-      darkmagentaalt = "d3869b";
+      darkpurplealt = "d3869b";
       darkaquaalt = "8ec07c";
       darkfg = "ebdbb2";
       darkgrayalt = "928374";

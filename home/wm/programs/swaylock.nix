@@ -2,7 +2,7 @@
   programs.swaylock = {
     enable = true;
     settings = {
-      color = config.colorScheme.palette.base07;
+      color = config.colorScheme.palette.darkbg;
     };
   };
 }

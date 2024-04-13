@@ -36,7 +36,7 @@
       KUBECONFIG_SAVED = "$KUBECONFIG";
       _JAVA_AWT_WM_NONREPARENTING = "1";
       ZSH_AUTOSUGGEST_USE_ASYNC = true;
-      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=${config.colorScheme.palette.base01}";
+      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=${config.colorScheme.palette.lightbg2}";
       PASSWORD_STORE_ENABLE_EXTENSIONS = "true pass fzf";
       PASSWORD_STORE_DIR = "$HOME/.password-store";
     };

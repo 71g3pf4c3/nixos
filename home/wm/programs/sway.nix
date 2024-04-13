@@ -68,27 +68,27 @@ in
       workspaceLayout = "tabbed";
       workspaceAutoBackAndForth = true;
       colors = {
-        background = config.colorScheme.palette.base01;
+        background = config.colorScheme.palette.lightbg1;
         focused = {
-          background = config.colorScheme.palette.base01;
-          border = config.colorScheme.palette.base0B;
-          childBorder = config.colorScheme.palette.base0B;
-          text = config.colorScheme.palette.base07;
-          indicator = config.colorScheme.palette.base0C;
+          background = config.colorScheme.palette.lightbg;
+          border = config.colorScheme.palette.lightgreen;
+          childBorder = config.colorScheme.palette.lightgreenalt;
+          text = config.colorScheme.palette.lightfg;
+          indicator = config.colorScheme.palette.lightaqua;
         };
         focusedInactive = {
-          background = config.colorScheme.palette.base02;
-          border = config.colorScheme.palette.base02;
-          childBorder = config.colorScheme.palette.base02;
-          text = config.colorScheme.palette.base07;
-          indicator = config.colorScheme.palette.base0C;
+          background = config.colorScheme.palette.lightbg3;
+          border = config.colorScheme.palette.lightbg3;
+          childBorder = config.colorScheme.palette.lightbg3;
+          text = config.colorScheme.palette.lightfg;
+          indicator = config.colorScheme.palette.lightaqua;
         };
         unfocused = {
-          background = config.colorScheme.palette.base02;
-          border = config.colorScheme.palette.base01;
-          childBorder = config.colorScheme.palette.base01;
-          text = config.colorScheme.palette.base07;
-          indicator = config.colorScheme.palette.base0C;
+          background = config.colorScheme.palette.lightbg3;
+          border = config.colorScheme.palette.lightbg1;
+          childBorder = config.colorScheme.palette.lightbg1;
+          text = config.colorScheme.palette.lightfg;
+          indicator = config.colorScheme.palette.lightaqua;
         };
       };
       fonts = {
