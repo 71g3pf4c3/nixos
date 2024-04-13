@@ -1,5 +1,13 @@
-{ config, pkgs, self, lib, inputs, ... }: {
-  imports = [./sway.nix];
+{
+  config,
+  pkgs,
+  self,
+  lib,
+  inputs,
+  ...
+}:
+{
+  imports = [ ./sway.nix ];
   documentation.man = {
     enable = true;
     generateCaches = true;
@@ -9,7 +17,9 @@
   nixpkgs.config.permittedInsecurePackages = [ "electron-22.3.27" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernel.sysctl = { "net.ipv4.ip_unprivileged_port_start" = 80; };
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_unprivileged_port_start" = 80;
+  };
   networking.hostName = "paduse";
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
@@ -32,13 +42,12 @@
   i18n.defaultLocale = "en_US.UTF-8";
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [ ];
-  hardware.opengl.driSupport32Bit =
-    true; # Enables support for 32bit libs that steam uses
+  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
   services.xserver = {
     enable = true;
-    displayManager.defaultSession = "sway";
     desktopManager.xterm.enable = false;
   };
+  services.displayManager.defaultSession = "sway";
   security.polkit.enable = true;
   services.printing.enable = true;
   programs.zsh.enable = true;
@@ -112,7 +121,9 @@
       };
     };
   };
-  powerManagement = { enable = true; };
+  powerManagement = {
+    enable = true;
+  };
   virtualisation = {
     waydroid.enable = true;
     podman = {
@@ -124,4 +135,5 @@
   };
   system.stateVersion = "23.11"; # Did you read the comment?
   services.udisks2.enable = true;
+  services.guix.enable = false;
 }

@@ -16,7 +16,6 @@
     "mem_sleep_default=deep"
     "pcie_aspm=force"
   ];
-  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/12511272-604d-4a8e-a68e-fbec809988c9";

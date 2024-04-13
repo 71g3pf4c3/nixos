@@ -124,7 +124,6 @@
       indent-blankline.enable = true;
       neorg = {
         enable = true;
-        lazyLoading = true;
         modules = {
           "core.defaults" = { __empty = null; };
           "core.integrations.treesitter" = { __empty = null; };

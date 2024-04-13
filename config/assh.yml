@@ -1,9 +1,0 @@
----
-defaults:
-  # Defaults are applied to each hosts
-  ControlMaster: auto
-  ControlPersist: yes
-  Port: 22
-  User: mkungurov
-localhost:
-  User: t1g3pf4c3

@@ -1,0 +1,23 @@
+{
+  config,
+  pkgs,
+  unstable,
+  lib,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ./base.nix
+    ./bat.nix
+    ./fzf.nix
+    ./git.nix
+    ./lf.nix
+    ./newsboat.nix
+    ./nixvim.nix
+    ./pistol.nix
+    ./tmux.nix
+    ./zsh.nix
+    ./k9s
+  ];
+}
