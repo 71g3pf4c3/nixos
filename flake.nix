@@ -65,7 +65,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = false;
-                users.t1g3pf4c3 = import ./hosts/asuse/home.nix;
+                users.t1g3pf4c3.imports = [ ./home/desktop ./home/terminal ./home/xdg.nix ./home/home.nix ];
                 extraSpecialArgs = {
                   inherit inputs;
                 };
