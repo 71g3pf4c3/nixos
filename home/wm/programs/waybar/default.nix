@@ -23,12 +23,12 @@ in
       (builtins.readFile (
         pkgs.substituteAll {
           src = ./style.css;
-          bg = "#${config.colorScheme.palette.base00}";
-          fg = "#${config.colorScheme.palette.base07}";
-          green = "#${config.colorScheme.palette.base0B}";
-          red = "#${config.colorScheme.palette.base08}";
-          yellow = "#${config.colorScheme.palette.base0A}";
-          gray = "#${config.colorScheme.palette.base04}";
+          bg = "#${config.colorScheme.palette.darkbg}";
+          fg = "#${config.colorScheme.palette.darkfg}";
+          green = "#${config.colorScheme.palette.darkgreenalt}";
+          red = "#${config.colorScheme.palette.darkredalt}";
+          yellow = "#${config.colorScheme.palette.darkyellowalt}";
+          gray = "#${config.colorScheme.palette.darkgray}";
         }
       ))
     ];
