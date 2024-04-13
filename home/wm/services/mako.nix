@@ -4,9 +4,9 @@
       anchor = "bottom-center";
       defaultTimeout = 5000;
       ignoreTimeout = true;
-      backgroundColor = "#${config.colorScheme.palette.base00}";
-      borderColor = "#${config.colorScheme.palette.base0B}";
-      textColor = "#${config.colorScheme.palette.base07}";
+      backgroundColor = "#${config.colorScheme.palette.darkbg}";
+      borderColor = "#${config.colorScheme.palette.darkgreen}";
+      textColor = "#${config.colorScheme.palette.darkfg}";
       borderSize = 2;
       borderRadius = 5;
     };

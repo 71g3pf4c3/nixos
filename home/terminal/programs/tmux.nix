@@ -55,21 +55,21 @@
       set-option -g status-interval 5
       set-option -g automatic-rename on
       set-option -g automatic-rename-format '#{b:pane_current_path}'
-      set -g status-fg "#${config.colorScheme.palette.base06}"
-      set -g status-bg "#${config.colorScheme.palette.base02}"
-      set-option -g status-left "#[fg=#${config.colorScheme.palette.base04}, bg=#${config.colorScheme.palette.base01}, bold] #{session_name} "
-      set-window-option -g window-status-current-format "#[bg=#${config.colorScheme.palette.base00}, fg=#${config.colorScheme.palette.base07},bold,italics] #[noitalics]#[italics]#W#{?window_zoomed_flag,*Z,} "
-      set-window-option -g window-status-format "#[noitalics,bg=#${config.colorScheme.palette.base02},fg=#${config.colorScheme.palette.base00}] #[noitalics]#W "
+      set -g status-fg "#${config.colorScheme.palette.lightgrayalt}"
+      set -g status-bg "#${config.colorScheme.palette.lightbg3}"
+      set-option -g status-left "#[fg=#${config.colorScheme.palette.lightgray}, bg=#${config.colorScheme.palette.lightbg2}, bold] #{session_name} "
+      set-window-option -g window-status-current-format "#[bg=#${config.colorScheme.palette.lightbg}, fg=#${config.colorScheme.palette.lightfg},bold,italics] #[noitalics]#[italics]#W#{?window_zoomed_flag,*Z,} "
+      set-window-option -g window-status-format "#[noitalics,bg=#${config.colorScheme.palette.lightbg3},fg=#${config.colorScheme.palette.lightbg}] #[noitalics]#W "
       set-window-option -g window-status-separator ""
       set-option -g window-style 'bg=default'
       set-option -g popup-border-lines heavy
       set-option -g pane-border-lines heavy
-      set-option -g popup-border-style 'fg=#${config.colorScheme.palette.base0B},bold'
-      set-option -g pane-border-style 'fg=#${config.colorScheme.palette.base01}'
-      set-option -g pane-active-border-style 'fg=#${config.colorScheme.palette.base0B}'
+      set-option -g popup-border-style 'fg=#${config.colorScheme.palette.lightgreen},bold'
+      set-option -g pane-border-style 'fg=#${config.colorScheme.palette.lightbg2}'
+      set-option -g pane-active-border-style 'fg=#${config.colorScheme.palette.lightgreen}'
       set -g pane-border-status off
       set -s copy-command '${pkgs.wl-clipboard}/bin/wl-copy'
-      set -g pane-border-format "#[bold,fg=#${config.colorScheme.palette.base00}, bg=#${config.colorScheme.palette.base0B} ] #{pane_index}:#{pane_title} #[default]"
+      set -g pane-border-format "#[bold,fg=#${config.colorScheme.palette.lightbg}, bg=#${config.colorScheme.palette.lightgreen} ] #{pane_index}:#{pane_title} #[default]"
       set-hook -g window-layout-changed 'set-window -F pane-border-status "#{?#{==:#{window_panes},1},off,bottom}"'
       set-hook -g after-new-window 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
       set-hook -g after-kill-pane 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
@@ -162,7 +162,7 @@
             sha256 = "1zbci8kmkr4kis2zv0lgzi04knbjzx6zsxyxwrpc46z8hagyq328";
           };
         };
-        extraConfig = "\n				set -g @mode_indicator_empty_mode_style 'bold,bg=#${config.colorScheme.palette.base03},fg=#${config.colorScheme.palette.base00}'\n				set -g @mode_indicator_prefix_mode_style 'bold,bg=#${config.colorScheme.palette.base0D},fg=#${config.colorScheme.palette.base00}'\n				set -g @mode_indicator_copy_mode_style 'bold,bg=#${config.colorScheme.palette.base08},fg=#${config.colorScheme.palette.base00}'\n				set -g @mode_indicator_sync_mode_style 'bold,bg=#${config.colorScheme.palette.base0F},fg=#${config.colorScheme.palette.base00}'\n				set-option -g status-right \"#[bold,fg=#${config.colorScheme.palette.base00}, bg=#${config.colorScheme.palette.base0B} ] #{host} #{tmux_mode_indicator}\" \n			";
+        extraConfig = "\n				set -g @mode_indicator_empty_mode_style 'bold,bg=#${config.colorScheme.palette.darkbg4},fg=#${config.colorScheme.palette.darkfg}'\n				set -g @mode_indicator_prefix_mode_style 'bold,bg=#${config.colorScheme.palette.darkblue},fg=#${config.colorScheme.palette.darkfg}'\n				set -g @mode_indicator_copy_mode_style 'bold,bg=#${config.colorScheme.palette.darkred},fg=#${config.colorScheme.palette.darkfg}'\n				set -g @mode_indicator_sync_mode_style 'bold,bg=#${config.colorScheme.palette.darkorange},fg=#${config.colorScheme.palette.darkfg}'\n				set-option -g status-right \"#[bold,fg=#${config.colorScheme.palette.darkfg}, bg=#${config.colorScheme.palette.darkgreen} ] #{host} #{tmux_mode_indicator}\" \n			";
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
