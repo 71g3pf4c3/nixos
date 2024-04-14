@@ -12,6 +12,8 @@
   home.packages = with pkgs; [
     ncdu
     telegram-desktop
+    libsixel
+    termplay
     kubectl
     fd
     tmux-xpanes
@@ -85,7 +87,6 @@
     # gotty
     # sshpass
     # ttyd
-    # libsixel
     # tmux-cssh
     # prog
     # trivy
