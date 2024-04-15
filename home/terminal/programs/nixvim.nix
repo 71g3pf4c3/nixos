@@ -139,7 +139,7 @@
       surround.enable = true;
       indent-blankline.enable = true;
       neorg = {
-        enable = false;
+        enable = true;
         modules = {
           "core.defaults" = {
             __empty = null;
