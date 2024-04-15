@@ -1,4 +1,11 @@
-{ config, pkgs, unstable, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
   programs.nixvim = {
     enable = true;
     colorschemes.gruvbox = {
@@ -55,6 +62,7 @@
     };
 
     plugins = {
+      gitblame.enable = true;
       which-key.enable = true;
       lualine.enable = true;
       transparent.enable = true;
@@ -69,8 +77,7 @@
             "<C-e>" = "cmp.mapping.close()";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<S-Tab>" =
-              "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
             "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           };
           sources = [
@@ -87,16 +94,25 @@
         };
         cmdline = {
           "/" = {
-            mapping = { __raw = "cmp.mapping.preset.cmdline()"; };
-            sources = [{ name = "buffer"; }];
+            mapping = {
+              __raw = "cmp.mapping.preset.cmdline()";
+            };
+            sources = [ { name = "buffer"; } ];
           };
           ":" = {
-            mapping = { __raw = "cmp.mapping.preset.cmdline()"; };
+            mapping = {
+              __raw = "cmp.mapping.preset.cmdline()";
+            };
             sources = [
               { name = "path"; }
               {
                 name = "cmdline";
-                option = { ignore_cmds = [ "Man" "!" ]; };
+                option = {
+                  ignore_cmds = [
+                    "Man"
+                    "!"
+                  ];
+                };
               }
             ];
           };
@@ -123,15 +139,29 @@
       surround.enable = true;
       indent-blankline.enable = true;
       neorg = {
-        enable = true;
+        enable = false;
         modules = {
-          "core.defaults" = { __empty = null; };
-          "core.integrations.treesitter" = { __empty = null; };
-          "core.looking-glass" = { __empty = null; };
-          "core.integrations.nvim-cmp" = { __empty = null; };
-          "core.ui" = { __empty = null; };
-          "core.export" = { __empty = null; };
-          "core.export.markdown" = { __empty = null; };
+          "core.defaults" = {
+            __empty = null;
+          };
+          "core.integrations.treesitter" = {
+            __empty = null;
+          };
+          "core.looking-glass" = {
+            __empty = null;
+          };
+          "core.integrations.nvim-cmp" = {
+            __empty = null;
+          };
+          "core.ui" = {
+            __empty = null;
+          };
+          "core.export" = {
+            __empty = null;
+          };
+          "core.export.markdown" = {
+            __empty = null;
+          };
           "core.concealer" = {
             config = {
               folds = true;
@@ -139,11 +169,23 @@
             };
           };
           "core.dirman" = {
-            config = { workspaces = { work = "~/projects/runity"; }; };
+            config = {
+              workspaces = {
+                work = "~/projects/runity";
+              };
+            };
           };
-          "core.completion" = { config = { engine = "nvim-cmp"; }; };
-          "core.promo" = { __empty = null; };
-          "core.journal" = { __empty = null; };
+          "core.completion" = {
+            config = {
+              engine = "nvim-cmp";
+            };
+          };
+          "core.promo" = {
+            __empty = null;
+          };
+          "core.journal" = {
+            __empty = null;
+          };
         };
       };
       telescope = {
@@ -178,14 +220,36 @@
         '';
         formattersByFt = {
           lua = [ "stylua" ];
-          python = [ "isort" "black" ];
-          nix = [ "nixfmt" "alejandra" ];
-          sh = [ "shellcheck" "shellharden" ];
-          go = [ "goimports" "gofmt" ];
-          yaml = [ "yamlfix" "yq" ];
+          python = [
+            "isort"
+            "black"
+          ];
+          nix = [
+            "nixfmt"
+            "alejandra"
+          ];
+          sh = [
+            "shellcheck"
+            "shellharden"
+          ];
+          go = [
+            "goimports"
+            "gofmt"
+          ];
+          yaml = [
+            "yamlfix"
+            "yq"
+          ];
           terraform = [ "terraform_fmt" ];
-          json = [ "fixjson" "jq" ];
-          "*" = [ "codespell" "trim_whitespace" "trim_newlines" ];
+          json = [
+            "fixjson"
+            "jq"
+          ];
+          "*" = [
+            "codespell"
+            "trim_whitespace"
+            "trim_newlines"
+          ];
         };
       };
       lspkind.enable = true;
@@ -302,8 +366,7 @@
       {
         key = "<leader>p";
         lua = true;
-        action = ''
-          function() require("telescope").extensions.projects.projects({}) end'';
+        action = ''function() require("telescope").extensions.projects.projects({}) end'';
         options = {
           desc = "Projects";
           silent = true;
@@ -366,8 +429,7 @@
       {
         key = "<leader>x";
         lua = true;
-        action = ''
-          function() require("telescope.builtin").current_buffer_fuzzy_find() end'';
+        action = ''function() require("telescope.builtin").current_buffer_fuzzy_find() end'';
         options = {
           desc = "Fuzzy find";
           silent = true;
@@ -394,8 +456,7 @@
       {
         key = "<leader>lr";
         lua = true;
-        action =
-          ''function() require("telescope.builtin").lsp_references() end'';
+        action = ''function() require("telescope.builtin").lsp_references() end'';
         options = {
           desc = "References";
           silent = true;
@@ -404,8 +465,7 @@
       {
         key = "<leader>li";
         lua = true;
-        action =
-          ''function() require("telescope.builtin").lsp_implementations() end'';
+        action = ''function() require("telescope.builtin").lsp_implementations() end'';
         options = {
           desc = "Implementations";
           silent = true;
@@ -414,8 +474,7 @@
       {
         key = "<leader>ld";
         lua = true;
-        action =
-          ''function() require("telescope.builtin").lsp_definitions() end'';
+        action = ''function() require("telescope.builtin").lsp_definitions() end'';
         options = {
           desc = "Definitions";
           silent = true;
@@ -441,8 +500,7 @@
       {
         key = "<leader>gb";
         lua = true;
-        action =
-          ''function() require("telescope.builtin").git_branches({}) end'';
+        action = ''function() require("telescope.builtin").git_branches({}) end'';
         options = {
           desc = "Git branches";
           silent = true;
@@ -489,6 +547,8 @@
         mode = "n";
       }
     ];
-    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim ];
+    extraPlugins = with pkgs.vimPlugins; [
+      lazygit-nvim
+    ];
   };
 }

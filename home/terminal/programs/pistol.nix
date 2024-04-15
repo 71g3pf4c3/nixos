@@ -56,11 +56,11 @@
       }
       {
         mime = "image/*";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.termplay} %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.termplay} %pistol-filename%";
       }
       {
         mime = "video/*";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.termplay} %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.termplay} %pistol-filename%";
       }
       {
         mime = "application/*";
