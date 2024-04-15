@@ -10,6 +10,8 @@
   home.homeDirectory = "/home/t1g3pf4c3";
   home.stateVersion = "23.11";
   home.packages = with pkgs; [
+    comma
+    manix
     ncdu
     telegram-desktop
     libsixel

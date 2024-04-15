@@ -68,7 +68,7 @@
       }
       {
         mime = "application/json";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.jq} '.' %pistol-filename% | ${lib.getExe pkgs.bat} --style=numbers,grid";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.jq} '.' %pistol-filename% ";
       }
       {
         mime = "application/pdf";
