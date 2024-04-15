@@ -63,6 +63,7 @@
 
     plugins = {
       gitblame.enable = true;
+      gitgutter.enable = true;
       which-key.enable = true;
       lualine.enable = true;
       transparent.enable = true;
@@ -133,12 +134,12 @@
       nix.enable = true;
       gitsigns.enable = true;
       fugitive.enable = true;
-      lazy.enable = true;
       # startup.enable = true;
       nvim-autopairs.enable = true;
       surround.enable = true;
       indent-blankline.enable = true;
       neorg = {
+        lazyLoading = true;
         enable = true;
         modules = {
           "core.defaults" = {
@@ -179,9 +180,6 @@
             config = {
               engine = "nvim-cmp";
             };
-          };
-          "core.promo" = {
-            __empty = null;
           };
           "core.journal" = {
             __empty = null;
@@ -490,14 +488,6 @@
         };
       }
       {
-        key = "<leader>gl";
-        action = ":LazyGit<cr>";
-        options = {
-          desc = "Lazygit";
-          silent = true;
-        };
-      }
-      {
         key = "<leader>gb";
         lua = true;
         action = ''function() require("telescope.builtin").git_branches({}) end'';
@@ -547,8 +537,6 @@
         mode = "n";
       }
     ];
-    extraPlugins = with pkgs.vimPlugins; [
-      lazygit-nvim
-    ];
+    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim ];
   };
 }
