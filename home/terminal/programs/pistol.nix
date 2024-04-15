@@ -56,7 +56,7 @@
       }
       {
         mime = "image/*";
-        command = "sh: ${lib.getExe pkgs.termplay} -q %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.chafa} -O 9 --passthrough tmux %pistol-filename%";
       }
       {
         mime = "video/*";
