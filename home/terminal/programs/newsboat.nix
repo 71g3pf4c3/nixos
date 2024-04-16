@@ -57,6 +57,7 @@
       { url = "https://rsshub.app/telegram/channel/tech_b0lt_Genona"; }
       { url = "https://rsshub.app/telegram/channel/sysadmin_tools"; }
       { url = "https://rsshub.app/telegram/channel/ieucariot"; }
+      { url = "https://rsshub.app/telegram/channel/kubernetika"; }
       { url = "https://rsshub.app/telegram/channel/owl_tech"; }
       { url = "https://rsshub.app/telegram/channel/tazlog"; }
       { url = "https://rsshub.app/telegram/channel/devopslibrary"; }
