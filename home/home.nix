@@ -64,6 +64,7 @@
     python311Packages.pyclip
     nix-index
     rocketchat-desktop
+    luajitPackages.lua-utils-nvim
     # assh
     # alejandra
     # vieb

@@ -269,15 +269,15 @@
       };
     };
     keymaps = [
-      {
-        key = "yf";
-        action = ":!echo %:p | wl-copy<cr>";
-
-        options = {
-          silent = true;
-          desc = "copy filepath";
-        };
-      }
+      # {
+      #   key = "yf";
+      #   action = ":!echo %:p | wl-copy<cr>";
+      #
+      #   options = {
+      #     silent = true;
+      #     desc = "copy filepath";
+      #   };
+      # }
       {
         key = "<leader>e";
         lua = true;
