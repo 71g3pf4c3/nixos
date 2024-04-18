@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     comma
     manix
+    nh
     ncdu
     telegram-desktop
     libsixel
@@ -50,6 +51,7 @@
     unzip
     python3
     pavucontrol
+    go
     restic
     stylua
     nixfmt-rfc-style
@@ -60,6 +62,7 @@
     gptcommit
     aichat
     python311Packages.pyclip
+    nix-index
     rocketchat-desktop
     # assh
     # alejandra

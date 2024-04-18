@@ -3,6 +3,7 @@
     enable = true;
     autoReload = true;
     extraConfig = ''
+      text-width 0
       color background          color237   color0
       color listnormal          color243   color0
       color listnormal_unread   color132   color0

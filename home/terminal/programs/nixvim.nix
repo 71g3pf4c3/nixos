@@ -63,7 +63,7 @@
 
     plugins = {
       gitblame.enable = true;
-      gitgutter.enable = true;
+      # gitgutter.enable = true;
       which-key.enable = true;
       lualine.enable = true;
       transparent.enable = true;

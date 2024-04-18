@@ -1,6 +1,27 @@
-{ config, pkgs, unstable, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  unstable,
+  lib,
+  inputs,
+  ...
+}:
+{
   programs.k9s = {
     enable = true;
+    aliases = {
+      aliases = {
+        p = "v1/pods";
+        n = "v1/namespaces";
+        c = "context";
+        d = "deployments";
+        s = "v1/secrets";
+        j = "jobs";
+        r = "roles";
+        rb = "rolebindings";
+        np = "networkpolicies";
+      };
+    };
     settings = {
       k9s = {
         refreshRate = 3;
