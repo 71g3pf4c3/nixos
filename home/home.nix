@@ -15,7 +15,6 @@
     nh
     nvd
     ncdu
-    telegram-desktop
     libsixel
     termplay
     kubectl
