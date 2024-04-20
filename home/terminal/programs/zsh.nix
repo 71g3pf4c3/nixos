@@ -84,7 +84,7 @@
       "upd" = ''
         ${lib.getExe pkgs.git} diff |\
         ${lib.getExe pkgs.bat} --no-pager\
-        && ${lib.getExe pkgs.nh} os switch ~/etc/nixos &&\
+        && ${lib.getExe pkgs.nh} os switch ~/etc/nixos --ask &&\
         ${lib.getExe pkgs.git} commit ~/etc/nixos && ${lib.getExe pkgs.git} push &&\
         ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
       '';

@@ -13,6 +13,7 @@
     comma
     manix
     nh
+    nvd
     ncdu
     telegram-desktop
     libsixel
