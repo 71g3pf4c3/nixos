@@ -88,7 +88,7 @@
       }
       {
         mime = "text/*";
-        command = "sh: if (( `stat -c%s   %pistol-filename%` <= 2000000 )); then ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename% fi";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename%";
       }
     ];
   };
