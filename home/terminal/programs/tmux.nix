@@ -9,6 +9,7 @@
     aggressiveResize = true;
     keyMode = "vi";
     clock24 = true;
+    baseIndex = 1;
     shell = "${lib.getExe pkgs.zsh}";
     extraConfig = ''
       set -g set-titles on
@@ -73,6 +74,17 @@
       set-hook -g window-layout-changed 'set-window -F pane-border-status "#{?#{==:#{window_panes},1},off,bottom}"'
       set-hook -g after-new-window 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
       set-hook -g after-kill-pane 'set-option -g -F status "#{?#{==:#{session_windows},1},off,on}"'
+
+      bind-key -n M-1  select-window -t 1
+      bind-key -n M-2  select-window -t 2
+      bind-key -n M-3  select-window -t 3
+      bind-key -n M-4  select-window -t 4
+      bind-key -n M-5  select-window -t 5
+      bind-key -n M-6  select-window -t 6
+      bind-key -n M-7  select-window -t 7
+      bind-key -n M-8  select-window -t 8
+      bind-key -n M-9  select-window -t 9
+
 
       bind-key -n M-e new-window
       bind-key -n M-t next-window

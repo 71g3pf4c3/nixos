@@ -1,4 +1,12 @@
-{ config, pkgs, unstable, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  unstable,
+  lib,
+  inputs,
+  ...
+}:
+{
   programs.newsboat = {
     enable = true;
     autoReload = true;
@@ -67,6 +75,7 @@
       { url = "https://rsshub.app/telegram/channel/linkmeup_podcast"; }
       { url = "https://kubernetes.io/feed.xml"; }
       { url = "https://www.cncf.io/feed/"; }
+      { url = "https://rsshub.app/telegram/channel/KubernetesArchitect"; }
     ];
   };
 }
