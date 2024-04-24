@@ -28,7 +28,7 @@ in
          titlebar_padding 20 0
          exec dbus-sway-environment
          exec configure-gtk
-         for_window [app_id="waydroid.org.*"] floating enable
+         for_window [app_id="waydroid.*"] floating enable
     '';
     config = {
       startup = [
