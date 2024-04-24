@@ -11,8 +11,9 @@
     keybindings = {
       D = "delete";
       gh = "cd ${config.home.homeDirectory}";
+      gd = "cd ${config.home.homeDirectory}/tmp/downloads";
+      gp = "cd ${config.home.homeDirectory}/var/projects";
       gr = "cd /";
-      gp = "cd ${config.home.homeDirectory}/projects";
       o = "dragdrop";
       R = "bulk-rename";
       E = "edit";
