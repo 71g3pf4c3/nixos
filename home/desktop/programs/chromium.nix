@@ -1,6 +1,9 @@
 { config, pkgs, unstable, lib, inputs, ... }: {
   programs.chromium = {
     enable = true;
+    # commandLineArgs = [
+    #   "--ozone-platform-hint=wayland"
+    # ];
     extensions = [
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
       { id = "aleakchihdccplidncghkekgioiakgal"; } # h264ify
