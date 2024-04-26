@@ -1,11 +1,12 @@
 {
-  config,
   pkgs,
-  unstable,
   lib,
-  inputs,
   ...
 }:
+let
+  github = "https://github.com/";
+  rsshub = "https://rsshub.app/";
+in
 {
   programs.newsboat = {
     enable = true;
@@ -48,7 +49,7 @@
       notify-program "${lib.getExe pkgs.notify-desktop}"
     '';
     urls = [
-      { url = "https://www.opennet.ru/opennews/opennews_all_utf.rss"; }
+      # HackerNews
       { url = "https://hnrss.org/newest?count=80&q=NixOs+OR+nixos+OR+nix+OR+nixpkgs+OR+Nix+OR+nix"; }
       { url = "https://hnrss.org/newest?count=80&q=Go+OR+Golang+OR+GoLang"; }
       {
@@ -56,26 +57,34 @@
       }
       { url = "https://hnrss.org/newest?count=80&q=Cloud+OR+cloud"; }
       { url = "https://hnrss.org/best?count=80"; }
-      { url = "https://rsshub.app/telegram/channel/flant_ru"; }
-      { url = "https://rsshub.app/telegram/channel/open_source_friend"; }
-      { url = "https://rsshub.app/telegram/channel/black_triangle_tg"; }
-      { url = "https://rsshub.app/telegram/channel/bashdays"; }
-      { url = "https://rsshub.app/telegram/channel/k8security"; }
-      { url = "https://rsshub.app/telegram/channel/SysadminNotes"; }
-      { url = "https://rsshub.app/telegram/channel/k8sjust"; }
-      { url = "https://rsshub.app/telegram/channel/devopsforlove"; }
-      { url = "https://rsshub.app/telegram/channel/tech_b0lt_Genona"; }
-      { url = "https://rsshub.app/telegram/channel/sysadmin_tools"; }
-      { url = "https://rsshub.app/telegram/channel/ieucariot"; }
-      { url = "https://rsshub.app/telegram/channel/kubernetika"; }
-      { url = "https://rsshub.app/telegram/channel/owl_tech"; }
-      { url = "https://rsshub.app/telegram/channel/tazlog"; }
-      { url = "https://rsshub.app/telegram/channel/devopslibrary"; }
-      { url = "https://rsshub.app/telegram/channel/count0_digest"; }
-      { url = "https://rsshub.app/telegram/channel/linkmeup_podcast"; }
+
+      # Tech oss news
+      { url = "https://www.opennet.ru/opennews/opennews_all_utf.rss"; }
       { url = "https://kubernetes.io/feed.xml"; }
       { url = "https://www.cncf.io/feed/"; }
-      { url = "https://rsshub.app/telegram/channel/KubernetesArchitect"; }
+      { url = "https://www.phoronix.com/rss.php"; }
+      # Telegram channels
+      { url = rsshub+"telegram/channel" + "flant_ru"; }
+      { url = rsshub+"telegram/channel" + "open_source_friend"; }
+      { url = rsshub+"telegram/channel" + "black_triangle_tg"; }
+      { url = rsshub+"telegram/channel" + "bashdays"; }
+      { url = rsshub+"telegram/channel" + "k8security"; }
+      { url = rsshub+"telegram/channel" + "SysadminNotes"; }
+      { url = rsshub+"telegram/channel" + "k8sjust"; }
+      { url = rsshub+"telegram/channel" + "devopsforlove"; }
+      { url = rsshub+"telegram/channel" + "tech_b0lt_Genona"; }
+      { url = rsshub+"telegram/channel" + "sysadmin_tools"; }
+      { url = rsshub+"telegram/channel" + "ieucariot"; }
+      { url = rsshub+"telegram/channel" + "kubernetika"; }
+      { url = rsshub+"telegram/channel" + "owl_tech"; }
+      { url = rsshub+"telegram/channel" + "tazlog"; }
+      { url = rsshub+"telegram/channel" + "devopslibrary"; }
+      { url = rsshub+"telegram/channel" + "count0_digest"; }
+      { url = rsshub+"telegram/channel" + "linkmeup_podcast"; }
+      { url = "telegram/channel/KubernetesArchitect"; }
+      # Git releases
+      { url = github+"cluster-api/releases.atom"; }
+      { url = github+"kubernetes/kubernetes/releases.atom"; }
     ];
   };
 }
