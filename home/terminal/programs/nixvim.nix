@@ -1,10 +1,35 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ pkgs, lib, ... }:
+let
+  b64 = pkgs.vimUtils.buildVimPlugin {
+    name = "b64-nvim";
+    version = "unstable-2023-11-29";
+    src = pkgs.fetchFromGitHub {
+      owner = "taybart";
+      repo = "b64.nvim";
+      rev = "e93d1a7e065f6eaf5d3bae9efb9bc2c30907f471";
+      hash = "sha256-hbXtM5L5e5gC2L9Dgr5uN15/5Fau+arlWIMAqTHf+pk=";
+    };
+
+    meta = {
+      description = "Base64 encode and decode inside of neovim";
+      homepage = "https://github.com/taybart/b64.nvim";
+    };
+  };
+  ags = pkgs.vimUtils.buildVimPlugin {
+    name = "advanced-git-search-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "aaronhallaert";
+      repo = "advanced-git-search.nvim";
+      rev = "v1.1.0";
+      hash = "sha256-RPUXNn6oyZ/32o5MyMP+gXAUe6y/S5+JsiPFu0nI3Vo=";
+    };
+    meta = with lib; {
+      description = "Search your git history by commit message, content and author in Neovim";
+      homepage = "https://github.com/aaronhallaert/advanced-git-search.nvim";
+      license = licenses.asl20;
+    };
+  };
+in
 {
   programs.nixvim = {
     enable = true;
@@ -62,7 +87,7 @@
     };
 
     plugins = {
-      gitblame.enable = true;
+      # gitblame.enable = true;
       # gitgutter.enable = true;
       which-key.enable = true;
       lualine.enable = true;
@@ -132,7 +157,12 @@
       tmux-navigator.enable = true;
       project-nvim.enable = true;
       nix.enable = true;
-      gitsigns.enable = true;
+      gitsigns = {
+        enable = true;
+        settings = {
+          current_line_blame = true;
+        };
+      };
       fugitive.enable = true;
       # startup.enable = true;
       nvim-autopairs.enable = true;
@@ -303,6 +333,51 @@
         action = ":w !sed 's/.*: //g' | base64 -d | wl-copy<cr>";
         options = {
           desc = "copy decode base64";
+          silent = true;
+        };
+        mode = "v";
+      }
+      {
+        key = "<leader>u";
+        action = ":UndotreeToggle<cr>";
+        options = {
+          desc = "Toggle undotree";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<leader>gu";
+        action = ":Gitsigns udo_stage_hunk<cr>";
+        options = {
+          desc = "Untage hunk";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<leader>gh";
+        action = ":Gitsigns stage_hunk<cr>";
+        options = {
+          desc = "Stage hunk";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<leader>gu";
+        action = ":Gitsigns udo_stage_hunk<cr>";
+        options = {
+          desc = "Untage hunk";
+          silent = true;
+        };
+        mode = "v";
+      }
+      {
+        key = "<leader>gh";
+        action = ":Gitsigns stage_hunk<cr>";
+        options = {
+          desc = "Stage hunk";
           silent = true;
         };
         mode = "v";
@@ -537,6 +612,6 @@
         mode = "n";
       }
     ];
-    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim ];
+    extraPlugins = [ ags b64 ];
   };
 }
