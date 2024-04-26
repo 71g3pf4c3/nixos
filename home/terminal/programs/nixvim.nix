@@ -168,54 +168,54 @@ in
       nvim-autopairs.enable = true;
       surround.enable = true;
       indent-blankline.enable = true;
-      neorg = {
-        lazyLoading = true;
-        enable = true;
-        modules = {
-          "core.defaults" = {
-            __empty = null;
-          };
-          "core.integrations.treesitter" = {
-            __empty = null;
-          };
-          "core.looking-glass" = {
-            __empty = null;
-          };
-          "core.integrations.nvim-cmp" = {
-            __empty = null;
-          };
-          "core.ui" = {
-            __empty = null;
-          };
-          "core.export" = {
-            __empty = null;
-          };
-          "core.export.markdown" = {
-            __empty = null;
-          };
-          "core.concealer" = {
-            config = {
-              folds = true;
-              icon_preset = "varied";
-            };
-          };
-          "core.dirman" = {
-            config = {
-              workspaces = {
-                work = "~/projects/runity";
-              };
-            };
-          };
-          "core.completion" = {
-            config = {
-              engine = "nvim-cmp";
-            };
-          };
-          "core.journal" = {
-            __empty = null;
-          };
-        };
-      };
+      # neorg = {
+      #   lazyLoading = true;
+      #   enable = true;
+      #   modules = {
+      #     "core.defaults" = {
+      #       __empty = null;
+      #     };
+      #     "core.integrations.treesitter" = {
+      #       __empty = null;
+      #     };
+      #     "core.looking-glass" = {
+      #       __empty = null;
+      #     };
+      #     "core.integrations.nvim-cmp" = {
+      #       __empty = null;
+      #     };
+      #     "core.ui" = {
+      #       __empty = null;
+      #     };
+      #     "core.export" = {
+      #       __empty = null;
+      #     };
+      #     "core.export.markdown" = {
+      #       __empty = null;
+      #     };
+      #     "core.concealer" = {
+      #       config = {
+      #         folds = true;
+      #         icon_preset = "varied";
+      #       };
+      #     };
+      #     "core.dirman" = {
+      #       config = {
+      #         workspaces = {
+      #           work = "~/projects/runity";
+      #         };
+      #       };
+      #     };
+      #     "core.completion" = {
+      #       config = {
+      #         engine = "nvim-cmp";
+      #       };
+      #     };
+      #     "core.journal" = {
+      #       __empty = null;
+      #     };
+      #   };
+      # };
       telescope = {
         enable = true;
         highlightTheme = "gruvbox";
