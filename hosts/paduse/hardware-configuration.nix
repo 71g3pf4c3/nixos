@@ -49,8 +49,8 @@
       enable = true;
       device = "Lenovo ThinkPad Compact USB Keyboard with TrackPoint";
       emulateWheel = false;
-      sensitivity = 255;
-      speed = 200;
+      sensitivity = 182;
+      speed = 128;
     };
     cpu.intel.updateMicrocode =
       lib.mkDefault config.hardware.enableRedistributableFirmware;
