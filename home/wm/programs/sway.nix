@@ -24,11 +24,11 @@ in
       base = true;
     };
     extraConfig = ''
-         titlebar_border_thickness 0
-         titlebar_padding 20 0
-         exec dbus-sway-environment
-         exec configure-gtk
-         for_window [app_id="waydroid.*"] floating enable
+      titlebar_border_thickness 0
+      titlebar_padding 20 0
+      exec dbus-sway-environment
+      exec configure-gtk
+      for_window [app_id="waydroid.*"] floating enable
     '';
     config = {
       startup = [

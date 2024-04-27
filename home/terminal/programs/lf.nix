@@ -1,4 +1,12 @@
-{ config, pkgs, unstable, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  unstable,
+  lib,
+  inputs,
+  ...
+}:
+{
   programs.lf = {
     enable = true;
     settings = {
@@ -13,7 +21,7 @@
       gh = "cd ${config.home.homeDirectory}";
       gd = "cd ${config.home.homeDirectory}/tmp/downloads";
       gp = "cd ${config.home.homeDirectory}/var/projects";
-      gr = "cd /";
+      gr = "live-grep";
       o = "dragdrop";
       R = "bulk-rename";
       E = "edit";
@@ -24,9 +32,15 @@
       F = "$xdg-open $(${lib.getExe pkgs.fzf})";
       M = "push $mkdir<space>";
       Z = "zi";
+      S = "create-link";
     };
     commands = {
       open = "cmd open $xdg-open $fx";
+      live-grep = ''
+        ''${{
+          nvim -c ':lua require("telescope.builtin").live_grep()'
+        }}
+      '';
       on-cd = ''
         &{{
           zoxide add "$PWD"
@@ -36,6 +50,12 @@
       kubeapply = "	\${{\n			kubectl apply -f  \"$fx\"\n	}}\n";
       copy-path = "	\${{\n			printf \"$fx\" | ${pkgs.wl-clipboard}/bin/wl-copy \n	}}\n";
       dragdrop = "	\${{\n			printf '%s\\n' \"$fx\" | dragon -a -x -T -I \n	}}\n";
+      create-link = ''
+        ''${{
+          name="$(basename $fx)"
+          ln -s "$fx" "$name"
+        	}}
+      '';
       copy-content = ''
           ''${{
         cat $fx | ${pkgs.wl-clipboard}/bin/wl-copy
