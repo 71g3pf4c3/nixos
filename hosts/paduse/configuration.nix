@@ -22,7 +22,8 @@
   };
   networking.hostName = "paduse";
   networking.networkmanager.enable = true;
-  networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.enable = true;
   time.timeZone = "Europe/Moscow";
   nix.settings.auto-optimise-store = true;
   nix.optimise.automatic = true;
