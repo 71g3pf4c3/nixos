@@ -44,7 +44,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = false;
-                users.t1g3pf4c3.imports = [ ./home ./home/wm ];
+                users.t1g3pf4c3.imports = [ ./home ./home/paduse.nix ];
                 extraSpecialArgs = {
                   inherit inputs;
                 };
