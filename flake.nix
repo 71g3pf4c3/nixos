@@ -67,6 +67,7 @@
                 useUserPackages = false;
                 users.t1g3pf4c3.imports = [
                   ./home
+                  ./home/asuse.nix
                 ];
                 extraSpecialArgs = {
                   inherit inputs;
