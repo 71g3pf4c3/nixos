@@ -31,6 +31,26 @@ in
     '';
     config = {
       startup = [
+        {
+          command = "systemctl --user start blueman-applet";
+          always = true;
+        }
+        {
+          command = "systemctl --user start swayidle";
+          always = true;
+        }
+        {
+          command = "systemctl --user restart waybar";
+          always = true;
+        }
+        {
+          command = "systemctl --user start network-manager-applet";
+          always = true;
+        }
+        {
+          command = "systemctl --user start swaybg";
+          always = true;
+        }
       ];
       window = {
         hideEdgeBorders = "smart";

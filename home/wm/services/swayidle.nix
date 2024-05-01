@@ -17,11 +17,6 @@
           command = "${lib.getExe pkgs.light} -U 30";
           resumeCommand = "${lib.getExe pkgs.light} -A 30";
         }
-        {
-          timeout = 60 * 4;
-          command = ''${pkgs.sway}/bin/swaymsg "output * dpms off"'';
-          resumeCommand = ''${pkgs.sway}/bin/swaymsg "output * dpms on"'';
-        }
       ];
     };
 }

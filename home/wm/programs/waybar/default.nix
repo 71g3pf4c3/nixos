@@ -13,6 +13,7 @@ in
   programs.waybar = {
     enable = true;
     systemd.enable = true;
+    systemd.target = "sway-session.target";
     style = lib.concatStrings [
       ''
         * {
@@ -53,7 +54,6 @@ in
           "network"
           "cpu"
           "memory"
-          "temperature"
           "keyboard-state"
           "sway/language"
           "battery"
@@ -127,17 +127,11 @@ in
             ""
           ];
         };
-        "temperature" = {
-          "critical-threshold" = 80;
-          "format-critical" = "{temperatureC}°C {icon}";
-          "format" = "{temperatureC}°C {icon}";
-          "format-icons" = [ "" ];
-        };
         "pulseaudio" = {
           "scroll-step" = 1;
           "format" = "{volume}% {icon} {format_source}";
-          "format-bluetooth" = "{volume}% {icon} {format_source}";
-          "format-bluetooth-muted" = "🔇 {icon} {format_source}";
+          "format-bluetooth" = "{volume}% {icon}  {format_source}";
+          "format-bluetooth-muted" = "🔇 {icon}  {format_source}";
           "format-muted" = "🔇 {format_source}";
           "format-source" = "{volume}% ";
           "format-source-muted" = "";
@@ -156,7 +150,7 @@ in
           };
         };
         "network" = {
-          "format-wifi" = "{essid} ({signalStrength}%) ";
+          "format-wifi" = "({signalStrength}%) ";
           "format-ethernet" = "{ipaddr}/{cidr} ";
           "tooltip-format" = "{ifname} via {gwaddr} ";
           "format-linked" = "{ifname} (No IP) ";
