@@ -612,6 +612,9 @@ in
         mode = "n";
       }
     ];
-    extraPlugins = [ ags b64 ];
+    extraPlugins = [
+      ags
+      b64
+    ];
   };
 }
