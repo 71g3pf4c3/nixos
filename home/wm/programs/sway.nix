@@ -23,43 +23,14 @@ in
       gtk = true;
       base = true;
     };
+    xwayland = true;
     extraConfig = ''
       titlebar_border_thickness 0
       titlebar_padding 20 0
-      exec dbus-sway-environment
-      exec configure-gtk
       for_window [app_id="waydroid.*"] floating enable
     '';
     config = {
       startup = [
-        {
-          command = "systemctl --user start xdg-desktop-portal";
-          always = true;
-        }
-        {
-          command = "systemctl --user start xdg-desktop-portal-wlr";
-          always = true;
-        }
-        {
-          command = "systemctl --user start blueman-applet";
-          always = true;
-        }
-        {
-          command = "systemctl --user start swayidle";
-          always = true;
-        }
-        {
-          command = "systemctl --user restart waybar";
-          always = true;
-        }
-        {
-          command = "systemctl --user start network-manager-applet";
-          always = true;
-        }
-        {
-          command = "systemctl --user start swaybg";
-          always = true;
-        }
       ];
       window = {
         hideEdgeBorders = "smart";

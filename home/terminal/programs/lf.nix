@@ -21,7 +21,7 @@
       gh = "cd ${config.home.homeDirectory}";
       gd = "cd ${config.home.homeDirectory}/tmp/downloads";
       gp = "cd ${config.home.homeDirectory}/var/projects";
-      gr = "live-grep";
+      x = "live-grep";
       o = "dragdrop";
       R = "bulk-rename";
       E = "edit";

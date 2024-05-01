@@ -1,18 +1,14 @@
+{ pkgs, ... }:
 {
-  config,
-  pkgs,
-  unstable,
-  lib,
-  inputs,
-  ...
-}:
-{
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-    ];
-    config.common.default = "*";
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-wlr
+  #   ];
+  #   config.common = {
+  #     default = "gtk";
+  #     "freedesktop.impl.portal.Screenshot" = "wlr";
+  #     "freedesktop.impl.portal.ScreenCast" = "wlr";
+  #   };
+  # };
 }
