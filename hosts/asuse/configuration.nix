@@ -191,10 +191,8 @@
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
 
-    offload = {
+    sync = {
       enable = true;
-      enableOffloadCmd = true;
-
     };
 
   };

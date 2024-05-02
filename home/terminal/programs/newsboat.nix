@@ -19,12 +19,12 @@ in
        color article             color237   color0
 
        # highlights
-      # highlight article "^(Feed|Link):.*$" color11 default bold
-      # highlight article "^(Title|Date|Author):.*$" color11 default bold
-      # highlight article "https?://[^ ]+" color2 default underline
-      # highlight article "\\[[0-9]+\\]" color2 default bold
-      # highlight article "\\[image\\ [0-9]+\\]" color2 default bold
-      # highlight feedlist "^─.*$" color6 color6 bold
+       highlight article "^(Feed|Link):.*$" color11 default bold
+       highlight article "^(Title|Date|Author):.*$" color11 default bold
+       highlight article "https?://[^ ]+" color2 default underline
+       highlight article "\\[[0-9]+\\]" color2 default bold
+       highlight article "\\[image\\ [0-9]+\\]" color2 default bold
+       highlight feedlist "^─.*$" color6 color6 bold
 
        # unbind keys
        unbind-key ENTER
