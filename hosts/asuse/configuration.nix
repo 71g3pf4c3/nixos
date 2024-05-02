@@ -5,7 +5,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -118,6 +119,8 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git
     wget
+    mangohud
+    protonup
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -149,11 +152,11 @@
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+  programs.gamemode.enable = true;
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -194,6 +197,5 @@
     sync = {
       enable = true;
     };
-
   };
 }
