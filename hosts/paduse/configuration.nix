@@ -145,9 +145,9 @@
         main = {
           capslock = "overload(control, esc)";
           rightalt = "layer(rightalt)";
-          control = "oneshot(control)";
+          # control = "oneshot(control)";
           alt = "oneshot(alt)";
-          shift = "oneshot(shift)";
+          # shift = "oneshot(shift)";
           meta = "oneshot(meta)";
         };
         rightalt = {
