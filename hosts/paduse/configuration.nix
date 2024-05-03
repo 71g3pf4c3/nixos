@@ -137,7 +137,25 @@
   system.stateVersion = "23.11"; # Did you read the comment?
   services.udisks2.enable = true;
   services.guix.enable = false;
-  programs.sway = {
+  services.keyd = {
     enable = true;
+    keyboards.default = {
+      ids = [ "*" ];
+      settings = {
+        main = {
+          capslock = "overload(control, esc)";
+          rightalt = "layer(rightalt)";
+          control = "oneshot(control)";
+          shift = "oneshot(shift)";
+          meta = "oneshot(meta)";
+        };
+        rightalt = {
+          h = "left";
+          j = "down";
+          k = "up";
+          l = "right";
+        };
+      };
+    };
   };
 }

@@ -153,7 +153,7 @@ in
       input = {
         "*" = {
           xkb_layout = "us,ru";
-          xkb_options = "caps:swapescape,grp:win_space_toggle"; # map caps to escape.
+          xkb_options = "grp:win_space_toggle"; # map caps to escape.
         };
         "type:touchpad" = {
           natural_scroll = "enabled";
