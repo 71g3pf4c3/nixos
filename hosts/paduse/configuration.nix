@@ -146,6 +146,7 @@
           capslock = "overload(control, esc)";
           rightalt = "layer(rightalt)";
           control = "oneshot(control)";
+          alt = "oneshot(alt)";
           shift = "oneshot(shift)";
           meta = "oneshot(meta)";
         };
