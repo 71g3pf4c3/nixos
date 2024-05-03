@@ -155,6 +155,8 @@
           j = "down";
           k = "up";
           l = "right";
+          u = "PageUp";
+          d = "PageDown";
         };
       };
     };

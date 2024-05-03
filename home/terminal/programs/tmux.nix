@@ -56,7 +56,7 @@
       set-option -g renumber-windows on
       set-option -g status-position top
       set-option -g status-justify left
-      bind-key q set status
+      bind-key s set status
       # only show status bar if there is more then one window
       set -g status on
       set-option -g status-interval 5

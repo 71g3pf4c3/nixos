@@ -2,6 +2,7 @@
   imports = [ ./wm ];
   home.packages = with pkgs; [
     comma
+    easyeffects
     manix
     nh
     nvd

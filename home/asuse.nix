@@ -8,6 +8,7 @@
     telegram-desktop
     nh
     nvd
+    easyeffects
     # kubectl
     # fd
     # tmux-xpanes
