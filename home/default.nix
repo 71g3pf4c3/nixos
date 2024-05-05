@@ -12,7 +12,7 @@
     inputs.nix-colors.homeManagerModules.default
     ./terminal
     ./desktop
-    ./colors
+    ./appearance/colors
     ./home.nix
     ./xdg.nix
   ];

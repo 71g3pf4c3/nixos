@@ -87,6 +87,7 @@ in
       { url = github + "rothgar/awesome-tmux/commits/master.atom"; }
       { url = github + "nix-community/awesome-nix/commits/master.atom"; }
       { url = github + "ramitsurana/awesome-kubernetes/commits/master.atom"; }
+      { url = github + "kubernetes-sigs/cluster-api-provider-openstack/releases.atom"; }
     ];
   };
 }
