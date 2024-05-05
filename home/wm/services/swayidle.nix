@@ -1,6 +1,7 @@
 { config, pkgs, unstable, lib, inputs, ... }: {
     services.swayidle = {
       enable = true;
+      systemdTarget = "sway-session.target";
       events = [
         {
           event = "before-sleep";
@@ -14,8 +15,12 @@
         }
         {
           timeout = 60 * 2;
-          command = "${lib.getExe pkgs.light} -U 30";
-          resumeCommand = "${lib.getExe pkgs.light} -A 30";
+          command = "${lib.getExe pkgs.brightnessctl} set 10%-";
+          resumeCommand = "${lib.getExe pkgs.brightnessctl} set 10%+";
+        }
+        {
+          timeout = 60 * 10;
+          command = "systemctl suspend";
         }
       ];
     };

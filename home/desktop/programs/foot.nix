@@ -7,7 +7,7 @@
   ...
 }:
 let
-  font = " ComicShannsMono Nerd Font Mono";
+  font = "Comic Code Ligatures";
 in
 {
   programs.foot = {
@@ -17,7 +17,7 @@ in
       main = {
         term = "xterm-256color";
         font = "${font}:size=9";
-        dpi-aware = "yes";
+        dpi-aware = "no";
         shell = "${lib.getExe pkgs.zsh}";
       };
       mouse = {
