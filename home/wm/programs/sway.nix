@@ -110,8 +110,8 @@ in
           modifier = config.wayland.windowManager.sway.config.modifier;
         in
         lib.mkOptionDefault {
-          "XF86MonBrightnessUp" = "exec sudo ${lib.getExe pkgs.brightnessctl} set 5%+";
-          "XF86MonBrightnessDown" = "exec sudo ${lib.getExe pkgs.brightnessctl} set 5%-";
+          "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set 5%+";
+          "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.brightnessctl} set 5%-";
           "XF86AudioRaiseVolume" = "exec ${lib.getExe pkgs.pamixer} --allow-boost -i 5";
           "XF86AudioLowerVolume" = "exec ${lib.getExe pkgs.pamixer} --allow-boost -d 5";
           "XF86AudioMute" = "exec ${lib.getExe pkgs.pamixer} --toggle-mute";
