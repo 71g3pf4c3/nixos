@@ -31,8 +31,19 @@ let
   };
 in
 {
+  home.packages = with pkgs; [
+    shellcheck
+    shellharden
+    nixfmt-rfc-style
+    codespell
+    luajitPackages.lua-utils-nvim
+    stylua
+    tree-sitter
+  ];
   programs.nixvim = {
     enable = true;
+    # performance.combinePlugins.enable = true;
+    # performance.byteCompileLua.enable = true;
     colorschemes.gruvbox = {
       enable = true;
       settings = {
@@ -87,10 +98,32 @@ in
     };
 
     plugins = {
+      web-devicons.enable = true;
       # gitblame.enable = true;
       # gitgutter.enable = true;
+      # zk = {
+      #   enable = true;
+      #   picker = "telescope";
+      #   lsp = {
+      #     autoAttach.enabled = true;
+      #     config.cmd = [
+      #       "zk"
+      #       "lsp"
+      #     ];
+      #   };
+      # };
       which-key.enable = true;
-      lualine.enable = true;
+      lualine = {
+        enable = true;
+        extensions = [
+          "fzf"
+          "nvim-tree"
+          "lazy"
+          "nvim-tree"
+          "fugitive"
+          "ctrlspace"
+        ];
+      };
       transparent.enable = true;
       cmp = {
         enable = true;
@@ -166,7 +199,7 @@ in
       fugitive.enable = true;
       # startup.enable = true;
       nvim-autopairs.enable = true;
-      surround.enable = true;
+      vim-surround.enable = true;
       indent-blankline.enable = true;
       # neorg = {
       #   lazyLoading = true;
@@ -219,6 +252,23 @@ in
       telescope = {
         enable = true;
         highlightTheme = "gruvbox";
+        extensions = {
+          advanced-git-search.enable = true;
+        };
+      };
+      avante = {
+        enable = false;
+        # provider ="ollama";
+        # settings = {
+        #   vendors = {
+        #     deepseek = {
+        #       __inherited_from = "openai";
+        #       api_key_name = "DEEPSEEK_API_KEY";
+        #       endpoint = "https://api.deepseek.com";
+        #       model = "deepseek-coder";
+        #     };
+        #   };
+        # };
       };
       clipboard-image = {
         enable = true;
@@ -227,8 +277,8 @@ in
       bufferline.enable = true;
       comment.enable = true;
       luasnip.enable = true;
-      nvim-colorizer.enable = true;
-      # sniprun.enable = true;
+      colorizer.enable = true;
+      sniprun.enable = true;
       treesitter-context.enable = true;
       treesitter-textobjects.enable = true;
       treesitter-refactor.enable = true;
@@ -236,16 +286,34 @@ in
       treesitter = {
         enable = true;
         ensureInstalled = "all";
+        settings = {
+          highlight = {
+            enable = true;
+            additional_vim_regex_highlighting = true;
+          };
+          sync_install = true;
+          indent = {
+            enable = true;
+          };
+          incremental_selection = {
+            enable = true;
+            keymaps = {
+              init_selection = false;
+              node_decremental = "grm";
+              node_incremental = "grn";
+              scope_incremental = "grc";
+            };
+          };
+        };
+
       };
       lsp-lines.enable = true;
-      lsp-format.enable = true;
+      # lsp-format = {
+      #   enable = true;
+      #   # lspServersToEnable = [ "all" ];
+      # };
       conform-nvim = {
         enable = true;
-        formatOnSave = ''
-          function()
-             require("conform").format({ async = true, lsp_fallback = true, range = range })
-          end
-        '';
         formattersByFt = {
           lua = [ "stylua" ];
           python = [
@@ -255,6 +323,9 @@ in
           nix = [
             "nixfmt"
             "alejandra"
+          ];
+          puppet = [
+            "puppet-lint"
           ];
           sh = [
             "shellcheck"
@@ -286,15 +357,41 @@ in
       lsp = {
         enable = true;
         servers = {
-          ansiblels.enable = true;
-          helm-ls.enable = true;
+          # ansiblels.enable = true;
+          helm-ls = {
+            enable = true;
+            filetypes = [
+              "yaml"
+              "yml"
+              "tpl"
+            ];
+          };
           gopls.enable = true;
-          yamlls.enable = true;
+          # yamlls.enable = true;
           nixd.enable = true;
           sqls.enable = true;
           terraformls.enable = true;
           dockerls.enable = true;
-          pylsp.enable = true;
+          puppet = {
+            enable = true;
+            package = pkgs.puppet;
+
+          };
+          pylsp = {
+            enable = true;
+            settings = {
+              plugins = {
+                flake8 = {
+                  enabled = true;
+                  ignore = [ "E501" ];
+                };
+                black.enabled = true;
+                ruff.enabled = true;
+              };
+
+            };
+          };
+          pyright.enable = true;
         };
       };
     };
@@ -342,6 +439,24 @@ in
         action = ":UndotreeToggle<cr>";
         options = {
           desc = "Toggle undotree";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<leader>gdl";
+        action = ":AdvancedGitSearch diff_commit_line<cr>";
+        options = {
+          desc = "Diff commit line";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<leader>gdf";
+        action = ":AdvancedGitSearch diff_commit_file<cr>";
+        options = {
+          desc = "Diff commit file";
           silent = true;
         };
         mode = "n";
@@ -500,15 +615,6 @@ in
         };
       }
       {
-        key = "<leader>x";
-        lua = true;
-        action = ''function() require("telescope.builtin").current_buffer_fuzzy_find() end'';
-        options = {
-          desc = "Fuzzy find";
-          silent = true;
-        };
-      }
-      {
         key = "<leader>m";
         lua = true;
         action = ''function() require("telescope.builtin").marks() end'';
@@ -613,7 +719,12 @@ in
       }
     ];
     extraPlugins = [
-      ags
+      # {
+      #   plugin = ags;
+      #   # config = ''
+      #   #   require("telescope").load_extension("advanced_git_search")
+      #   # '';
+      # }
       b64
     ];
   };

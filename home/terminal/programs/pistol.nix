@@ -1,4 +1,12 @@
-{ config, pkgs, unstable, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  unstable,
+  lib,
+  inputs,
+  ...
+}:
+{
   programs.pistol = {
     enable = true;
     associations = [
@@ -50,17 +58,13 @@
         fpath = ".*.tar.*";
         command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.gnutar} -tavf %pistol-filename%";
       }
-      {
-        fpath = ".*.torrent";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.nodePackages.webtorrent-cli} info %pistol-filename%";
-      }
+      # {
+      #   fpath = ".*.torrent";
+      #   command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.nodePackages.webtorrent-cli} info %pistol-filename%";
+      # }
       {
         mime = "image/*";
         command = "sh: ${lib.getExe pkgs.chafa} -O 9 --passthrough tmux %pistol-filename%";
-      }
-      {
-        mime = "video/*";
-        command = "sh: ${lib.getExe pkgs.termplay} -q %pistol-filename%";
       }
       {
         mime = "application/*";

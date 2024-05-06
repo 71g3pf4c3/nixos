@@ -13,8 +13,8 @@
       {
         contents = {
           user = {
-            email = "mkungurov@runity.ru";
-            name = "Кунгуров Макар Евгеньевич";
+            email = "kungurov.m@selectel.ru";
+            name = "Makar Kungurov";
           };
         };
       }
@@ -28,7 +28,7 @@
       }
     ];
     delta = {
-      enable = true;
+      enable = false;
       options = {
         side-by-side = true;
         line-numbers = true;

@@ -62,6 +62,7 @@
     '';
     shellAliases = {
       "kubectl" = "${lib.getExe pkgs.kubecolor}";
+      "psg" = "tr -dc A-Za-z0-9 </dev/urandom | head -c 24; echo";
       "pp" = "pistol";
       "nx" = "nix shell";
       "fe" = "nvim $(fzf)";
@@ -74,7 +75,6 @@
       "clip" = "${pkgs.wl-clipboard}/bin/wl-copy";
       "cp" = "${lib.getExe pkgs.rsync} -azsP";
       "grep" = "${lib.getExe pkgs.ripgrep}";
-      "docker" = "${lib.getExe pkgs.podman}";
       "show" = "${lib.getExe pkgs.chafa}";
       "wifiscan" = "nmcli dev wifi rescan && nmcli dev wifi list";
       "open" = "xdg-open";
@@ -86,7 +86,8 @@
         ${lib.getExe pkgs.bat} --no-pager\
         && ${lib.getExe pkgs.nh} os switch ~/etc/nixos --ask &&\
         ${lib.getExe pkgs.git} commit ~/etc/nixos && ${lib.getExe pkgs.git} push &&\
-        ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000
+        ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000 && \
+        ${lib.getExe pkgs.nh} clean all --keep=4
       '';
     };
     defaultKeymap = "viins";

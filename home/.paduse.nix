@@ -1,13 +1,24 @@
-{ config, pkgs, unstable, lib, inputs, ... }: {
-  imports = [ ./wm ];
+{
+  config,
+  pkgs,
+  unstable,
+  lib,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ./wm
+    ./tools
+  ];
   home.packages = with pkgs; [
     comma
-    easyeffects
     manix
     nh
     nvd
     ncdu
     telegram-desktop
+    wl-clipboard
     libsixel
     termplay
     kubectl
@@ -20,19 +31,16 @@
     postgresql
     mysql80
     webcord-vencord
+    # webcord
+    vesktop
     zoom-us
     popeye
     dig
-    nodePackages.webtorrent-cli
+    # nodePackages.webtorrent-cli
     sxiv
     qbittorrent
     libreoffice
     drawio
-    k8sgpt
-    kube-capacity
-    kubectl-tree
-    kubectl-node-shell
-    kubernetes-helm
     cargo
     nodejs
     buku
@@ -52,7 +60,7 @@
     shellharden
     yq-go
     codespell
-    gptcommit
+    # gptcommit
     aichat
     python311Packages.pyclip
     nix-index
@@ -121,4 +129,16 @@
     # discord
     # thunderbird
   ];
+
+  services.flatpak.enable = true;
+  services.flatpak.remotes = [
+    {
+      name = "flathub";
+      location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    }
+  ];
+  services.flatpak.packages = [
+    "org.apache.directory.studio"
+  ];
+
 }

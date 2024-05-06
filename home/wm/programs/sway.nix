@@ -137,14 +137,17 @@ in
           "${modifier}+n" = "focus mode_toggle";
           "${modifier}+p" = "exec ${lib.getExe pkgs.rofi-wayland} -show drun";
           "${modifier}+Tab" = "exec ${lib.getExe pkgs.rofi-wayland} -show window";
-          "${modifier}+v" = "exec ${lib.getExe pkgs.cliphist} list | rofi -dmenu | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy ";
+          "${modifier}+v" =
+            "exec ${lib.getExe pkgs.cliphist} list | rofi -dmenu | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy ";
           "Print" = ''
             exec ${lib.getExe pkgs.sway-contrib.grimshot} save screen - | ${lib.getExe pkgs.satty} --filename - --early-exit --fullscreen --copy-command ${pkgs.wl-clipboard}/bin/wl-copy
           '';
           "Control+Print" = ''
             exec ${lib.getExe pkgs.sway-contrib.grimshot} save area - | ${lib.getExe pkgs.satty} --filename - --early-exit --copy-command ${pkgs.wl-clipboard}/bin/wl-copy
           '';
-          "${modifier}+Shift+Escape" = "exec ${lib.getExe pkgs.swaylock} -fF";
+          "${modifier}+Shift+Escape" =
+            "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} -u";
+          "F9" = "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} -u";
           "${modifier}+Control+Shift+h" = "move workspace to output left";
           "${modifier}+Control+Shift+l" = "move workspace to output right";
           "${modifier}+Control+Shift+k" = "move workspace to output up";

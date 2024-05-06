@@ -7,10 +7,9 @@
   ...
 }:
 {
-  imports = [ ./sway.nix ];
   documentation.man = {
-    enable = true;
-    generateCaches = true;
+    enable = false;
+    generateCaches = false;
   };
   nix.settings.experimental-features = [ "nix-command flakes" ];
   nixpkgs.config.allowUnfree = true;
@@ -18,12 +17,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernel.sysctl = {
-    "net.ipv4.ip_unprivileged_port_start" = 80;
+    "net.ipv4.ip_unprivileged_port_start" = 0;
   };
   networking.hostName = "paduse";
   networking.networkmanager.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.enable = true;
+  networking.firewall.allowPing = true;
   time.timeZone = "Europe/Moscow";
   nix.settings.auto-optimise-store = true;
   nix.optimise.automatic = true;
@@ -37,18 +37,36 @@
     keep-derivations = false
   '';
   networking.extraHosts = ''
-    127.0.0.1:80 kind
-    127.0.0.1:443 kind
+    127.0.0.1 kind
+    127.0.0.1 kind
+    172.18.0.6 grafana
+    172.18.0.6 victoriametrics
+    172.18.0.6 clickhouse
+    172.18.0.6 ingress
+    172.18.0.6 kind
+    172.18.0.6 victoriametrics
+    172.18.0.6 otlp-grpc.ingress 
+    172.18.0.6 otlp-http.ingress
   '';
   i18n.defaultLocale = "en_US.UTF-8";
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [ ];
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
   hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
   services.xserver = {
     enable = true;
     desktopManager.xterm.enable = false;
   };
-  services.displayManager.defaultSession = "sway";
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    defaultSession = "sway";
+  };
   security.polkit.enable = true;
   services.printing.enable = true;
   programs.zsh.enable = true;
@@ -122,14 +140,13 @@
       };
     };
   };
-  powerManagement = {
-    enable = true;
-  };
   virtualisation = {
     waydroid.enable = true;
+    docker = {
+      enable = true;
+    };
     podman = {
       enable = true;
-      dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
     libvirtd.enable = true;
@@ -137,28 +154,71 @@
   system.stateVersion = "23.11"; # Did you read the comment?
   services.udisks2.enable = true;
   services.guix.enable = false;
-  services.keyd = {
-    enable = true;
-    keyboards.default = {
-      ids = [ "*" ];
-      settings = {
-        main = {
-          capslock = "overload(control, esc)";
-          rightalt = "layer(rightalt)";
-          # control = "oneshot(control)";
-          alt = "oneshot(alt)";
-          # shift = "oneshot(shift)";
-          meta = "oneshot(meta)";
-        };
-        rightalt = {
-          h = "left";
-          j = "down";
-          k = "up";
-          l = "right";
-          u = "PageUp";
-          d = "PageDown";
-        };
-      };
-    };
-  };
+  # services.monero = {
+  #   enable = true;
+  #   mining = {
+  #     enable = true;
+  #     address = "49gjMmiHFkoXh73R8e5TopGHQ4PaGuambUuh1PYbaJ51Xfafz4XBdPRBcxxG3akKnCTdgQvWqB1hrSbqtvhW8qJwDSryQSP";
+  #   };
+  # };
+  # services.keyd = {
+  #   enable = true;
+  #   keyboards.default = {
+  #     ids = [ "*" ];
+  #     settings = {
+  #       main = {
+  #         capslock = "overload(control, esc)";
+  #         rightalt = "layer(rightalt)";
+  #         # control = "oneshot(control)";
+  #         # alt = "oneshot(alt)";
+  #         # shift = "oneshot(shift)";
+  #         # meta = "oneshot(meta)";
+  #       };
+  #       rightalt = {
+  #         h = "left";
+  #         j = "down";
+  #         k = "up";
+  #         l = "right";
+  #         u = "PageUp";
+  #         d = "PageDown";
+  #       };
+  #     };
+  #   };
+  # };
+  hardware.uinput.enable = true;
+  users.groups.uinput.members = [ "t1g3pf4c3" ];
+  users.groups.input.members = [ "t1g3pf4c3" ];
+
+  # services.samba = {
+  #   enable = true;
+  #   securityType = "user";
+  #   openFirewall = true;
+  #   settings = {
+  #     global = {
+  #       "workgroup" = "WORKGROUP";
+  #       "server string" = "smbnix";
+  #       "netbios name" = "smbnix";
+  #       "security" = "user";
+  #       #"use sendfile" = "yes";
+  #       #"max protocol" = "smb2";
+  #       # note: localhost is the ipv6 localhost ::1
+  #       "hosts allow" = "192.168.1. 192.168.0. 127.0.0.1 localhost";
+  #       "hosts deny" = "0.0.0.0/0";
+  #       "guest account" = "nobody";
+  #       "map to guest" = "bad user";
+  #     };
+  #     "public" = {
+  #       "path" = "/home/t1g3pf4c3/var/local/share";
+  #       "browseable" = "yes";
+  #       "read only" = "no";
+  #       "guest ok" = "yes";
+  #       "create mask" = "0644";
+  #       "public" = "yes";
+  #       "directory mask" = "0755";
+  #       "force user" = "t1g3pf4c3";
+  #       "force group" = "wheel";
+  #     };
+  #   };
+  # };
+  # networking.firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
 }

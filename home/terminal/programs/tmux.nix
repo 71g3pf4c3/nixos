@@ -112,7 +112,7 @@
       bind-key -n M-y if-shell -F '#{==:#{session_name},kubectx}' {
         kill-session -t kubectx
       } {
-        display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubectx"
+        display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${lib.getExe pkgs.kubectx}"
       }
       bind-key -n M-n if-shell -F '#{==:#{session_name},news}' {
         detach-client
@@ -138,29 +138,26 @@
         plugin = tmuxPlugins.better-mouse-mode;
         extraConfig = "	set -g @scroll-down-exit-copy-mode 'off'\n	set -g @emulate-scroll-for-no-mouse-alternate-buffer 'on'\n";
       }
-      {
-        plugin = tmuxPlugins.mkTmuxPlugin {
-          pluginName = "tmux-ssh-split";
-          rtpFilePath = "ssh-split.tmux";
-          version = "bccb77f";
-          src = pkgs.fetchFromGitHub {
-            owner = "pschmitt";
-            repo = "tmux-ssh-split";
-            rev = "bccb77fa45077763967978a32dc401767f170248";
-            sha256 = "sha256-Z16laz2Xeyg4/eCbS5qqXxLB6xpADvHWKWlfJqLYO/k=";
-          };
-        };
-        extraConfig = ''
-          set -g @ssh-split-v-key '-n M-_'
-          set -g @ssh-split-h-key '-n M-|'
-        '';
-      }
+      # {
+      #   plugin = tmuxPlugins.mkTmuxPlugin {
+      #     pluginName = "tmux-tilit";
+      #     rtpFilePath = "tilit.tmux";
+      #     version = "9d59671";
+      #     src = fetchFromGitHub {
+      #       owner = "pschmitt";
+      #       repo = "tmux-tilit";
+      #       rev = "9d59671c204a2e332adc0f4b7d29a8d7459e3d09";
+      #       sha256 = "sha256-RDbdRSJoLiEAplWXR1nn/eeEWQ4kNMJyovqEQ8GeIhs=";
+      #     };
+      #   };
+      #   extraConfig = '''';
+      # }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
           pluginName = "tmux-session-wizard";
           version = "e13c4c4";
           rtpFilePath = "session-wizard.tmux";
-          src = pkgs.fetchFromGitHub {
+          src = fetchFromGitHub {
             owner = "27medkamal";
             repo = "tmux-session-wizard";
             rev = "e13c4c47c72039b3bcf2706ecf428b099c00b215";
@@ -173,7 +170,7 @@
         plugin = tmuxPlugins.mkTmuxPlugin {
           pluginName = "mode-indicator";
           version = "7027903";
-          src = pkgs.fetchFromGitHub {
+          src = fetchFromGitHub {
             owner = "MunifTanjim";
             repo = "tmux-mode-indicator";
             rev = "7027903adca37c54cb8f5fa99fc113b11c23c2c4";

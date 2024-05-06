@@ -30,7 +30,8 @@
       R = "bulk-rename";
       E = "edit";
       C = "copy-content";
-      K = "kubeapply";
+      KK = "kubeapply";
+      KD = "kubedelete";
       f = "copy-path";
       T = "mkfile";
       F = "$xdg-open $(${lib.getExe pkgs.fzf})";
@@ -50,10 +51,16 @@
           zoxide add "$PWD"
         }}
       '';
-      zi = "	\${{\n			zoxide query --interactive | cd \n	}}\n";
-      kubeapply = "	\${{\n			kubectl apply -f  \"$fx\"\n	}}\n";
+      zi = ''
+        ''${{
+        result=$(${lib.getExe pkgs.zoxide} query --interactive)
+        cd -- $result
+        }}
+      '';
+      kubeapply = "	\${{\n			${lib.getExe pkgs.kubectl} apply -f  \"$fx\"\n	}}\n";
+      kubedelete = "	\${{\n			${lib.getExe pkgs.kubectl} delete -f  \"$fx\"\n	}}\n";
       copy-path = "	\${{\n			printf \"$fx\" | ${pkgs.wl-clipboard}/bin/wl-copy \n	}}\n";
-      dragdrop = "	\${{\n			printf '%s\\n' \"$fx\" | dragon -a -x -T -I \n	}}\n";
+      dragdrop = "	\${{\n			printf '%s\\n' \"$fx\" | ${lib.getExe pkgs.xdragon} -a -x -T -I \n	}}\n";
       create-link = ''
         ''${{
           name="$(basename $fx)"
