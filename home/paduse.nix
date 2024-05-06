@@ -8,6 +8,7 @@
     nvd
     ncdu
     telegram-desktop
+    wl-clipboard
     libsixel
     termplay
     kubectl
