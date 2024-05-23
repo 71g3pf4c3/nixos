@@ -74,7 +74,6 @@
       "clip" = "${pkgs.wl-clipboard}/bin/wl-copy";
       "cp" = "${lib.getExe pkgs.rsync} -azsP";
       "grep" = "${lib.getExe pkgs.ripgrep}";
-      "docker" = "${lib.getExe pkgs.podman}";
       "show" = "${lib.getExe pkgs.chafa}";
       "wifiscan" = "nmcli dev wifi rescan && nmcli dev wifi list";
       "open" = "xdg-open";

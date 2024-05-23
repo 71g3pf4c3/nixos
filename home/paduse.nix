@@ -1,4 +1,12 @@
-{ config, pkgs, unstable, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  unstable,
+  lib,
+  inputs,
+  ...
+}:
+{
   imports = [ ./wm ];
   home.packages = with pkgs; [
     comma
@@ -20,7 +28,9 @@
     tree-sitter
     postgresql
     mysql80
-    webcord-vencord
+    # webcord-vencord
+    # webcord
+    vesktop
     zoom-us
     popeye
     dig

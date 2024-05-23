@@ -10,13 +10,9 @@
     documents = "${config.home.homeDirectory}/var/docs";
   };
   xdg.desktopEntries = {
-    chromiumWayland = {
-      name = "Chromium WL";
-      exec = "${lib.getExe pkgs.chromium}  --ozone-platform-hint=wayland";
-    };
-    webcordWayland = {
-      name = "WebCord WL";
-      exec = "${lib.getExe pkgs.webcord}  --ozone-platform-hint=wayland";
+    vesktop = {
+      name = "Vesktop";
+      exec = "${lib.getExe pkgs.vesktop}";
     };
   };
 }

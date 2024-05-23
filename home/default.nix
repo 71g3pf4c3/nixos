@@ -10,6 +10,8 @@
     inputs.nixvim.homeManagerModules.nixvim
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.nix-colors.homeManagerModules.default
+    inputs.nix-colors.homeManagerModules.default
+    inputs.xremap-flake.homeManagerModules.default
     ./terminal
     ./desktop
     ./appearance/colors

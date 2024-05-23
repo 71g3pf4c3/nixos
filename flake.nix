@@ -11,6 +11,10 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     stylix.url = "github:danth/stylix";
+    xremap-flake = {
+      url = "github:xremap/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -22,6 +26,7 @@
       nixpkgs,
       home-manager,
       nixos-hardware,
+      xremap-flake,
       nixvim,
       stylix,
       self,
@@ -44,7 +49,10 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = false;
-                users.t1g3pf4c3.imports = [ ./home ./home/paduse.nix ];
+                users.t1g3pf4c3.imports = [
+                  ./home
+                  ./home/paduse.nix
+                ];
                 extraSpecialArgs = {
                   inherit inputs;
                 };

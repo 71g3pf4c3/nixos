@@ -48,7 +48,7 @@
     enable = true;
     desktopManager.xterm.enable = false;
   };
-  services.displayManager.defaultSession = "sway";
+  services.xserver.displayManager.defaultSession = "sway";
   security.polkit.enable = true;
   services.printing.enable = true;
   programs.zsh.enable = true;
@@ -127,9 +127,11 @@
   };
   virtualisation = {
     waydroid.enable = true;
+    docker = {
+      enable = true;
+    };
     podman = {
       enable = true;
-      dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
     libvirtd.enable = true;
@@ -137,28 +139,31 @@
   system.stateVersion = "23.11"; # Did you read the comment?
   services.udisks2.enable = true;
   services.guix.enable = false;
-  services.keyd = {
-    enable = true;
-    keyboards.default = {
-      ids = [ "*" ];
-      settings = {
-        main = {
-          capslock = "overload(control, esc)";
-          rightalt = "layer(rightalt)";
-          # control = "oneshot(control)";
-          alt = "oneshot(alt)";
-          # shift = "oneshot(shift)";
-          meta = "oneshot(meta)";
-        };
-        rightalt = {
-          h = "left";
-          j = "down";
-          k = "up";
-          l = "right";
-          u = "PageUp";
-          d = "PageDown";
-        };
-      };
-    };
-  };
+  # services.keyd = {
+  #   enable = true;
+  #   keyboards.default = {
+  #     ids = [ "*" ];
+  #     settings = {
+  #       main = {
+  #         capslock = "overload(control, esc)";
+  #         rightalt = "layer(rightalt)";
+  #         # control = "oneshot(control)";
+  #         # alt = "oneshot(alt)";
+  #         # shift = "oneshot(shift)";
+  #         # meta = "oneshot(meta)";
+  #       };
+  #       rightalt = {
+  #         h = "left";
+  #         j = "down";
+  #         k = "up";
+  #         l = "right";
+  #         u = "PageUp";
+  #         d = "PageDown";
+  #       };
+  #     };
+  #   };
+  # };
+  hardware.uinput.enable = true;
+  users.groups.uinput.members = [ "t1g3pf4c3" ];
+  users.groups.input.members = [ "t1g3pf4c3" ];
 }

@@ -89,6 +89,17 @@ in
     plugins = {
       # gitblame.enable = true;
       # gitgutter.enable = true;
+      zk = {
+        enable = true;
+        picker = "telescope";
+        lsp = {
+          autoAttach.enabled = true;
+          config.cmd = [
+            "zk"
+            "lsp"
+          ];
+        };
+      };
       which-key.enable = true;
       lualine.enable = true;
       transparent.enable = true;
@@ -264,10 +275,7 @@ in
             "goimports"
             "gofmt"
           ];
-          yaml = [
-            "yamlfix"
-            "yq"
-          ];
+          yaml = [ "yamlfix" ];
           terraform = [ "terraform_fmt" ];
           json = [
             "fixjson"
@@ -286,10 +294,17 @@ in
       lsp = {
         enable = true;
         servers = {
-          ansiblels.enable = true;
-          helm-ls.enable = true;
+          # ansiblels.enable = true;
+          helm-ls = {
+            enable = true;
+            filetypes = [
+              "yaml"
+              "yml"
+              "tpl"
+            ];
+          };
           gopls.enable = true;
-          yamlls.enable = true;
+          # yamlls.enable = true;
           nixd.enable = true;
           sqls.enable = true;
           terraformls.enable = true;

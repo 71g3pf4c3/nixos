@@ -9,6 +9,7 @@
     nh
     nvd
     easyeffects
+    vivaldi
     # kubectl
     # fd
     # tmux-xpanes
