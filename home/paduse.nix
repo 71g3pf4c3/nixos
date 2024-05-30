@@ -12,6 +12,7 @@
     comma
     easyeffects
     manix
+    monero-cli
     nh
     nvd
     ncdu

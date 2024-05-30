@@ -129,7 +129,7 @@
       {
         plugin = tmuxPlugins.extrakto;
         extraConfig = ''
-          set -g @extrakto_clip_tool	'${pkgs.wl-clipboard}/bin/wl-copy'
+          set -g @extrakto_clip_tool	'${wl-clipboard}/bin/wl-copy'
         '';
       }
       tmuxPlugins.vim-tmux-navigator
@@ -140,10 +140,24 @@
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
+          pluginName = "tmux-tilit";
+          rtpFilePath = "tilit.tmux";
+          version = "9d59671";
+          src = fetchFromGitHub {
+            owner = "pschmitt";
+            repo = "tmux-ssh-split";
+            rev = "9d59671c204a2e332adc0f4b7d29a8d7459e3d09";
+            sha256 = "sha256-RDbdRSJoLiEAplWXR1nn/eeEWQ4kNMJyovqEQ8GeIhs=";
+          };
+        };
+        extraConfig = '''';
+      }
+      {
+        plugin = tmuxPlugins.mkTmuxPlugin {
           pluginName = "tmux-ssh-split";
           rtpFilePath = "ssh-split.tmux";
           version = "bccb77f";
-          src = pkgs.fetchFromGitHub {
+          src = fetchFromGitHub {
             owner = "pschmitt";
             repo = "tmux-ssh-split";
             rev = "bccb77fa45077763967978a32dc401767f170248";
@@ -160,7 +174,7 @@
           pluginName = "tmux-session-wizard";
           version = "e13c4c4";
           rtpFilePath = "session-wizard.tmux";
-          src = pkgs.fetchFromGitHub {
+          src = fetchFromGitHub {
             owner = "27medkamal";
             repo = "tmux-session-wizard";
             rev = "e13c4c47c72039b3bcf2706ecf428b099c00b215";
@@ -173,7 +187,7 @@
         plugin = tmuxPlugins.mkTmuxPlugin {
           pluginName = "mode-indicator";
           version = "7027903";
-          src = pkgs.fetchFromGitHub {
+          src = fetchFromGitHub {
             owner = "MunifTanjim";
             repo = "tmux-mode-indicator";
             rev = "7027903adca37c54cb8f5fa99fc113b11c23c2c4";

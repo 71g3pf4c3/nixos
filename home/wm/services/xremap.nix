@@ -10,7 +10,7 @@
   services.xremap = {
     enable = true;
     withSway = true;
-    deviceNames = [ "/dev/input/event16" ];
+    deviceNames = [ "Lenovo ThinkPad Compact USB Keyboard with TrackPoint" "AT Translated Set 2 keyboard" ];
     config = {
       keymap = [
         {
@@ -26,6 +26,7 @@
               "chromium-browser"
               "Vivaldi-stable"
               "org.telegram.desktop"
+              "rocket.chat"
             ];
           };
           remap = {

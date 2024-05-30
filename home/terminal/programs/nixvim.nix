@@ -275,7 +275,10 @@ in
             "goimports"
             "gofmt"
           ];
-          yaml = [ "yamlfix" ];
+          yaml = [
+            "yamlfix"
+            "yq"
+          ];
           terraform = [ "terraform_fmt" ];
           json = [
             "fixjson"
