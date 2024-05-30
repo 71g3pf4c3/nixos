@@ -45,13 +45,13 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware = {
-    trackpoint = {
-      enable = true;
-      device = "Lenovo ThinkPad Compact USB Keyboard with TrackPoint";
-      emulateWheel = false;
-      sensitivity = 128;
-      speed = 174;
-    };
+    # trackpoint = {
+    #   enable = true;
+    #   device = "Lenovo ThinkPad Compact USB Keyboard with TrackPoint";
+    #   emulateWheel = false;
+    #   sensitivity = 128;
+    #   speed = 174;
+    # };
     cpu.intel.updateMicrocode =
       lib.mkDefault config.hardware.enableRedistributableFirmware;
     opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];

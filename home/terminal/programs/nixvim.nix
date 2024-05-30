@@ -631,7 +631,12 @@ in
       }
     ];
     extraPlugins = [
-      ags
+      {
+        plugin = ags;
+        config = ''
+          require("telescope").load_extension("advanced_git_search")
+        '';
+      }
       b64
     ];
   };
