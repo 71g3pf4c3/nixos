@@ -1,0 +1,25 @@
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
+  home.packages = with pkgs; [
+    cilium-cli
+    popeye
+    clusterctl
+    cmctl
+    fluxcd
+    k8sgpt
+    kind
+    kube-capacity
+    kubectl-cnpg
+    kubectl-node-shell
+    kubectl-tree
+    kubelogin
+    kubernetes-helm
+    kubevirt
+  ];
+}

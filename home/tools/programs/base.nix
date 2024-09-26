@@ -1,0 +1,21 @@
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
+  home.packages = with pkgs; [
+    step-ca
+    step-cli
+    distrobox
+    mysql80
+    zoom-us
+    drawio
+    glab
+    gnumake
+    goss
+    postgresql
+  ];
+}

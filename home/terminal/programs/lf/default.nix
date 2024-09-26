@@ -53,7 +53,7 @@
       zi = "	\${{\n			zoxide query --interactive | cd \n	}}\n";
       kubeapply = "	\${{\n			kubectl apply -f  \"$fx\"\n	}}\n";
       copy-path = "	\${{\n			printf \"$fx\" | ${pkgs.wl-clipboard}/bin/wl-copy \n	}}\n";
-      dragdrop = "	\${{\n			printf '%s\\n' \"$fx\" | dragon -a -x -T -I \n	}}\n";
+      dragdrop = "	\${{\n			printf '%s\\n' \"$fx\" | ${lib.getExe pkgs.xdragon} -a -x -T -I \n	}}\n";
       create-link = ''
         ''${{
           name="$(basename $fx)"

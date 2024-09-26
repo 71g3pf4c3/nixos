@@ -31,8 +31,19 @@ let
   };
 in
 {
+  home.packages = with pkgs; [
+    shellcheck
+    shellharden
+    nixfmt-rfc-style
+    codespell
+    luajitPackages.lua-utils-nvim
+    stylua
+    tree-sitter
+  ];
   programs.nixvim = {
     enable = true;
+    # performance.combinePlugins.enable = true;
+    # performance.byteCompileLua.enable = true;
     colorschemes.gruvbox = {
       enable = true;
       settings = {
@@ -239,7 +250,7 @@ in
       comment.enable = true;
       luasnip.enable = true;
       nvim-colorizer.enable = true;
-      # sniprun.enable = true;
+      sniprun.enable = true;
       treesitter-context.enable = true;
       treesitter-textobjects.enable = true;
       treesitter-refactor.enable = true;
@@ -247,16 +258,31 @@ in
       treesitter = {
         enable = true;
         ensureInstalled = "all";
+        settings = {
+          highlight = {
+            enable = true;
+            additional_vim_regex_highlighting = true;
+          };
+          sync_install = true;
+          indent = {
+            enable = true;
+          };
+          incremental_selection = {
+            enable = true;
+            keymaps = {
+              init_selection = false;
+              node_decremental = "grm";
+              node_incremental = "grn";
+              scope_incremental = "grc";
+            };
+          };
+        };
+
       };
       lsp-lines.enable = true;
       lsp-format.enable = true;
       conform-nvim = {
         enable = true;
-        formatOnSave = ''
-          function()
-             require("conform").format({ async = true, lsp_fallback = true, range = range })
-          end
-        '';
         formattersByFt = {
           lua = [ "stylua" ];
           python = [
@@ -631,12 +657,12 @@ in
       }
     ];
     extraPlugins = [
-      {
-        plugin = ags;
-        config = ''
-          require("telescope").load_extension("advanced_git_search")
-        '';
-      }
+      # {
+      #   plugin = ags;
+      #   config = ''
+      #     require("telescope").load_extension("advanced_git_search")
+      #   '';
+      # }
       b64
     ];
   };

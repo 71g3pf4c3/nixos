@@ -9,8 +9,8 @@
 {
   imports = [ ./sway.nix ];
   documentation.man = {
-    enable = true;
-    generateCaches = true;
+    enable = false;
+    generateCaches = false;
   };
   nix.settings.experimental-features = [ "nix-command flakes" ];
   nixpkgs.config.allowUnfree = true;
@@ -128,7 +128,7 @@
   virtualisation = {
     waydroid.enable = true;
     docker = {
-      enable = false;
+      enable = true;
     };
     podman = {
       enable = true;
@@ -139,13 +139,13 @@
   system.stateVersion = "23.11"; # Did you read the comment?
   services.udisks2.enable = true;
   services.guix.enable = false;
-  services.monero = {
-    enable = true;
-    mining = {
-      enable = true;
-      address = "49gjMmiHFkoXh73R8e5TopGHQ4PaGuambUuh1PYbaJ51Xfafz4XBdPRBcxxG3akKnCTdgQvWqB1hrSbqtvhW8qJwDSryQSP";
-    };
-  };
+  # services.monero = {
+  #   enable = true;
+  #   mining = {
+  #     enable = true;
+  #     address = "49gjMmiHFkoXh73R8e5TopGHQ4PaGuambUuh1PYbaJ51Xfafz4XBdPRBcxxG3akKnCTdgQvWqB1hrSbqtvhW8qJwDSryQSP";
+  #   };
+  # };
   # services.keyd = {
   #   enable = true;
   #   keyboards.default = {

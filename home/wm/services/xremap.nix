@@ -9,8 +9,11 @@
 {
   services.xremap = {
     enable = true;
-    withSway = true;
-    deviceNames = [ "Lenovo ThinkPad Compact USB Keyboard with TrackPoint" "AT Translated Set 2 keyboard" ];
+    withWlroots = true;
+    # deviceNames = [
+    #   "Lenovo ThinkPad Compact USB Keyboard with TrackPoint"
+    #   "AT Translated Set 2 keyboard"
+    # ];
     config = {
       keymap = [
         {
