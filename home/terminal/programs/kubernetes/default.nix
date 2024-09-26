@@ -7,6 +7,7 @@
 }:
 {
   home.packages = with pkgs; [
+    kubectl
     cilium-cli
     popeye
     clusterctl

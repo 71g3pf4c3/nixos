@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   inputs,
   ...
 }:
@@ -18,7 +16,6 @@
     ./home.nix
     ./xdg.nix
     ./wm
-    ./tools
   ];
   home.packages = with pkgs; [
     # comma

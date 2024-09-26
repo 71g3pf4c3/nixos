@@ -100,17 +100,17 @@ in
     plugins = {
       # gitblame.enable = true;
       # gitgutter.enable = true;
-      zk = {
-        enable = true;
-        picker = "telescope";
-        lsp = {
-          autoAttach.enabled = true;
-          config.cmd = [
-            "zk"
-            "lsp"
-          ];
-        };
-      };
+      # zk = {
+      #   enable = true;
+      #   picker = "telescope";
+      #   lsp = {
+      #     autoAttach.enabled = true;
+      #     config.cmd = [
+      #       "zk"
+      #       "lsp"
+      #     ];
+      #   };
+      # };
       which-key.enable = true;
       lualine.enable = true;
       transparent.enable = true;
@@ -188,7 +188,7 @@ in
       fugitive.enable = true;
       # startup.enable = true;
       nvim-autopairs.enable = true;
-      surround.enable = true;
+      vim-surround.enable = true;
       indent-blankline.enable = true;
       # neorg = {
       #   lazyLoading = true;
