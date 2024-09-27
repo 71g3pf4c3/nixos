@@ -48,7 +48,13 @@
     enable = true;
     desktopManager.xterm.enable = false;
   };
-  services.xserver.displayManager.defaultSession = "sway";
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    defaultSession = "sway";
+  };
   security.polkit.enable = true;
   services.printing.enable = true;
   programs.zsh.enable = true;

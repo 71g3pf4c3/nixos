@@ -49,5 +49,6 @@
     gnumake
     goss
     postgresql
+    s3cmd
   ];
 }
