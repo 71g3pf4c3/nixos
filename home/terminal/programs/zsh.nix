@@ -85,7 +85,7 @@
         ${lib.getExe pkgs.bat} --no-pager\
         && ${lib.getExe pkgs.nh} os switch ~/etc/nixos --ask &&\
         ${lib.getExe pkgs.git} commit ~/etc/nixos && ${lib.getExe pkgs.git} push &&\
-        ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000 \
+        ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000 && \
         ${lib.getExe pkgs.nh} clean all --keep=4
       '';
     };
