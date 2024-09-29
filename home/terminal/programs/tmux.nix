@@ -18,6 +18,9 @@
     baseIndex = 1;
     shell = "${lib.getExe pkgs.zsh}";
     extraConfig = ''
+
+      set -g @HOMEDIR ${config.home.homeDirectory}
+      set -g @STATUSFG ${config.colorScheme.palette.lightgrayalt}
       set -g set-titles on
       set -g status-keys vi
       set -g set-titles-string '#S:#I.#P #W'
@@ -29,7 +32,7 @@
       bind S setw synchronize-panes
       bind C-V pasteb
       bind ";" next-layout
-      bind -r  r source-file ${config.home.homeDirectory}/.config/tmux/tmux.conf
+      bind -r  r source-file @HOMEDIR/.config/tmux/tmux.conf
       bind < swap-pane -D
       bind > swap-pane -U
       # pane resizing
@@ -62,7 +65,7 @@
       set-option -g status-interval 5
       set-option -g automatic-rename on
       set-option -g automatic-rename-format '#{b:pane_current_path}'
-      set -g status-fg "#${config.colorScheme.palette.lightgrayalt}"
+      set -g status-fg "#@STATUSFG"
       set -g status-bg "#${config.colorScheme.palette.lightbg3}"
       set-option -g status-left "#[fg=#${config.colorScheme.palette.lightgray}, bg=#${config.colorScheme.palette.lightbg2}, bold] #{session_name} "
       set-window-option -g window-status-current-format "#[bg=#${config.colorScheme.palette.lightbg}, fg=#${config.colorScheme.palette.lightfg},bold,italics] #[noitalics]#[italics]#W#{?window_zoomed_flag,*Z,} "
@@ -129,7 +132,7 @@
       {
         plugin = tmuxPlugins.extrakto;
         extraConfig = ''
-          set -g @extrakto_clip_tool	'${wl-clipboard}/bin/wl-copy'
+          set -g @extrakto_clip_tool	'${pkgs.wl-clipboard}/bin/wl-copy'
         '';
       }
       tmuxPlugins.vim-tmux-navigator
