@@ -10,7 +10,6 @@
       "freedesktop.impl.portal.Screenshot" = "wlr";
       "freedesktop.impl.portal.ScreenCast" = "wlr";
       "org.freedesktop.impl.portal.FileChooser" = "gtk";
-
     };
   };
 }

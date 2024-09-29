@@ -55,13 +55,12 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware = {
-    # trackpoint = {
-    #   enable = true;
-    #   device = "Lenovo ThinkPad Compact USB Keyboard with TrackPoint";
-    #   emulateWheel = false;
-    #   sensitivity = 128;
-    #   speed = 174;
-    # };
+    trackpoint = {
+      enable = true;
+      emulateWheel = true;
+      sensitivity = 128;
+      speed = 174;
+    };
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     graphics.extraPackages = with pkgs; [
       vaapiIntel
