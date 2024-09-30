@@ -54,6 +54,9 @@
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement = {
+    enable = true;
+  };
   hardware = {
     trackpoint = {
       enable = true;

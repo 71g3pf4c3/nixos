@@ -128,9 +128,6 @@
       };
     };
   };
-  powerManagement = {
-    enable = true;
-  };
   virtualisation = {
     waydroid.enable = true;
     docker = {

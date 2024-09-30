@@ -19,7 +19,7 @@
     kubectl-cnpg
     kubectl-node-shell
     kubectl-tree
-    kubelogin
+    kubelogin-oidc
     kubernetes-helm
     kubevirt
   ];
