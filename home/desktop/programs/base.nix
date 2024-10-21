@@ -11,5 +11,6 @@
     sxiv
     wdisplays
     wl-clipboard
+    qbittorrent
   ];
 }

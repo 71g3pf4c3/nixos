@@ -7,7 +7,6 @@
   ...
 }:
 {
-  imports = [ ./sway.nix ];
   documentation.man = {
     enable = false;
     generateCaches = false;
@@ -43,6 +42,10 @@
   i18n.defaultLocale = "en_US.UTF-8";
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [ ];
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
   hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
   services.xserver = {
     enable = true;
