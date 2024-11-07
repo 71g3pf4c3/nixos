@@ -35,6 +35,7 @@
     libreoffice
     restic
     yq-go
+    flatpak
     # termplay
     # fd
     # tmux-xpanes
@@ -120,6 +121,7 @@
   ];
   services.flatpak.packages = [
     "org.apache.directory.studio"
+    "app.drey.Warp"
   ];
 
 }

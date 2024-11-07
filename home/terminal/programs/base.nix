@@ -44,11 +44,12 @@
     distrobox
     mysql80
     zoom-us
-    drawio
     glab
     gnumake
     goss
     postgresql
     s3cmd
+    s4cmd
+    openssl
   ];
 }
