@@ -119,9 +119,8 @@
       location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
     }
   ];
-  services.flatpak.packages = [
-    "org.apache.directory.studio"
-    "app.drey.Warp"
-  ];
+  services.flatpak.packages =
+    [
+    ];
 
 }

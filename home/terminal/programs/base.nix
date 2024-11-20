@@ -39,8 +39,8 @@
     };
   };
   home.packages = with pkgs; [
-    step-ca
-    step-cli
+    # step-ca
+    # step-cli
     distrobox
     mysql80
     zoom-us

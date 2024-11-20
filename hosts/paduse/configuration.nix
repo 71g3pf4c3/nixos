@@ -23,6 +23,7 @@
   networking.networkmanager.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.enable = true;
+  networking.firewall.allowPing = true;
   time.timeZone = "Europe/Moscow";
   nix.settings.auto-optimise-store = true;
   nix.optimise.automatic = true;
@@ -179,4 +180,37 @@
   hardware.uinput.enable = true;
   users.groups.uinput.members = [ "t1g3pf4c3" ];
   users.groups.input.members = [ "t1g3pf4c3" ];
+
+  # services.samba = {
+  #   enable = true;
+  #   securityType = "user";
+  #   openFirewall = true;
+  #   settings = {
+  #     global = {
+  #       "workgroup" = "WORKGROUP";
+  #       "server string" = "smbnix";
+  #       "netbios name" = "smbnix";
+  #       "security" = "user";
+  #       #"use sendfile" = "yes";
+  #       #"max protocol" = "smb2";
+  #       # note: localhost is the ipv6 localhost ::1
+  #       "hosts allow" = "192.168.1. 192.168.0. 127.0.0.1 localhost";
+  #       "hosts deny" = "0.0.0.0/0";
+  #       "guest account" = "nobody";
+  #       "map to guest" = "bad user";
+  #     };
+  #     "public" = {
+  #       "path" = "/home/t1g3pf4c3/var/local/share";
+  #       "browseable" = "yes";
+  #       "read only" = "no";
+  #       "guest ok" = "yes";
+  #       "create mask" = "0644";
+  #       "public" = "yes";
+  #       "directory mask" = "0755";
+  #       "force user" = "t1g3pf4c3";
+  #       "force group" = "wheel";
+  #     };
+  #   };
+  # };
+  # networking.firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
 }

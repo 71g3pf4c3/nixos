@@ -24,7 +24,7 @@
     };
     ktalk = {
       name = "Ktalk";
-      exec = "${lib.getExe pkgs.appimage-run} /home/t1g3pf4c3/var/local/bin/ktalk2.12.0x86_64.AppImage";
+      exec = "${lib.getExe pkgs.appimage-run} /home/t1g3pf4c3/var/local/bin/ktalk2.13.0x86_64.AppImage";
     };
   };
 }
