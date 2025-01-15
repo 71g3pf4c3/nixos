@@ -250,7 +250,7 @@ in
       bufferline.enable = true;
       comment.enable = true;
       luasnip.enable = true;
-      nvim-colorizer.enable = true;
+      colorizer.enable = true;
       sniprun.enable = true;
       treesitter-context.enable = true;
       treesitter-textobjects.enable = true;
@@ -545,15 +545,6 @@ in
         };
       }
       {
-        key = "<leader>x";
-        lua = true;
-        action = ''function() require("telescope.builtin").current_buffer_fuzzy_find() end'';
-        options = {
-          desc = "Fuzzy find";
-          silent = true;
-        };
-      }
-      {
         key = "<leader>m";
         lua = true;
         action = ''function() require("telescope.builtin").marks() end'';
@@ -660,9 +651,9 @@ in
     extraPlugins = [
       # {
       #   plugin = ags;
-      #   config = ''
-      #     require("telescope").load_extension("advanced_git_search")
-      #   '';
+      #   # config = ''
+      #   #   require("telescope").load_extension("advanced_git_search")
+      #   # '';
       # }
       b64
     ];

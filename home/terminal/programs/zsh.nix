@@ -62,6 +62,7 @@
     '';
     shellAliases = {
       "kubectl" = "${lib.getExe pkgs.kubecolor}";
+      "psg" = "tr -dc A-Za-z0-9 </dev/urandom | head -c 24; echo";
       "pp" = "pistol";
       "nx" = "nix shell";
       "fe" = "nvim $(fzf)";

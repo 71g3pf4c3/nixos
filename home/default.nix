@@ -12,15 +12,14 @@
     inputs.xremap-flake.homeManagerModules.default
     ./terminal
     ./desktop
+    ./appimage
+    ./flatpak
     ./appearance/colors
     ./home.nix
     ./xdg.nix
     ./wm
   ];
   home.packages = with pkgs; [
-    # comma
-    # manix
-    # nvd
     nh
     ncdu
     libsixel
@@ -111,16 +110,5 @@
     # discord
     # thunderbird
   ];
-
-  services.flatpak.enable = true;
-  services.flatpak.remotes = [
-    {
-      name = "flathub";
-      location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-    }
-  ];
-  services.flatpak.packages =
-    [
-    ];
 
 }
