@@ -37,10 +37,4 @@ in
   home.packages = [
     ktalk
   ];
-  # xdg.desktopEntries = {
-  #   ktalk = {
-  #     name = "Ktalk";
-  #     exec = "${lib.getExe ktalk}";
-  #   };
-  # };
 }

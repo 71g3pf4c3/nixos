@@ -18,9 +18,5 @@
     documents = "${config.home.homeDirectory}/var/docs";
   };
   xdg.desktopEntries = {
-    vesktop = {
-      name = "Vesktop";
-      exec = "${lib.getExe pkgs.vesktop}";
-    };
   };
 }
