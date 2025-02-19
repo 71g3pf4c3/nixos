@@ -1,4 +1,12 @@
-{ config, pkgs, unstable, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  unstable,
+  lib,
+  inputs,
+  ...
+}:
+{
   programs.pistol = {
     enable = true;
     associations = [
@@ -57,10 +65,6 @@
       {
         mime = "image/*";
         command = "sh: ${lib.getExe pkgs.chafa} -O 9 --passthrough tmux %pistol-filename%";
-      }
-      {
-        mime = "video/*";
-        command = "sh: ${lib.getExe pkgs.termplay} -q %pistol-filename%";
       }
       {
         mime = "application/*";

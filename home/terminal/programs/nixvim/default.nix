@@ -281,43 +281,46 @@ in
 
       };
       lsp-lines.enable = true;
-      lsp-format.enable = true;
-      conform-nvim = {
+      lsp-format = {
         enable = true;
-        formattersByFt = {
-          lua = [ "stylua" ];
-          python = [
-            "isort"
-            "black"
-          ];
-          nix = [
-            "nixfmt"
-            "alejandra"
-          ];
-          sh = [
-            "shellcheck"
-            "shellharden"
-          ];
-          go = [
-            "goimports"
-            "gofmt"
-          ];
-          yaml = [
-            "yamlfix"
-            "yq"
-          ];
-          terraform = [ "terraform_fmt" ];
-          json = [
-            "fixjson"
-            "jq"
-          ];
-          "*" = [
-            "codespell"
-            "trim_whitespace"
-            "trim_newlines"
-          ];
-        };
+        # lspServersToEnable = [ "all" ];
       };
+      # conform-nvim = {
+      #   enable = true;
+      #   formattersByFt = {
+      #     lua = [ "stylua" ];
+      #     python = [
+      #       "isort"
+      #       "black"
+      #     ];
+      #     nix = [
+      #       "nixfmt"
+      #       "alejandra"
+      #     ];
+      #     sh = [
+      #       "shellcheck"
+      #       "shellharden"
+      #     ];
+      #     go = [
+      #       "goimports"
+      #       "gofmt"
+      #     ];
+      #     yaml = [
+      #       "yamlfix"
+      #       "yq"
+      #     ];
+      #     terraform = [ "terraform_fmt" ];
+      #     json = [
+      #       "fixjson"
+      #       "jq"
+      #     ];
+      #     "*" = [
+      #       "codespell"
+      #       "trim_whitespace"
+      #       "trim_newlines"
+      #     ];
+      #   };
+      # };
       lspkind.enable = true;
 
       diffview.enable = true;
@@ -339,7 +342,18 @@ in
           sqls.enable = true;
           terraformls.enable = true;
           dockerls.enable = true;
-          pylsp.enable = true;
+          pylsp = {
+            enable = true;
+            settings = {
+              plugins = {
+                flake8.enabled = true;
+                black.enabled = true;
+                ruff.enabled = true;
+              };
+
+            };
+          };
+          pyright.enable = true;
         };
       };
     };

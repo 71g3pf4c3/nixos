@@ -21,7 +21,7 @@ let
       mkdir -p $out/share/applications
       cat <<INI > $out/share/applications/ktalk.desktop
       [Desktop Entry]
-      Terminal=true
+      Terminal=false
       Name=Ktalk
       Exec=$out/bin/ktalk
       Type=Application
