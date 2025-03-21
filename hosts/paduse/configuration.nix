@@ -21,7 +21,7 @@
   };
   networking.hostName = "paduse";
   networking.networkmanager.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ ];
   networking.firewall.enable = true;
   networking.firewall.allowPing = true;
   time.timeZone = "Europe/Moscow";
@@ -108,7 +108,7 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-    openssh.enable = true;
+    openssh.enable = false;
     blueman.enable = true;
     thermald.enable = true;
     auto-cpufreq = {

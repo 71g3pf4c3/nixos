@@ -18,7 +18,10 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "pkcs8_key_parser"
+  ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "intel_pstate=passive"
