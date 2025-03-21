@@ -113,7 +113,17 @@ in
       #   };
       # };
       which-key.enable = true;
-      lualine.enable = true;
+      lualine = {
+        enable = true;
+        extensions = [
+          "fzf"
+          "nvim-tree"
+          "lazy"
+          "nvim-tree"
+          "fugitive"
+          "ctrlspace"
+        ];
+      };
       transparent.enable = true;
       cmp = {
         enable = true;
@@ -243,6 +253,19 @@ in
         enable = true;
         highlightTheme = "gruvbox";
       };
+      avante = {
+        enable = true;
+        settings = {
+          vendors = {
+            deepseek = {
+              __inherited_from = "openai";
+              api_key_name = "DEEPSEEK_API_KEY";
+              endpoint = "https://api.deepseek.com";
+              model = "deepseek-coder";
+            };
+          };
+        };
+      };
       clipboard-image = {
         enable = true;
         clipboardPackage = pkgs.wl-clipboard;
@@ -346,7 +369,10 @@ in
             enable = true;
             settings = {
               plugins = {
-                flake8.enabled = true;
+                flake8 = {
+                  enabled = true;
+                  ignore = [ "E501" ];
+                };
                 black.enabled = true;
                 ruff.enabled = true;
               };

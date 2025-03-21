@@ -1,10 +1,18 @@
-{ config, pkgs, unstable, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  unstable,
+  lib,
+  inputs,
+  ...
+}:
+{
   services = {
     udiskie = {
       enable = true;
     };
     kdeconnect = {
-      enable = true;
+      enable = false;
       indicator = true;
     };
     network-manager-applet.enable = true;

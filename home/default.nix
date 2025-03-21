@@ -28,7 +28,7 @@
     translate-shell
     dig
     bukubrow
-    gcc_multi
+    # gcc_multi
     wineWowPackages.waylandFull
     unzip
     libreoffice

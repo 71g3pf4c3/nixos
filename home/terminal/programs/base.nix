@@ -42,6 +42,7 @@
     # step-ca
     # step-cli
     distrobox
+    terraform
     mysql80
     zoom-us
     glab
