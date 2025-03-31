@@ -38,6 +38,8 @@
             Alt-h = "left";
             Alt-l = "right";
             Alt-t = "C-Tab";
+            Alt-g = "HOME";
+            Alt-Shift-g = "END";
             Alt-Shift-t = "C-Shift-Tab";
             Alt-e = "C-t";
             Alt-x = "C-w";

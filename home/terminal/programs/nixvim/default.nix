@@ -254,17 +254,18 @@ in
         highlightTheme = "gruvbox";
       };
       avante = {
-        enable = true;
-        settings = {
-          vendors = {
-            deepseek = {
-              __inherited_from = "openai";
-              api_key_name = "DEEPSEEK_API_KEY";
-              endpoint = "https://api.deepseek.com";
-              model = "deepseek-coder";
-            };
-          };
-        };
+        enable = false;
+        # provider ="ollama";
+        # settings = {
+        #   vendors = {
+        #     deepseek = {
+        #       __inherited_from = "openai";
+        #       api_key_name = "DEEPSEEK_API_KEY";
+        #       endpoint = "https://api.deepseek.com";
+        #       model = "deepseek-coder";
+        #     };
+        #   };
+        # };
       };
       clipboard-image = {
         enable = true;
@@ -304,46 +305,49 @@ in
 
       };
       lsp-lines.enable = true;
-      lsp-format = {
-        enable = true;
-        # lspServersToEnable = [ "all" ];
-      };
-      # conform-nvim = {
+      # lsp-format = {
       #   enable = true;
-      #   formattersByFt = {
-      #     lua = [ "stylua" ];
-      #     python = [
-      #       "isort"
-      #       "black"
-      #     ];
-      #     nix = [
-      #       "nixfmt"
-      #       "alejandra"
-      #     ];
-      #     sh = [
-      #       "shellcheck"
-      #       "shellharden"
-      #     ];
-      #     go = [
-      #       "goimports"
-      #       "gofmt"
-      #     ];
-      #     yaml = [
-      #       "yamlfix"
-      #       "yq"
-      #     ];
-      #     terraform = [ "terraform_fmt" ];
-      #     json = [
-      #       "fixjson"
-      #       "jq"
-      #     ];
-      #     "*" = [
-      #       "codespell"
-      #       "trim_whitespace"
-      #       "trim_newlines"
-      #     ];
-      #   };
+      #   # lspServersToEnable = [ "all" ];
       # };
+      conform-nvim = {
+        enable = true;
+        formattersByFt = {
+          lua = [ "stylua" ];
+          python = [
+            "isort"
+            "black"
+          ];
+          nix = [
+            "nixfmt"
+            "alejandra"
+          ];
+          puppet = [
+            "puppet-lint"
+          ];
+          sh = [
+            "shellcheck"
+            "shellharden"
+          ];
+          go = [
+            "goimports"
+            "gofmt"
+          ];
+          yaml = [
+            "yamlfix"
+            "yq"
+          ];
+          terraform = [ "terraform_fmt" ];
+          json = [
+            "fixjson"
+            "jq"
+          ];
+          "*" = [
+            "codespell"
+            "trim_whitespace"
+            "trim_newlines"
+          ];
+        };
+      };
       lspkind.enable = true;
 
       diffview.enable = true;
@@ -365,6 +369,11 @@ in
           sqls.enable = true;
           terraformls.enable = true;
           dockerls.enable = true;
+          puppet = {
+            enable = true;
+            package = pkgs.puppet;
+
+          };
           pylsp = {
             enable = true;
             settings = {

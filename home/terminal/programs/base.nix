@@ -43,6 +43,9 @@
     # step-cli
     distrobox
     terraform
+    ansible
+    hubble
+    argocd
     mysql80
     zoom-us
     glab

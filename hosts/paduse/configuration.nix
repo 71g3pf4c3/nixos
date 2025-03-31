@@ -17,7 +17,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernel.sysctl = {
-    "net.ipv4.ip_unprivileged_port_start" = 80;
+    "net.ipv4.ip_unprivileged_port_start" = 0;
   };
   networking.hostName = "paduse";
   networking.networkmanager.enable = true;

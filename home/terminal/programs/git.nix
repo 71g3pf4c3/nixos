@@ -13,8 +13,8 @@
       {
         contents = {
           user = {
-            email = "mkungurov@runity.ru";
-            name = "Кунгуров Макар Евгеньевич";
+            email = "kungurov.m@selectel.ru";
+            name = "Makar Kungurov";
           };
         };
       }
