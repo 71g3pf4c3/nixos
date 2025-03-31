@@ -37,8 +37,11 @@
     keep-derivations = false
   '';
   networking.extraHosts = ''
-    127.0.0.1:80 kind
-    127.0.0.1:443 kind
+    127.0.0.1 kind
+    127.0.0.1 kind
+    172.18.0.6 kindingress6
+    172.18.0.7 kindingress7
+    172.18.0.8 kindingress8
   '';
   i18n.defaultLocale = "en_US.UTF-8";
   programs.nix-ld.enable = true;
