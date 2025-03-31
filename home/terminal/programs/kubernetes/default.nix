@@ -20,7 +20,10 @@
     kubectl-node-shell
     kubectl-tree
     kubelogin-oidc
+    argocd
     kubernetes-helm
+    helm-docs
+    hubble
     kubevirt
   ];
 }
