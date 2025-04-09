@@ -17,6 +17,7 @@
     kind
     kube-capacity
     kubectl-cnpg
+    kubeseal
     kubectl-node-shell
     kubectl-tree
     kubelogin-oidc

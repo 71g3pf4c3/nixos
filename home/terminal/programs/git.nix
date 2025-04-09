@@ -18,14 +18,14 @@
           };
         };
       }
-      # {
-      #   contents = {
-      #     user = {
-      #       email = "71g3pf4c3@gmail.com";
-      #       name = "71g3pf4c3";
-      #     };
-      #   };
-      # }
+      {
+        contents = {
+          user = {
+            email = "71g3pf4c3@gmail.com";
+            name = "71g3pf4c3";
+          };
+        };
+      }
     ];
     delta = {
       enable = false;

@@ -252,6 +252,9 @@ in
       telescope = {
         enable = true;
         highlightTheme = "gruvbox";
+        extensions = {
+          advanced-git-search.enable = true;
+        };
       };
       avante = {
         enable = false;
@@ -436,6 +439,24 @@ in
         action = ":UndotreeToggle<cr>";
         options = {
           desc = "Toggle undotree";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<leader>gdl";
+        action = ":AdvancedGitSearch diff_commit_line<cr>";
+        options = {
+          desc = "Diff commit line";
+          silent = true;
+        };
+        mode = "n";
+      }
+      {
+        key = "<leader>gdf";
+        action = ":AdvancedGitSearch diff_commit_file<cr>";
+        options = {
+          desc = "Diff commit file";
           silent = true;
         };
         mode = "n";
