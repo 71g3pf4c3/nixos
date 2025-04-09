@@ -103,6 +103,20 @@
       bind-key -n M-j select-pane -D
       bind-key -n M-k select-pane -U
       bind-key -n M-l select-pane -R
+      bind-key -n "M-f" run-shell "${lib.getExe pkgs.sesh} connect \"$(
+        ${lib.getExe pkgs.sesh} list --icons | ${pkgs.fzf}/bin/fzf-tmux -p 80%,70% \
+          --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+          --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
+          --bind 'tab:down,btab:up' \
+          --bind 'ctrl-a:change-prompt(⚡  )+reload(${lib.getExe pkgs.sesh} list --icons)' \
+          --bind 'ctrl-t:change-prompt(🪟  )+reload(${lib.getExe pkgs.sesh} list -t --icons)' \
+          --bind 'ctrl-g:change-prompt(⚙️  )+reload(${lib.getExe pkgs.sesh} list -c --icons)' \
+          --bind 'ctrl-x:change-prompt(📁  )+reload(${lib.getExe pkgs.sesh} list -z --icons)' \
+          --bind 'ctrl-f:change-prompt(🔎  )+reload(${lib.getExe pkgs.fd} -H -d 2 -t d -E .Trash . ~)' \
+          --bind 'ctrl-d:execute(${lib.getExe pkgs.tmux} kill-session -t {2..})+change-prompt(⚡  )+reload(${lib.getExe pkgs.sesh} list --icons)' \
+          --preview-window 'right:55%' \
+          --preview '${lib.getExe pkgs.sesh} preview {}'
+      )\""
       bind-key -n M-b if-shell -F '#{==:#{session_name},scratch}' {
         kill-session -t scratch
       } {
@@ -119,7 +133,7 @@
       } {
         display-popup -h 90% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s news -n news "newsboat"
       }
-      bind-key -n M-u if-shell -F '#{==:#{session_name},k9s}' {
+      bind-key -n M-8 if-shell -F '#{==:#{session_name},k9s}' {
         detach-client
       } {
         display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml"

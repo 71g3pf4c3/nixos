@@ -16,7 +16,7 @@ in
     settings = {
       main = {
         term = "xterm-256color";
-        font = "${font}:size=9";
+        font = "${font}:size=14";
         dpi-aware = "no";
         shell = "${lib.getExe pkgs.zsh}";
       };

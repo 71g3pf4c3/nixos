@@ -40,7 +40,7 @@ in
           always = true;
         }
         {
-          command = "systemctl --user restart waybar";
+          command = "systemctl --user start waybar";
           always = true;
         }
         {

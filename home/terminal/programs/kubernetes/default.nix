@@ -26,5 +26,7 @@
     helm-docs
     hubble
     kubevirt
+    oras
+    openstackclient
   ];
 }
