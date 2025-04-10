@@ -32,8 +32,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    shellcheck
-    shellharden
     nixfmt-rfc-style
     codespell
     luajitPackages.lua-utils-nvim
@@ -308,12 +306,35 @@ in
 
       };
       lsp-lines.enable = true;
-      # lsp-format = {
-      #   enable = true;
-      #   # lspServersToEnable = [ "all" ];
-      # };
+      lsp-format = {
+        enable = true;
+        lspServersToEnable = [ "helm-ls" "dockerls" "terraformls" "efm"];
+      };
       conform-nvim = {
         enable = true;
+        formatters = {
+          shfmt = {
+            command = lib.getExe pkgs.shfmt;
+          };
+          shellcheck = {
+            command = lib.getExe pkgs.shellcheck;
+          };
+          shellharden = {
+            command = lib.getExe pkgs.shellharden;
+          };
+          yamlfix = {
+            command = lib.getExe pkgs.yamlfix;
+          };
+          yq = {
+            command = lib.getExe pkgs.yq;
+          };
+          jq = {
+            command = lib.getExe pkgs.jq;
+          };
+          fixjson = {
+            command = lib.getExe pkgs.fixjson;
+          };
+        };
         formattersByFt = {
           lua = [ "stylua" ];
           python = [
@@ -367,16 +388,12 @@ in
             ];
           };
           gopls.enable = true;
-          # yamlls.enable = true;
+          efm.enable = true;
+          yamlls.enable = true;
           nixd.enable = true;
           sqls.enable = true;
           terraformls.enable = true;
           dockerls.enable = true;
-          puppet = {
-            enable = true;
-            package = pkgs.puppet;
-
-          };
           pylsp = {
             enable = true;
             settings = {
@@ -448,6 +465,15 @@ in
         action = ":AdvancedGitSearch diff_commit_line<cr>";
         options = {
           desc = "Diff commit line";
+          silent = true;
+        };
+        mode = "v";
+      }
+      {
+        key = "<leader>gdb";
+        action = ":AdvancedGitSearch diff_branch_file<cr>";
+        options = {
+          desc = "Diff commit file";
           silent = true;
         };
         mode = "n";

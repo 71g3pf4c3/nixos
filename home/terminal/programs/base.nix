@@ -12,7 +12,7 @@
     gpg.enable = true;
     jq.enable = true;
     lazygit.enable = true;
-    watson.enable = true;
+    # watson.enable = true;
     htop.enable = true;
     zoxide.enable = true;
     eza.enable = true;
@@ -39,21 +39,6 @@
     };
   };
   home.packages = with pkgs; [
-    # step-ca
-    # step-cli
     distrobox
-    terraform
-    ansible
-    hubble
-    argocd
-    mysql80
-    zoom-us
-    glab
-    gnumake
-    goss
-    postgresql
-    s3cmd
-    s4cmd
-    openssl
   ];
 }

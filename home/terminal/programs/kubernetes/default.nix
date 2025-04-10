@@ -7,26 +7,5 @@
 }:
 {
   home.packages = with pkgs; [
-    kubectl
-    cilium-cli
-    popeye
-    clusterctl
-    cmctl
-    fluxcd
-    k8sgpt
-    kind
-    kube-capacity
-    kubectl-cnpg
-    kubeseal
-    kubectl-node-shell
-    kubectl-tree
-    kubelogin-oidc
-    argocd
-    kubernetes-helm
-    helm-docs
-    hubble
-    kubevirt
-    oras
-    openstackclient
   ];
 }
