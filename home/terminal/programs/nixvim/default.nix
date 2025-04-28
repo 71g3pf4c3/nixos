@@ -239,7 +239,7 @@ in
         enable = true;
         highlightTheme = "gruvbox";
         extensions = {
-          # advanced-git-search.enable = true;
+          advanced-git-search.enable = true;
         };
       };
       avante = {
