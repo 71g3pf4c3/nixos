@@ -9,7 +9,7 @@
 {
   programs.zsh = {
     enable = true;
-    initExtra = lib.concatStrings [
+    initContent = lib.concatStrings [
       ''
          			zinit wait reset-prompt lucid light-mode for \
          				OMZL::git.zsh \
@@ -82,10 +82,10 @@
       "cd" = "z";
       "ci" = "__zoxide_zi";
       "upd" = ''
-        ${lib.getExe pkgs.git} diff |\
+        ${lib.getExe pkgs.git} -C ~/etc/nixos diff |\
         ${lib.getExe pkgs.bat} --no-pager\
-        && ${lib.getExe pkgs.nh} os switch ~/etc/nixos --ask &&\
-        ${lib.getExe pkgs.git} commit ~/etc/nixos && ${lib.getExe pkgs.git} push &&\
+        && ${lib.getExe pkgs.nh} os switch ~/etc/nixos &&\
+        ${lib.getExe pkgs.git} -C ~/etc/nixos commit -m "Update from $(${pkgs.coreutils-full}/bin/date)" ~/etc/nixos || ${lib.getExe pkgs.git} -C ~/etc/nixos push ||\
         ${lib.getExe pkgs.notify-desktop} nixos updated -t 1000 && \
         ${lib.getExe pkgs.nh} clean all --keep=4
       '';

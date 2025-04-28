@@ -42,18 +42,18 @@
     # step-ca
     # step-cli
     distrobox
-    terraform
-    ansible
-    hubble
-    argocd
+    # terraform
+    # ansible
+    # hubble
+    # argocd
     mysql80
-    zoom-us
-    glab
-    gnumake
-    goss
-    postgresql
-    s3cmd
-    s4cmd
+    # zoom-us
+    # glab
+    # gnumake
+    # goss
+    # postgresql
+    # s3cmd
+    # s4cmd
     openssl
   ];
 }

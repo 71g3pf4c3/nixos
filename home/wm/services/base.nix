@@ -18,7 +18,7 @@
     network-manager-applet.enable = true;
     cliphist = {
       enable = true;
-      systemdTarget = "sway-session.target";
+      systemdTargets = ["sway-session.target"];
     };
     gammastep = {
       enable = true;

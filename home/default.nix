@@ -23,7 +23,7 @@
     nh
     ncdu
     libsixel
-    wtf
+    wtfutil
     playerctl
     translate-shell
     dig

@@ -15,20 +15,6 @@ let
       homepage = "https://github.com/taybart/b64.nvim";
     };
   };
-  ags = pkgs.vimUtils.buildVimPlugin {
-    name = "advanced-git-search-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "aaronhallaert";
-      repo = "advanced-git-search.nvim";
-      rev = "v1.1.0";
-      hash = "sha256-RPUXNn6oyZ/32o5MyMP+gXAUe6y/S5+JsiPFu0nI3Vo=";
-    };
-    meta = with lib; {
-      description = "Search your git history by commit message, content and author in Neovim";
-      homepage = "https://github.com/aaronhallaert/advanced-git-search.nvim";
-      license = licenses.asl20;
-    };
-  };
 in
 {
   home.packages = with pkgs; [
@@ -253,7 +239,7 @@ in
         enable = true;
         highlightTheme = "gruvbox";
         extensions = {
-          advanced-git-search.enable = true;
+          # advanced-git-search.enable = true;
         };
       };
       avante = {
@@ -719,12 +705,6 @@ in
       }
     ];
     extraPlugins = [
-      # {
-      #   plugin = ags;
-      #   # config = ''
-      #   #   require("telescope").load_extension("advanced_git_search")
-      #   # '';
-      # }
       b64
     ];
   };
