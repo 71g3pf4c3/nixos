@@ -92,7 +92,7 @@
     enable = true;
     binfmt = true;
   };
-  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
+  hardware.graphics.enable32Bit = true; # Enables support for 32bit libs that steam uses
   services.xserver = {
     enable = true;
     desktopManager.xterm.enable = false;

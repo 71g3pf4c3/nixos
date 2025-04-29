@@ -271,7 +271,7 @@ in
       undotree.enable = true;
       treesitter = {
         enable = true;
-        ensureInstalled = "all";
+        ensure_installed = "all";
         settings = {
           highlight = {
             enable = true;
@@ -344,7 +344,7 @@ in
         enable = true;
         servers = {
           # ansiblels.enable = true;
-          helm-ls = {
+          helm_ls = {
             enable = true;
             filetypes = [
               "yaml"

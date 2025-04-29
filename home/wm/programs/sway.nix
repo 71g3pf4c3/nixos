@@ -148,6 +148,7 @@ in
           "${modifier}+Shift+Escape" =
             "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} -u";
           "F9" = "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} -u";
+          "Shift+F9" = "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} -u && systemctl suspend";
           "${modifier}+Control+Shift+h" = "move workspace to output left";
           "${modifier}+Control+Shift+l" = "move workspace to output right";
           "${modifier}+Control+Shift+k" = "move workspace to output up";
