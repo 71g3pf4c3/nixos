@@ -271,7 +271,7 @@ in
       undotree.enable = true;
       treesitter = {
         enable = true;
-        ensure_installed = "all";
+        ensureInstalled = "all";
         settings = {
           highlight = {
             enable = true;
