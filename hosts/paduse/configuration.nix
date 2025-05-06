@@ -57,15 +57,15 @@
     172.18.0.7 ingress.localhost
     172.18.0.8 ingress.localhost
     172.18.0.9 ingress.localhost
-    172.18.0.1 gitlab.localhost
-    172.18.0.2 gitlab.localhost
-    172.18.0.3 gitlab.localhost
-    172.18.0.4 gitlab.localhost
-    172.18.0.5 gitlab.localhost
-    172.18.0.6 gitlab.localhost
-    172.18.0.7 gitlab.localhost
-    172.18.0.8 gitlab.localhost
-    172.18.0.9 gitlab.localhost
+    172.18.0.1 gitlab.kind
+    172.18.0.2 gitlab.kind
+    172.18.0.3 gitlab.kind
+    172.18.0.4 gitlab.kind
+    172.18.0.5 gitlab.kind
+    172.18.0.6 gitlab.kind
+    172.18.0.7 gitlab.kind
+    172.18.0.8 gitlab.kind
+    172.18.0.9 gitlab.kind
     172.18.0.1 kind.localhost
     172.18.0.2 kind.localhost
     172.18.0.3 kind.localhost
