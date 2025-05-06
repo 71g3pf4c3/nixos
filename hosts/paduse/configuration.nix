@@ -64,6 +64,15 @@
     172.18.0.7 gitlab.kind
     172.18.0.8 gitlab.kind
     172.18.0.9 gitlab.kind
+    172.18.0.1 vault.kind
+    172.18.0.2 vault.kind
+    172.18.0.3 vault.kind
+    172.18.0.4 vault.kind
+    172.18.0.5 vault.kind
+    172.18.0.6 vault.kind
+    172.18.0.7 vault.kind
+    172.18.0.8 vault.kind
+    172.18.0.9 vault.kind
     172.18.0.1 kind
     172.18.0.2 kind
     172.18.0.3 kind
