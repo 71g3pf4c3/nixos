@@ -37,26 +37,24 @@
     keep-derivations = false
   '';
   networking.extraHosts = ''
-    127.0.0.1 kind
-    127.0.0.1 kind
-    172.18.0.1 grafana.localhost
-    172.18.0.2 grafana.localhost
-    172.18.0.3 grafana.localhost
-    172.18.0.4 grafana.localhost
-    172.18.0.5 grafana.localhost
-    172.18.0.6 grafana.localhost
-    172.18.0.7 grafana.localhost
-    172.18.0.8 grafana.localhost
-    172.18.0.9 grafana.localhost
-    172.18.0.1 ingress.localhost
-    172.18.0.2 ingress.localhost
-    172.18.0.3 ingress.localhost
-    172.18.0.4 ingress.localhost
-    172.18.0.5 ingress.localhost
-    172.18.0.6 ingress.localhost
-    172.18.0.7 ingress.localhost
-    172.18.0.8 ingress.localhost
-    172.18.0.9 ingress.localhost
+    172.18.0.1 grafana.kind
+    172.18.0.2 grafana.kind
+    172.18.0.3 grafana.kind
+    172.18.0.4 grafana.kind
+    172.18.0.5 grafana.kind
+    172.18.0.6 grafana.kind
+    172.18.0.7 grafana.kind
+    172.18.0.8 grafana.kind
+    172.18.0.9 grafana.kind
+    172.18.0.1 ingress.kind
+    172.18.0.2 ingress.kind
+    172.18.0.3 ingress.kind
+    172.18.0.4 ingress.kind
+    172.18.0.5 ingress.kind
+    172.18.0.6 ingress.kind
+    172.18.0.7 ingress.kind
+    172.18.0.8 ingress.kind
+    172.18.0.9 ingress.kind
     172.18.0.1 gitlab.kind
     172.18.0.2 gitlab.kind
     172.18.0.3 gitlab.kind
@@ -66,24 +64,24 @@
     172.18.0.7 gitlab.kind
     172.18.0.8 gitlab.kind
     172.18.0.9 gitlab.kind
-    172.18.0.1 kind.localhost
-    172.18.0.2 kind.localhost
-    172.18.0.3 kind.localhost
-    172.18.0.4 kind.localhost
-    172.18.0.5 kind.localhost
-    172.18.0.6 kind.localhost
-    172.18.0.7 kind.localhost
-    172.18.0.8 kind.localhost
-    172.18.0.9 kind.localhost
-    172.18.0.1 grafana.localhost
-    172.18.0.2 grafana.localhost
-    172.18.0.3 grafana.localhost
-    172.18.0.4 grafana.localhost
-    172.18.0.5 grafana.localhost
-    172.18.0.6 grafana.localhost
-    172.18.0.7 grafana.localhost
-    172.18.0.8 grafana.localhost
-    172.18.0.9 grafana.localhost
+    172.18.0.1 kind
+    172.18.0.2 kind
+    172.18.0.3 kind
+    172.18.0.4 kind
+    172.18.0.5 kind
+    172.18.0.6 kind
+    172.18.0.7 kind
+    172.18.0.8 kind
+    172.18.0.9 kind
+    172.18.0.1 grafana.kind
+    172.18.0.2 grafana.kind
+    172.18.0.3 grafana.kind
+    172.18.0.4 grafana.kind
+    172.18.0.5 grafana.kind
+    172.18.0.6 grafana.kind
+    172.18.0.7 grafana.kind
+    172.18.0.8 grafana.kind
+    172.18.0.9 grafana.kind
     172.18.0.1 keycloak.localhost
     172.18.0.2 keycloak.localhost
     172.18.0.3 keycloak.localhost
