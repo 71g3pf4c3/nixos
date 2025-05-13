@@ -23,5 +23,6 @@
     kubelogin-oidc
     kubernetes-helm
     kubevirt
+    velero
   ];
 }
