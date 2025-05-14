@@ -32,6 +32,10 @@ in
     config = {
       startup = [
         {
+          command = "systemctl --user restart xremap";
+          always = true;
+        }
+        {
           command = "systemctl --user restart blueman-applet";
           always = true;
         }
