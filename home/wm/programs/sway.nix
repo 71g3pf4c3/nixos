@@ -32,11 +32,11 @@ in
     config = {
       startup = [
         {
-          command = "systemctl --user start blueman-applet";
+          command = "systemctl --user restart blueman-applet";
           always = true;
         }
         {
-          command = "systemctl --user start swayidle";
+          command = "systemctl --user restart swayidle";
           always = true;
         }
         {
@@ -44,11 +44,11 @@ in
           always = true;
         }
         {
-          command = "systemctl --user start network-manager-applet";
+          command = "systemctl --user restart network-manager-applet";
           always = true;
         }
         {
-          command = "systemctl --user start swaybg";
+          command = "systemctl --user restart swaybg";
           always = true;
         }
       ];

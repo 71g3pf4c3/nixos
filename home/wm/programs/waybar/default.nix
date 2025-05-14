@@ -66,28 +66,28 @@ in
           "format" = "{icon}";
           "format-icons" = {
             "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
+            "2" = "";
+            "3" = "󰻘";
+            "4" = "";
+            "5" = "";
             # "focused" = "";
-            "default" = "";
+            "default" = "";
           };
         };
-        "wlr/workspaces" = {
-          "format" = "{icon}";
-          "format-icons" = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "focused" = "";
-            "default" = "";
-          };
-          "on-scroll-up" = "hyprctl dispatch workspace e+1";
-          "on-scroll-down" = "hyprctl dispatch workspace e-1";
-        };
+        # "wlr/workspaces" = {
+        #   "format" = "{icon}";
+        #   "format-icons" = {
+        #     "1" = "";
+        #     "2" = "";
+        #     "3" = "";
+        #     "4" = "";
+        #     "5" = "";
+        #     "focused" = "";
+        #     "default" = "";
+        #   };
+        #   "on-scroll-up" = "hyprctl dispatch workspace e+1";
+        #   "on-scroll-down" = "hyprctl dispatch workspace e-1";
+        # };
         "idle_inhibitor" = {
           "format" = "{icon}";
           "format-icons" = {
@@ -111,7 +111,7 @@ in
         };
         "battery" = {
           "states" = {
-            "good" = 95;
+            "good" = 80;
             "warning" = 30;
             "critical" = 15;
           };
@@ -137,8 +137,8 @@ in
           "format-source-muted" = "";
           "format-icons" = {
             "headphone" = "";
-            "hands-free" = "";
-            "headset" = "";
+            "hands-free" = "";
+            "headset" = "";
             "phone" = "";
             "portable" = "";
             "car" = "";
@@ -151,9 +151,9 @@ in
         };
         "network" = {
           "format-wifi" = "({signalStrength}%) ";
-          "format-ethernet" = "{ipaddr}/{cidr} ";
-          "tooltip-format" = "{ifname} via {gwaddr} ";
-          "format-linked" = "{ifname} (No IP) ";
+          "format-ethernet" = "{ipaddr}/{cidr} ";
+          "tooltip-format" = "{ifname} via {gwaddr} 󰈀";
+          "format-linked" = "{ifname} (No IP) 󰈂";
           "format-disconnected" = "Disconnected ⚠";
           "format-alt" = "{ifname}: {ipaddr}/{cidr}";
         };
