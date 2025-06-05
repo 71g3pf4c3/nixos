@@ -114,6 +114,11 @@
       } {
         display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${lib.getExe pkgs.kubectx}"
       }
+      bind-key -n M-Y if-shell -F '#{==:#{session_name},kubens}' {
+        kill-session -t kubens
+      } {
+        display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubens -n kubens "tmux set status && ${pkgs.kubectx}/bin/kubens"
+      }
       bind-key -n M-n if-shell -F '#{==:#{session_name},news}' {
         detach-client
       } {
