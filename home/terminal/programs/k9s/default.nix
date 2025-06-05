@@ -47,10 +47,10 @@
       };
     };
   };
-  home.file.".config/k9s/skins/gruvbox-light.yaml" = {
+  home.file."${config.home.homeDirectory}/k9s/skins/gruvbox-light.yaml" = {
     source = ./gruvbox-light.yaml;
   };
-  home.file.".config/k9s/plugins" = {
+  home.file."${config.home.homeDirectory}/k9s/plugins" = {
     source = ./files/plugins;
     recursive = true;
   };
