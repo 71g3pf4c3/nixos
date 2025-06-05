@@ -127,7 +127,7 @@
       bind-key -n M-8 if-shell -F '#{==:#{session_name},k9s}' {
         detach-client
       } {
-        display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s --kubeconfig /home/t1g3pf4c3/.kube/Main.yml"
+        display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && k9s"
       }
     '';
     plugins = with pkgs; [

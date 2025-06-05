@@ -40,7 +40,7 @@
       VISUAL = "nvim";
       PAGER = "less -FR";
       COLORTERM = "truecolor";
-      KUBECONFIG = "${config.home.homeDirectory}/.kube/Main.yml";
+      KUBECONFIG = "${config.home.homeDirectory}/.kube/kubeconfig";
       KUBECONFIG_SAVED = "$KUBECONFIG";
       _JAVA_AWT_WM_NONREPARENTING = "1";
       ZSH_AUTOSUGGEST_USE_ASYNC = true;
