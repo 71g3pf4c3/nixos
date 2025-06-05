@@ -20,11 +20,12 @@
     kubeseal
     kubectl-node-shell
     kubectl-tree
+    kubectl-gadget
     kubelogin-oidc
     kubernetes-helm
     kubevirt
     velero
-
+    stern
     argocd
     cilium-cli
     clusterctl
