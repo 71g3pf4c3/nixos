@@ -15,6 +15,7 @@
     fluxcd
     k8sgpt
     kind
+    k3d
     kube-capacity
     kubectl-cnpg
     kubeseal
