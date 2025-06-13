@@ -36,7 +36,7 @@
       After = ["tray.target" "sway-session.target"];
     };
     Service = {
-      ExecStart = "${lib.getExe pkgs.blueman}/bin/blueman-applet";
+      ExecStart = "${pkgs.blueman}/bin/blueman-applet";
       Restart = "on-failure";
     };
     Install.WantedBy = [ "sway-session.target" ];
