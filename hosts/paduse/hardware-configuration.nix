@@ -58,6 +58,10 @@
     enable = true;
   };
   hardware = {
+    opentabletdriver = {
+      enable = true;
+      daemon.enable = true;
+    };
     trackpoint = {
       enable = true;
       emulateWheel = true;

@@ -8,7 +8,8 @@
 {
   home.packages = with pkgs; [
     pavucontrol
-    sxiv
+    opentabletdriver
+    imv
     wdisplays
     wl-clipboard
     qbittorrent
