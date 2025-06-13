@@ -53,4 +53,16 @@
     };
     Install.WantedBy = [ "sway-session.target" ];
   };
+  systemd.user.services.otd-user-daemon = {
+    Unit = {
+      Description = "OTD daemon";
+      PartOf = [ "sway-session.target" ];
+      After = ["tray.target" "sway-session.target"];
+    };
+    Service = {
+      ExecStart = "${pkgs.opentabletdriver}/bin/otd-daemon";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [ "sway-session.target" ];
+  };
 }
