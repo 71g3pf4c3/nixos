@@ -7,6 +7,7 @@
   ...
 }:
 {
+  systemd.user.services.xremap.Install.WantedBy = [ "sway-session.target" ];
   services.xremap = {
     enable = true;
     withWlroots = true;
