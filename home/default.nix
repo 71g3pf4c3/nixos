@@ -32,7 +32,6 @@
     wineWowPackages.waylandFull
     unzip
     libreoffice
-    restic
     yq-go
     flatpak
     # termplay
