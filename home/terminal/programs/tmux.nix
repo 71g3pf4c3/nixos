@@ -109,6 +109,7 @@
         display-popup -h 70% -w 70% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s scratch -n "scratch"
       }
       bind-key -n M-g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${lib.getExe pkgs.lazygit}"
+      bind-key -n M-8 display-menu k8s 8 if-shell -F '#{==:#{session_name},kubectx}' { kill-session -t kubectx } { display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${lib.getExe pkgs.kubectx}" }
       bind-key -n M-y if-shell -F '#{==:#{session_name},kubectx}' {
         kill-session -t kubectx
       } {
@@ -169,7 +170,10 @@
             sha256 = "sha256-Nz1vfl4owkQG3l2laao9Z6IW1w0nlhYuwHTuag1ajwM=";
           };
         };
-        extraConfig = "\n				set -g @session-wizard 'h'\n				set -g @session-wizard-width 40\n			";
+        extraConfig = ''
+          set -g @session-wizard 'h'
+          set -g @session-wizard-width 40
+        '';
       }
       {
         plugin = tmuxPlugins.mkTmuxPlugin {
