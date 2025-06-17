@@ -72,6 +72,19 @@
         cat $fx | ${pkgs.wl-clipboard}/bin/wl-copy
           	}}
       '';
+      fzf-select = ''
+        ''${{
+            res="$(find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m)"
+            if [ -d "$res" ] ; then
+                cmd="cd"
+            elif [ -f "$res" ] ; then
+                cmd="select"
+            else
+                exit 0
+            fi
+            lf -remote "send $id $cmd \"$res\""
+        }}
+      '';
       bulk-rename = ''
         ''${{
         	old="$(mktemp)"
