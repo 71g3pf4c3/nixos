@@ -110,18 +110,20 @@
       }
       bind-key -n M-g display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s lazygit -n lazygit "${lib.getExe pkgs.lazygit}"
 
+      bind-key -n M-q detach-client
       bind-key -n M-8 if-shell -F '#{==:#{session_name},k9s}' {
       detach-client 
       } { 
         if-shell -F '#{==:#{session_name},kubectx}'  {
           kill-session -t kubectx 
           } {
-          display-menu -C k9s -T "KUBERNETES" ctx 8\
+          display-menu \
+          k9s 9\
+          'display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && ${lib.getExe pkgs.k9s}"'
+          ctx 8\
           'display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${lib.getExe pkgs.kubectx}" '\
           ns 7\
           'display-popup -h 40% -w 40% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -s kubectx -n kubectx "tmux set status && ${pkgs.kubectx}/bin/kubens" '\
-          k9s 9\
-          'display-popup -h 80% -w 80% -E -d "#{pane_current_path}" -T "#{pane_current_path}" tmux new -A -s k9s -n k9s "tmux set status && ${lib.getExe pkgs.k9s}"'
           }
         }
 
