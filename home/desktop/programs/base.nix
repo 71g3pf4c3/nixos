@@ -13,6 +13,7 @@
     wdisplays
     wl-clipboard
     qbittorrent
+    snx-rs
   ];
   # systemd.user.services.mpris-proxy = {
   #     description = "Mpris proxy";
