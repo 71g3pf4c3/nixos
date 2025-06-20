@@ -12,55 +12,55 @@
     associations = [
       {
         fpath = ".*.md$";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename%";
       }
       {
         fpath = ".*.pem$";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.openssl} x509 -text -noout -in %pistol-filename% || ${lib.getExe pkgs.bat} --style=numbers,grid %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.openssl} x509 -text -noout -in %pistol-filename% || ${lib.getExe pkgs.bat} --style=numbers,grid %pistol-filename%";
       }
       {
         fpath = ".*.crt$";
-        command = "sh:   ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.openssl} x509 -text -noout -in %pistol-filename% || ${lib.getExe pkgs.bat} --style=numbers,grid %pistol-filename%";
+        command = "sh:   ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.openssl} x509 -text -noout -in %pistol-filename% || ${lib.getExe pkgs.bat} --style=numbers,grid %pistol-filename%";
       }
       {
         fpath = ".*.csr$";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.openssl} x509 -text -noout -in %pistol-filename% || ${lib.getExe pkgs.bat} --style=numbers,grid %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.openssl} x509 -text -noout -in %pistol-filename% || ${lib.getExe pkgs.bat} --style=numbers,grid %pistol-filename%";
       }
       {
         fpath = ".*.md$";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename% ";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename% ";
       }
       {
         fpath = ".*.ini$";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename% ";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename% ";
       }
       {
         fpath = ".*.norg$";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename% ";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename% ";
       }
       {
         fpath = ".*.log$";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.lnav} %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.lnav} %pistol-filename%";
       }
       {
         fpath = ".*.docx";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.python311Packages.docx2txt} %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.python311Packages.docx2txt} %pistol-filename%";
       }
       {
         fpath = ".*.odt";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.odt2txt} %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.odt2txt} %pistol-filename%";
       }
       {
         fpath = ".*.zip";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.unzip} -l %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.unzip} -l %pistol-filename%";
       }
       {
         fpath = ".*.tar.*";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.gnutar} -tavf %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.gnutar} -tavf %pistol-filename%";
       }
       # {
       #   fpath = ".*.torrent";
-      #   command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.nodePackages.webtorrent-cli} info %pistol-filename%";
+      #   command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.nodePackages.webtorrent-cli} info %pistol-filename%";
       # }
       {
         mime = "image/*";
@@ -72,15 +72,15 @@
       }
       {
         mime = "application/json";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.jq} '.' %pistol-filename% ";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.jq} '.' %pistol-filename% ";
       }
       {
         mime = "application/pdf";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${pkgs.poppler_utils}/bin/pdftotext %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${pkgs.poppler_utils}/bin/pdftotext %pistol-filename%";
       }
       {
         mime = "application/x-x509-ca-cert";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.openssl} x509 -text -noout -in %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.openssl} x509 -text -noout -in %pistol-filename%";
       }
       {
         mime = "application/x-executable";
@@ -88,11 +88,11 @@
       }
       {
         mime = "inode/directory";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.eza} --tree --icons --level=1 %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.eza} --tree --icons --level=1 %pistol-filename%";
       }
       {
         mime = "text/*";
-        command = "sh: ${lib.getExe pkgs.bkt} --ttl=30s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename%";
+        command = "sh: ${lib.getExe pkgs.bkt} --ttl=5s -- ${lib.getExe pkgs.bat} --style=numbers,grid --paging=never --color=always %pistol-filename%";
       }
     ];
   };
