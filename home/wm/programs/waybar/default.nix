@@ -22,8 +22,7 @@ in
         }
       ''
       (builtins.readFile (
-        pkgs.substituteAll {
-          src = ./style.css;
+        pkgs.replaceVars ./style.css {
           bg = "#${config.colorScheme.palette.darkbg}";
           fg = "#${config.colorScheme.palette.darkfg}";
           green = "#${config.colorScheme.palette.darkgreenalt}";
