@@ -51,6 +51,10 @@
     kubernetes-helm
     kubeseal
     kubevirt
+    kustomize
+    chart-testing
+    ytt
+    vals
     # packer
     popeye
   ];

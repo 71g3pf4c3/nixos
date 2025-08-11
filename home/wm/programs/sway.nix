@@ -11,7 +11,7 @@ let
 in
 {
   programs.sway-easyfocus.enable = true;
-  programs.swayosd.enable = true;
+  # programs.swayosd.enable = true;
   wayland.windowManager.sway = {
     enable = true;
     systemd.enable = true;

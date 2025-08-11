@@ -15,6 +15,7 @@
     "xhci_pci"
     "nvme"
     "usb_storage"
+    "pkcs8_key_parser"
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
