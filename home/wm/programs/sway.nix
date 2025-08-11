@@ -113,7 +113,7 @@ in
       bindkeysToCode = true;
       keybindings =
         let
-          modifier = config.wayland.windowManager.sway.config.modifier;
+          inherit (config.wayland.windowManager.sway.config) modifier;
         in
         lib.mkOptionDefault {
           "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set 5%+";

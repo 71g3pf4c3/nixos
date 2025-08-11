@@ -1,6 +1,4 @@
-{
-  ...
-}:
+_:
 {
   colorScheme = {
     slug = "pasque";
