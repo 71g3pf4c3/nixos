@@ -51,6 +51,9 @@
     networkmanager = {
       wifi.backend = "iwd";
       wifi.powersave = false;
+      plugins = with pkgs; [
+        networkmanager-openconnect
+      ];
     };
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
