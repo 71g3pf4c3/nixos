@@ -50,8 +50,8 @@
   home.file."${config.home.homeDirectory}/.config/k9s/skins/gruvbox-light.yaml" = {
     source = ./gruvbox-light.yaml;
   };
-  # home.file."${config.home.homeDirectory}/.config/k9s/plugins" = {
-  #   source = ./files/plugins;
-  #   recursive = true;
-  # };
+  home.file."${config.home.homeDirectory}/.config/k9s/plugins" = {
+    source = ./files/plugins;
+    recursive = true;
+  };
 }
