@@ -22,6 +22,7 @@
     kubectl-node-shell
     kubectl-tree
     kubectl-gadget
+
     kubelogin-oidc
     kubernetes-helm
     kubevirt
@@ -45,9 +46,11 @@
     kubectl-neat
     kubectl-images
     kubectl-example
+    kubectl-graph
     kubectx
     kubeconform
     kubelogin-oidc
+    # krr
     kubernetes-helm
     kubeseal
     kubevirt

@@ -72,6 +72,11 @@
         cat $fx | ${pkgs.wl-clipboard}/bin/wl-copy
           	}}
       '';
+      paste-content = ''
+          ''${{
+        ${pkgs.wl-clipboard}/bin/wl-paste >> $fx
+          	}}
+      '';
       fzf-select = ''
         ''${{
             res="$(find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m)"
