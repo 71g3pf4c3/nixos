@@ -30,6 +30,7 @@
       R = "bulk-rename";
       E = "edit";
       C = "copy-content";
+      P = "paste";
       KK = "kubeapply";
       KD = "kubedelete";
       f = "copy-path";
@@ -65,12 +66,12 @@
         ''${{
           name="$(basename $fx)"
           ln -s "$fx" "$name"
-        	}}
+          }}
       '';
       copy-content = ''
-          ''${{
+        ''${{
         cat $fx | ${pkgs.wl-clipboard}/bin/wl-copy
-          	}}
+            }}
       '';
       paste-content = ''
           ''${{
