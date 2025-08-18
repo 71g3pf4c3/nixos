@@ -30,7 +30,7 @@
       R = "bulk-rename";
       E = "edit";
       C = "copy-content";
-      P = "paste";
+      P = "paste-content";
       KK = "kubeapply";
       KD = "kubedelete";
       f = "copy-path";
@@ -75,7 +75,7 @@
       '';
       paste-content = ''
           ''${{
-        ${pkgs.wl-clipboard}/bin/wl-paste >> $fx
+        ${pkgs.wl-clipboard}/bin/wl-paste > $fx
           	}}
       '';
       fzf-select = ''
