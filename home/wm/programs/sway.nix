@@ -152,9 +152,9 @@ in
             exec ${lib.getExe pkgs.sway-contrib.grimshot} save area - | ${lib.getExe pkgs.satty} --filename - --early-exit --copy-command ${pkgs.wl-clipboard}/bin/wl-copy
           '';
           "${modifier}+Shift+Escape" =
-            "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} -u";
-          "F9" = "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} -u";
-          "Shift+F9" = "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} -u && systemctl suspend";
+            "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png}";
+          "F9" = "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png}";
+          "Shift+F9" = "exec ${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} && systemctl suspend";
           "${modifier}+Control+Shift+h" = "move workspace to output left";
           "${modifier}+Control+Shift+l" = "move workspace to output right";
           "${modifier}+Control+Shift+k" = "move workspace to output up";

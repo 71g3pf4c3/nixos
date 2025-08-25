@@ -78,6 +78,7 @@
       "show" = "${lib.getExe pkgs.chafa}";
       "wifiscan" = "nmcli dev wifi rescan && nmcli dev wifi list";
       "open" = "xdg-open";
+      "sus" = "nvim $(mktemp --suffix sus)";
       "mount" = "sudo mount -o uid=1000,gid=984";
       "cd" = "z";
       "ci" = "__zoxide_zi";
