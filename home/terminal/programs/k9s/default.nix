@@ -10,17 +10,15 @@
   programs.k9s = {
     enable = true;
     aliases = {
-      aliases = {
-        p = "v1/pods";
-        n = "v1/namespaces";
-        c = "context";
-        d = "deployments";
-        s = "v1/secrets";
-        j = "jobs";
-        r = "roles";
-        rb = "rolebindings";
-        np = "networkpolicies";
-      };
+      p = "v1/pods";
+      n = "v1/namespaces";
+      c = "context";
+      d = "deployments";
+      s = "v1/secrets";
+      j = "jobs";
+      r = "roles";
+      rb = "rolebindings";
+      np = "networkpolicies";
     };
     settings = {
       k9s = {
@@ -48,7 +46,7 @@
     };
   };
   home.file."${config.home.homeDirectory}/.config/k9s/skins/gruvbox-light.yaml" = {
-    source = ./gruvbox-light.yaml;
+    source = ./files/gruvbox-light.yaml;
   };
   home.file."${config.home.homeDirectory}/.config/k9s/plugins" = {
     source = ./files/plugins;

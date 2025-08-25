@@ -13,13 +13,13 @@
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock -fF -i ${../files/wallpapers/LOCK.png} -u";
+        command = "${pkgs.swaylock}/bin/swaylock -fF -i ${../files/wallpapers/LOCK.png}";
       }
     ];
     timeouts = [
       {
         timeout = 60 * 2;
-        command = "${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png} -u";
+        command = "${lib.getExe pkgs.swaylock} -fF -i ${../files/wallpapers/LOCK.png}";
       }
       {
         timeout = 60 * 1;
