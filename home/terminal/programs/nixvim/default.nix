@@ -242,20 +242,20 @@ in
           advanced-git-search.enable = true;
         };
       };
-      avante = {
-        enable = false;
-        # provider ="ollama";
-        # settings = {
-        #   vendors = {
-        #     deepseek = {
-        #       __inherited_from = "openai";
-        #       api_key_name = "DEEPSEEK_API_KEY";
-        #       endpoint = "https://api.deepseek.com";
-        #       model = "deepseek-coder";
-        #     };
-        #   };
-        # };
-      };
+      # avante = {
+      #   enable = true;
+      #   provider ="qianwen";
+      #   settings = {
+      #     vendors = {
+      #       qianwen = {
+      #         __inherited_from = "openai";
+      #         api_key_name = "sk-d95abce881404af78256cc8ddaf104c0";
+      #         endpoint = "https://owebui.int.selectel.org/compatible-mode/v1";
+      #         model = "qwen3-235b-a22b-fp8-instruct";
+      #       };
+      #     };
+      #   };
+      # };
       clipboard-image = {
         enable = true;
         clipboardPackage = pkgs.wl-clipboard;
