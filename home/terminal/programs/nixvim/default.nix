@@ -242,20 +242,47 @@ in
           advanced-git-search.enable = true;
         };
       };
-      avante = {
+      codecompanion = {
         enable = true;
         settings = {
-          provider = "qianwen";
-          providers = {
-            qianwen = {
-              __inherited_from = "openai";
-              api_key_name = "sk-d95abce881404af78256cc8ddaf104c0";
-              endpoint = "https://owebui.int.selectel.org/api";
-              model = "qwen3-235b-a22b-fp8-instruct";
+          adapters = {
+            qwen = {
+              __raw = ''
+                function()
+                  return require('codecompanion.adapters').extend('ollama', {
+                      env = {
+                          url = "https://owebui.int.selectel.org/api",
+                      },
+                      schema = {
+                          model = {
+                              default = 'qwen3-235b-a22b-fp8-instruct',
+                              -- default = "llama3.1:8b-instruct-q8_0",
+                          },
+                          -- num_ctx = {
+                          --     default = 32768,
+                          -- },
+                      },
+                  })
+                end
+              '';
             };
           };
         };
       };
+      # avante = {
+      #   enable = true;
+      #   settings = {
+      #     provider = "qianwen";
+      #     providers = {
+      #       qianwen = {
+      #         __inherited_from = "openai";
+      #         api_key_name = "sk-d95abce881404af78256cc8ddaf104c0";
+      #         endpoint = "https://owebui.int.selectel.org/api";
+      #         model = "qwen3-235b-a22b-fp8-instruct";
+      #       };
+      #     };
+      #   };
+      # };
       clipboard-image = {
         enable = true;
         clipboardPackage = pkgs.wl-clipboard;
