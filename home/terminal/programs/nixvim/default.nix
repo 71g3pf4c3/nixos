@@ -174,7 +174,7 @@ in
       cmp-treesitter.enable = true;
       cmp-nvim-lsp.enable = true;
       tmux-navigator.enable = true;
-      project-nvim.enable = true;
+      # project-nvim.enable = true;
       nix.enable = true;
       gitsigns = {
         enable = true;
