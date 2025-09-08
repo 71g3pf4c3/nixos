@@ -242,34 +242,34 @@ in
           advanced-git-search.enable = true;
         };
       };
-      codecompanion = {
-        enable = true;
-        settings = {
-          adapters = {
-            qwen = {
-              __raw = ''
-                  function()
-                    return require('codecompanion.adapters').extend('ollama', {
-                        env = {
-                            url = "https://owebui.int.selectel.org/api",
-                            api_key = "sk-d95abce881404af78256cc8ddaf104c0", -- optional: if your endpoint is authenticated
-                        },
-                        schema = {
-                            model = {
-                                default = 'qwen3-235b-a22b-fp8-instruct',
-                                -- default = "llama3.1:8b-instruct-q8_0",
-                            },
-                            -- num_ctx = {
-                            --     default = 32768,
-                            -- },
-                        },
-                    })
-                  end
-              '';
-            };
-          };
-        };
-      };
+      # codecompanion = {
+      #   enable = true;
+      #   settings = {
+      #     adapters = {
+      #       qwen = {
+      #         __raw = ''
+      #             function()
+      #               return require('codecompanion.adapters').extend('ollama', {
+      #                   env = {
+      #                       url = "https://owebui.int.selectel.org/api",
+      #                       api_key = "sk-d95abce881404af78256cc8ddaf104c0", -- optional: if your endpoint is authenticated
+      #                   },
+      #                   schema = {
+      #                       model = {
+      #                           default = 'qwen3-235b-a22b-fp8-instruct',
+      #                           -- default = "llama3.1:8b-instruct-q8_0",
+      #                       },
+      #                       -- num_ctx = {
+      #                       --     default = 32768,
+      #                       -- },
+      #                   },
+      #               })
+      #             end
+      #         '';
+      #       };
+      #     };
+      #   };
+      # };
       # avante = {
       #   enable = true;
       #   settings = {
