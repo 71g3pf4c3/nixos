@@ -42,6 +42,7 @@
     # step-ca
     # step-cli
     distrobox
+    assh
     # terraform
     # ansible
     # hubble

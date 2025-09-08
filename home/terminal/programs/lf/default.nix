@@ -116,6 +116,7 @@
         	case "$f" in
         			*.zip) ${lib.getExe pkgs.unzip} "$f" ;;
         			*.tar*) ${lib.getExe pkgs.gnutar} -xvaf "$f" ;;
+        			*.tgz*) ${lib.getExe pkgs.gnutar} -xvaf "$f" ;;
         			*) echo "Unsupported format" ;;
         	esac
         	}}
